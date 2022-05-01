@@ -11,6 +11,7 @@ public class TestScript : MonoBehaviour
 
         Debug.Log("12345");
         Debug.Log("asdasaaaa");
+        Debug.Log("saadsadsadsa");
     }
 
     // Update is called once per frame
