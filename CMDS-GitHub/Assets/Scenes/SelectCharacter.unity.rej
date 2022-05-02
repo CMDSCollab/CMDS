@@ -1,0 +1,15 @@
+diff a/CMDS-GitHub/Assets/Scenes/SelectCharacter.unity b/CMDS-GitHub/Assets/Scenes/SelectCharacter.unity	(rejected hunks)
+@@ -595,8 +595,13 @@
+   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+   m_AnchorMin: {x: 0.5, y: 0.5}
+   m_AnchorMax: {x: 0.5, y: 0.5}
++<<<<<<< HEAD
+   m_AnchoredPosition: {x: 0, y: -26}
+   m_SizeDelta: {x: 200, y: 90}
++=======
++  m_AnchoredPosition: {x: 0, y: 0}
++  m_SizeDelta: {x: 300, y: 50}
++>>>>>>> 3c30350a0ce615694a3cffc4e294eef7a0c54542
+   m_Pivot: {x: 0.5, y: 0.5}
+ --- !u!114 &730855918
+ MonoBehaviour:
