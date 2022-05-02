@@ -103,20 +103,13 @@ public class Programmer : BasicCharacter
 
     public void CheckCardDebug(DebugType debugType)
     {
-        foreach (Error error in currentErrors)
+        for (int i = (currentErrors.Count - 1); i >= 0; i--)
         {
-            if (debugType == error.debug)
+            if (debugType == currentErrors[i].debug)
             {
-                RemoveError(error);
+                RemoveError(currentErrors[i]);
             }
         }
-        //foreach (Error error in currentErrors)
-        //{
-        //    if (card.Equals(error.fix))
-        //    {
-        //        RemoveError(error);
-        //    }
-        //}
     }
 
     private void RemoveError(Error error)
