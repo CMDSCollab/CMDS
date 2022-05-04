@@ -5,12 +5,20 @@ using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour
 {
+    [HideInInspector]
     public GameMaster gM;
-    public EnemyIntentionUI enInUI;
     public EnemyAI enAI;
-
+    public EnemyInfo enemyInfo;
+    [HideInInspector]
     public int healthPoint;
     public int maxHp;
+
+    public Text hpText;
+    public Text bossName;
+    public Slider hpBar;
+
+    //
+    public EnemyIntentionUI enInUI;
     public int shieldPoint;
     public int shieldAmount;
     public int healAmount;
@@ -22,7 +30,6 @@ public class Enemy : MonoBehaviour
     public int dmgPerCharge;
     public int currentDmg;
 
-    public Text hpText;
     public Text shieldText;
     public Text chargeText;
     public Text skillText;
@@ -57,24 +64,34 @@ public class Enemy : MonoBehaviour
     private void Start()
     {
         gM = FindObjectOfType<GameMaster>();
-        enInUI = GetComponent<EnemyIntentionUI>();
-        GenerateInitialIntentionList();
-        enAI.GenerateIntention();
+        InitializeEnemy();
+
+        //enInUI = GetComponent<EnemyIntentionUI>();
+        //GenerateInitialIntentionList();
+        //enAI.GenerateIntention();
     }
 
     private void Update()
     {
         UpdateUI();
     }
+    public void InitializeEnemy()
+    {
+        healthPoint = maxHp;
+        hpBar.maxValue = maxHp;
+    }
 
     public void UpdateUI()
     {
+        
         hpText.text = healthPoint.ToString() + "/" + maxHp.ToString();
-        shieldText.text = shieldPoint.ToString();
-        chargeText.text = chargeLv.ToString();
-        skillText.text = skillLv.ToString();
-
+        bossName.text = enemyInfo.enemyName;
+        hpBar.value = healthPoint;
+        //shieldText.text = shieldPoint.ToString();
+        //chargeText.text = chargeLv.ToString();
+        //skillText.text = skillLv.ToString();
     }
+
 
     public void GenerateInitialIntentionList()
     {
@@ -231,7 +248,7 @@ public class Enemy : MonoBehaviour
         skillLv += 1;
     }
 
-    public void TakeAction()
+    public virtual void TakeAction()
     {
         if (currentIntention == "SingleA")
         {
@@ -258,9 +275,9 @@ public class Enemy : MonoBehaviour
             ImproveSelf();
         }
 
-        currentIntentionUI.SetActive(false);
+        //currentIntentionUI.SetActive(false);
 
-        enAI.GenerateIntention();
+        //enAI.GenerateIntention();
     }
 
     public void TakeDamage(int dmg)
@@ -287,7 +304,7 @@ public class Enemy : MonoBehaviour
 
     public void ChallengeVsSkill()
     {
-        int chaInt = gM.characterM.designerPl.challengeInt;
+        int chaInt = gM.aiM.des.challengeInt;
         if (chaInt >= skillLv)
         {
             isBored = false;

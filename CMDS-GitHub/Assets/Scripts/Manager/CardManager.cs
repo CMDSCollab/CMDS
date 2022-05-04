@@ -100,7 +100,8 @@ public class CardManager : MonoBehaviour
                     gM.enM.currentTarget.TakeDamage(cardInfo.baseFunctions[i].value);
                     break;
                 case BaseFunctionType.Shield:
-                    gM.characterM.programmerPl.shieldPoint += cardInfo.baseFunctions[i].value;
+                    //gM.characterM.programmerPl.shieldPoint += cardInfo.baseFunctions[i].value;
+                    gM.aiM.pro.shieldPoint += cardInfo.baseFunctions[i].value;
                     break;
                 case BaseFunctionType.Heal:
                     break;
@@ -165,7 +166,7 @@ public class CardManager : MonoBehaviour
         // 射击师 卡牌相关功能
         if (cardInfo is CardInfoDsgn)
         {
-            if (gM.characterM.chosenCharacter != "Designer")
+            if (gM.characterType == CharacterType.Designer)
             {
                 return;
             }
@@ -200,15 +201,17 @@ public class CardManager : MonoBehaviour
             }
             if (cardDsgn.isAddChallenge)
             {
-                gM.characterM.designerPl.challengeInt += 1;
+                //gM.characterM.designerPl.challengeInt += 1;
+                gM.aiM.des.challengeInt += 1;
             }
 
         }
 
         // 程序猿 卡牌相关功能
+        //if (cardInfo is CardInfoPro)
         if (cardInfo is CardInfoPro)
         {
-            if (gM.characterM.chosenCharacter != "Programmer")
+            if (gM.characterType != CharacterType.Programmmer)
             {
                 return;
             }
@@ -222,10 +225,10 @@ public class CardManager : MonoBehaviour
                 case SpecialFunctionPro.None:
                     break;
                 case SpecialFunctionPro.DamageEqualsShield:
-                    gM.enM.currentTarget.TakeDamage(gM.characterM.programmerPl.shieldPoint);
+                    gM.enM.currentTarget.TakeDamage(gM.aiM.pro.shieldPoint);
                     break;
                 case SpecialFunctionPro.DoubleShield:
-                    gM.characterM.programmerPl.shieldPoint += gM.characterM.programmerPl.shieldPoint;
+                    gM.aiM.pro.shieldPoint += gM.aiM.pro.shieldPoint;
                     break;
                 case SpecialFunctionPro.UseHandCardsGainShield:
                     gM.cardFunctionM.isUseCardGainShield = true;
@@ -238,7 +241,7 @@ public class CardManager : MonoBehaviour
                             if (gM.handM.handCardList[i - 1].GetComponent<CardManager>().handIndex != handIndex)
                             {
                                 gM.handM.handCardList[i - 1].GetComponent<CardManager>().DiscardHandCard();
-                                gM.characterM.programmerPl.shieldPoint += 5;
+                                gM.aiM.pro.shieldPoint += 5;
                             }
                             handIndex = 1;
                         }
@@ -248,8 +251,8 @@ public class CardManager : MonoBehaviour
                     gM.cardFunctionM.isVengeance = true;
                     break;
                 case SpecialFunctionPro.ConsumeShieldDoubleDamage:
-                    gM.enM.currentTarget.TakeDamage(gM.characterM.programmerPl.shieldPoint * 2);
-                    gM.characterM.programmerPl.shieldPoint = 0;
+                    gM.enM.currentTarget.TakeDamage(gM.aiM.pro.shieldPoint * 2);
+                    gM.aiM.pro.shieldPoint = 0;
                     break;
                 default:
                     break;

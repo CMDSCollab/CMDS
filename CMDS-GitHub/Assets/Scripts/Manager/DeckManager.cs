@@ -5,8 +5,6 @@ using UnityEngine.UI;
 
 public class DeckManager : MonoBehaviour
 {
-    //public List<CardInfo> cardInDeck;
-    //public List<CardInfo> cardInDeckCopy;
     public List<CardInfo> designerBaseCard;
     public List<CardInfo> programmerBaseCard;
     public Dictionary<int,CardInfo> cardInDeck = new Dictionary<int, CardInfo>(); //因为后面可能会出现卡牌可以强化的情况，同样一张卡可能出现名字一样，但是效果不一样的情况，所以需要做出区分
@@ -32,14 +30,14 @@ public class DeckManager : MonoBehaviour
 
     public void InitializeDicCardInDeck()
     {
-        if (gM.characterM.chosenCharacter == "Designer")
+        if (gM.characterType == CharacterType.Designer)
         {
             for (int i = 0; i < designerBaseCard.Count; i++)
             {
                 cardInDeck[i] = designerBaseCard[i];
             }
         }
-        else if (gM.characterM.chosenCharacter == "Programmer")
+        else if (gM.characterType == CharacterType.Programmmer)
         {
             cardPrefab = cardPrefabs[1];
             for (int i = 0; i < programmerBaseCard.Count; i++)
@@ -83,7 +81,6 @@ public class DeckManager : MonoBehaviour
 
     public void DrawRandomSingleCard()
     {
-        //int index = Random.Range(0, cardInDeckCopy.Count);
         List<int> residueKeys = new List<int>(); //因为改用dic，所以不能直接random，举例当6对应的值被取出，然后在0-8中又抽取到6就获取不到对应值
         foreach (int key in cardInDeckCopy.Keys)
         {
@@ -101,14 +98,11 @@ public class DeckManager : MonoBehaviour
         gM.handM.OrganizeHand();
         cardInDeckCopy.Remove(residueKeys[residueKeysIndex]);
 
-        //cardInDeckCopy.RemoveAt(index);
         gM.buttonM.SynchronizeCardsCountInPileButton("Draw"); //同步抽牌堆卡牌数量展示Text
     }
 
     public void ShuffleDiscardPileToDeck()
     {
-        Debug.Log("TestXXXX");
-
         cardInDeckCopy = new Dictionary<int, CardInfo>(gM.cardRepoM.discardPile);
         gM.cardRepoM.discardPile.Clear();
         gM.buttonM.SynchronizeCardsCountInPileButton("Discard"); //同步弃牌堆卡牌数量展示Text
@@ -126,7 +120,6 @@ public class DeckManager : MonoBehaviour
         gM.handM.handCardList.Add(drawCard.gameObject);
         gM.handM.OrganizeHand();
         cardInDeckCopy.Remove(deckIndexRecord);
-        //cardInDeckCopy.RemoveAt(index);
 
         gM.buttonM.SynchronizeCardsCountInPileButton("Draw"); //同步抽牌堆卡牌数量展示Text
     }

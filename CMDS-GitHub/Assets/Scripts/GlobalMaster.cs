@@ -5,13 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class GlobalMaster : MonoBehaviour
 {
+    public CharacterType characterType;
+
     private void Awake()
     {
         DontDestroyOnLoad(this.gameObject);
-    }
-
-    private void Start()
-    {
-        
     }
 }

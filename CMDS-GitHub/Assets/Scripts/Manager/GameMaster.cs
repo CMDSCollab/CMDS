@@ -12,42 +12,38 @@ public class GameMaster : MonoBehaviour
     public ButtonManager buttonM;
     public CardFuntionManager cardFunctionM;
     public CharacterManager characterM;
-    public SceneMaster sceneM;
+    //public SceneMaster sceneM;
     public LocalMaster localM;
 
+    public Canvas uiCanvas;
+    public CharacterType characterType;
+    [HideInInspector]
+    public BasicCharacter mainCharacter;
 
-    public void LoadingForFightScene()
+    public void Start()
     {
-        StartCoroutine(LoadLocalMaster()) ;
+        if (GameObject.Find("GlobalManager") != null)
+        {
+            characterType = GameObject.Find("GlobalManager").GetComponent<GlobalMaster>().characterType;
+        }
+
+        if (characterType == CharacterType.Designer)
+        {
+            mainCharacter = aiM.des;
+            //characterM.designerPl = aiM.des;
+        }
+        if (characterType == CharacterType.Programmmer)
+        {
+            mainCharacter = aiM.pro;
+            //characterM.programmerPl = aiM.pro;
+            //characterM.programmerPl.OnNewGameStarted();
+            aiM.pro.OnNewGameStarted();
+        }
+        PrepareFight();
     }
 
     public void PrepareFight()
     {
         deckM.PrepareDeckAndHand();
-    }
-
-    IEnumerator LoadLocalMaster()
-    {
-        yield return new WaitForSeconds(0.1f);
-        localM = FindObjectOfType<LocalMaster>();
-        aiM = localM.aiM;
-        enM = localM.emM;
-        handM = localM.handM;
-        deckM = localM.deckM;
-        cardRepoM = localM.cardRepoM;
-        cardFunctionM = localM.cardfunctionM;
-        buttonM = localM.buttonM;
-        if (characterM.chosenCharacter == "Designer")
-        {
-            characterM.designerPl = aiM.des;
-        }
-
-        if(characterM.chosenCharacter == "Programmer")
-        {
-            characterM.programmerPl = aiM.pro;
-            characterM.programmerPl.OnNewGameStarted();
-        }
-
-        PrepareFight();
     }
 }

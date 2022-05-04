@@ -19,7 +19,7 @@ MonoBehaviour:
     value: 2
   - functionType: 6
     value: 1
-  specialFunction: 0
+  specialFunctions: 
   cardType: 0
   debugType: 0
   codeRedundancy: 2

@@ -38,7 +38,7 @@ public class CardFuntionManager : MonoBehaviour
     {
         if (isUseCardGainShield == true)
         {
-            gM.characterM.programmerPl.shieldPoint += 3;
+            gM.aiM.pro.shieldPoint += 3;
         }
     }
 }

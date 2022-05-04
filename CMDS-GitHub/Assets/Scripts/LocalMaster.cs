@@ -5,7 +5,7 @@ using UnityEngine;
 public class LocalMaster : MonoBehaviour
 {
     public AIManager aiM;
-    public EnemyManager emM;
+    public EnemyManager enM;
     public HandManager handM;
     public DeckManager deckM;
     public CardRepoManager cardRepoM;

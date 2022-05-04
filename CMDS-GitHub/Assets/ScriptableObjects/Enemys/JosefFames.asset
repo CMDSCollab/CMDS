@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2d0455e84d5f16449d3ec21eeaae345, type: 3}
+  m_Name: JosefFames
+  m_EditorClassIdentifier: 
+  enemyName: JosefFames
+  health: 100
+  enemyPrefab: {fileID: 4715589943061099282, guid: f0fcc3cd7e070854e90d5b0771d808b9, type: 3}
+  enemyType: 2
+  enemyRace: 0

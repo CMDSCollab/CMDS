@@ -8,7 +8,6 @@ public class EnemyAI : MonoBehaviour
 
     public bool isSmart;
 
-
     public void GenerateIntention()
     {
         if (isSmart)

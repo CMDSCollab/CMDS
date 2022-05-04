@@ -5,13 +5,28 @@ using UnityEngine;
 public class EnemyManager : MonoBehaviour
 {
     public List<Enemy> currentEnemies;
-    public GameMaster gM;
     public Enemy currentTarget;
+
+    public GameMaster gM;
+
+    public List<GameObject> enemyObjs = new List<GameObject>();
+    public EnemyInfo enemyInfo;
 
     private void Start()
     {
         gM = FindObjectOfType<GameMaster>();
+
+        enemyInfo = enemyObjs[0].GetComponent<Enemy>().enemyInfo;
+        InitializeEnemy(enemyObjs[0]);
         FacingPlayerAsDesigner();
+    }
+
+    public void InitializeEnemy(GameObject enemyToGenerate)
+    {
+        GameObject enemyObj = Instantiate(enemyToGenerate,gM.uiCanvas.transform,false);
+        currentTarget = enemyObj.GetComponent<Enemy>();
+        enemyObj.transform.SetAsFirstSibling();
+        
     }
 
     public void CheckMC()
@@ -40,9 +55,10 @@ public class EnemyManager : MonoBehaviour
 
     public void EnemiesActions()
     {
-        foreach(Enemy unit in currentEnemies)
-        {
-            unit.TakeAction();
-        }
+        currentTarget.TakeAction();
+        //foreach(Enemy unit in currentEnemies)
+        //{
+        //    unit.TakeAction();
+        //}
     }
 }

@@ -28,7 +28,7 @@ public class Programmer : BasicCharacter
 
         InitCharacter();
 
-        if (gM.characterM.chosenCharacter == "Programmer")
+        if (gM.characterType == CharacterType.Programmmer)
         {
             CreateDebugUI();
         }

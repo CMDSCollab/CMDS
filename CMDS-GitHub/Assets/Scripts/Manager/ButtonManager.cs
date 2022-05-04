@@ -2,10 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class ButtonManager : MonoBehaviour
 {
     public GameMaster gM;
+    public GlobalMaster globalM;
     public CardRepoManager cardRepoM;
 
     public Button drawPileButton;
@@ -56,7 +58,7 @@ public class ButtonManager : MonoBehaviour
     public void OnClickNextTurn()
     {
         // 对玩家角色进行回合末结算
-        if (gM.characterM.chosenCharacter == "Programmer")
+        if (gM.characterType == CharacterType.Programmmer)
         {
             gM.aiM.pro.OnPlayerTurnEnded();
         }
@@ -76,12 +78,13 @@ public class ButtonManager : MonoBehaviour
         gM.aiM.artAI.TakeAction();
 
         //敌人回合开始 - 判定MC
-        if(gM.characterM.chosenCharacter == "Designer")
+        if(gM.characterType == CharacterType.Designer)
         {
             
         }
         //执行行动
         gM.enM.EnemiesActions();
+
         gM.deckM.DrawCardFromDeckRandomly(gM.deckM.drawCardAmount);
 
         if (gM.deckM.cardInDeckCopy.Count < 1)
@@ -97,22 +100,25 @@ public class ButtonManager : MonoBehaviour
 
     public void OnClickDesigner()
     {
-        gM.characterM.chosenCharacter = "Designer";
-        gM.sceneM.LoadThisScene("FightScene");
-        
+        //gM.characterM.chosenCharacter = "Designer";
+        globalM.characterType = CharacterType.Designer;
+        SceneManager.LoadScene("FightScene");
+        //gM.sceneM.LoadThisScene("FightScene");
     }
 
     public void OnClickProgrammer()
     {
-        gM.characterM.chosenCharacter = "Programmer";
-        gM.sceneM.LoadThisScene("FightScene");
-
+        //gM.characterM.chosenCharacter = "Programmer";
+        globalM.characterType = CharacterType.Programmmer;
+        SceneManager.LoadScene("FightScene");
+        //gM.sceneM.LoadThisScene("FightScene");
     }
 
     public void OnClickArtist()
     {
-        gM.characterM.chosenCharacter = "Artist";
-        gM.sceneM.LoadThisScene("FightScene");
+        //gM.characterM.chosenCharacter = "Artist";
+        SceneManager.LoadScene("FightScene");
+        //gM.sceneM.LoadThisScene("FightScene");
 
     }
 }

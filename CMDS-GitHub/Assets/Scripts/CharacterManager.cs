@@ -5,8 +5,7 @@ using UnityEngine;
 public class CharacterManager : MonoBehaviour
 {
     public List<BasicCharacter> charactersList;
-    public string chosenCharacter;
 
-    public Designer designerPl;
-    public Programmer programmerPl;
+    //public Designer designerPl;
+    //public Programmer programmerPl;
 }
