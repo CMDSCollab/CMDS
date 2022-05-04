@@ -172,6 +172,25 @@ public class CardManager : MonoBehaviour
 
             CardInfoDsgn cardDsgn = (CardInfoDsgn)cardInfo;
 
+
+            for (int i = 0; i < cardDsgn.desSpecialFunctions.Count; i++)
+            {
+                switch (cardDsgn.desSpecialFunctions[i].desFunctionType)
+                {
+                    case SpecialDesFunctionType.None:
+                        break;
+                    case SpecialDesFunctionType.ChangeChallenge:
+                        gM.characterM.designerPl.challengeInt += cardDsgn.desSpecialFunctions[i].value;
+                        break;
+                    case SpecialDesFunctionType.ChangeSkill:
+                        gM.enM.currentTarget.skillLv += cardDsgn.desSpecialFunctions[i].value;
+                        break;
+                }
+            }
+
+
+ 
+/*
             if (cardDsgn.isArtEnergy)
             {
                 gM.aiM.artAI.energyPoint += cardDsgn.eneryPoint;
@@ -202,7 +221,7 @@ public class CardManager : MonoBehaviour
             {
                 gM.characterM.designerPl.challengeInt += 1;
             }
-
+*/
         }
 
         // 程序猿 卡牌相关功能

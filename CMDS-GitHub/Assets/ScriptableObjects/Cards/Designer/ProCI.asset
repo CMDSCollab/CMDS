@@ -12,20 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e61e1691c47110143b506c5abd13c55d, type: 3}
   m_Name: ProCI
   m_EditorClassIdentifier: 
-  cardName: "\u7A0B\u5E8F\u733F\uFF1A\u8C03\u6574\u610F\u56FE"
-  type: 1
+  cardName: "\u7A0B\u5E8F\u610F\u56FE"
   description: "\u6539\u53D8\u7A0B\u5E8F\u733F\u7684\u610F\u56FE"
-  cost: 0
-  damageTarget: 0
-  attackTimes: 0
-  damage: 0
-  shieldPoint: 0
-  drawAmount: 0
-  isFindCardInDrawPile: 0
-  isArtEnergy: 0
-  isProEnergy: 0
-  eneryPoint: 0
-  isAddCubeSlot: 0
-  isAddCircleSlot: 0
-  isChangeProIntention: 1
-  isChangeArtIntention: 0
+  baseFunctions: []
+  specialFunctions: 03000000
+  desSpecialFunctions: []
