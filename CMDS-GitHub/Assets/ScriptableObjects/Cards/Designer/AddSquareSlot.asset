@@ -12,20 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e61e1691c47110143b506c5abd13c55d, type: 3}
   m_Name: AddSquareSlot
   m_EditorClassIdentifier: 
-  cardName: "\u65B9\u5757\u80FD\u91CF\u69FD\u589E\u52A0"
-  type: 2
-  description: "\u52A0\u65B9\u5757\u80FD\u91CF\u69FD"
-  cost: 0
-  damageTarget: 0
-  attackTimes: 0
-  damage: 0
-  shieldPoint: 0
-  drawAmount: 0
-  isFindCardInDrawPile: 0
-  isArtEnergy: 0
-  isProEnergy: 0
-  eneryPoint: 0
-  isAddCubeSlot: 1
-  isAddCircleSlot: 0
-  isChangeProIntention: 0
-  isChangeArtIntention: 0
+  cardName: "\u7A0B\u5E8F\u52A0\u6846"
+  description: "\u52A01\u7A0B\u5E8F\u80FD\u91CF\u69FD"
+  baseFunctions:
+  - functionType: 8
+    value: 1
+  specialFunctions: 
+  desSpecialFunctions: []
