@@ -39,6 +39,7 @@ public class CardFuntionManager : MonoBehaviour
         if (isUseCardGainShield == true)
         {
             gM.aiM.pro.shieldPoint += 3;
+            gM.aiM.pro.SetBuff(BuffType.Shield, gM.aiM.pro.shieldPoint);
         }
     }
 }

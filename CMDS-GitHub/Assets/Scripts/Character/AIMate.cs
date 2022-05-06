@@ -5,42 +5,190 @@ using UnityEngine.UI;
 
 public class AIMate : BasicCharacter
 {
-    public int energyPoint;
-    public int energySlotAmount;
+    public int energyPoint = 0;
+    public int energySlotAmount = 3;
+    [HideInInspector]
+    public List<Image> energyPointImageList = new List<Image>();
+    public List<IntentionManager> intentions = new List<IntentionManager>();
+    [HideInInspector]
+    public Intentions currentIntention;
+    private GameObject energy;
+    [HideInInspector]
+    public int intentionValue = 5;
 
-    public List<Image> energyPointImageList;
-    public bool isReadyAction = false;
+    public override void Start()
+    {
+        base.Start();
+        intentions = characterInfo.intentions;
+        GenerateIntention();
+        for (int i = 0; i < energySlotAmount; i++)
+        {
+            AddTheEnergySlot();
+        }
+    }
 
-    public EnergySlot energySlotUI;
-    public GameObject energySlots;
-
-    public string currentIntention;
-
-
+    public void Update()
+    {
+        EnergyUISlotSync();
+    }
 
     public void AddTheEnergySlot()
     {
-        energySlotAmount += 1;
-        EnergySlot energySlot = Instantiate(energySlotUI);
-        energySlot.transform.SetParent(energySlots.transform);
-        energySlot.transform.localScale = new Vector3(1, 1, 1);
-        energySlot.transform.localPosition = new Vector3(-100 + (energySlotAmount - 1) * 80, 0, 0);
-        energyPointImageList.Add(energySlot.pointImage);
+        energy = Instantiate(gM.characterM.energyPrefab);
+        energy.transform.SetParent(transform.Find("EnergyPos"));
+
+        if (this is DesignerAI)
+        {
+            energy.GetComponent<Image>().sprite = gM.characterM.energyImages[0];
+        }
+        if (this is ProgrammerAI)
+        {
+            energy.GetComponent<Image>().sprite = gM.characterM.energyImages[1];
+        }
+        if (this is ArtistAI)
+        {
+            energy.GetComponent<Image>().sprite = gM.characterM.energyImages[2];
+        }
+        energy.transform.localScale = new Vector3(1, 1, 1);
+        energyPointImageList.Add(energy.GetComponent<Image>());
+        ResetEnergyPos();
+        IntentionValueSync();
     }
 
-    public void FillTheEnergyUI()
+    public void ResetEnergyPos()
     {
-        for (int i = 1; i < energyPointImageList.Count + 1; i++)
+        int singleUnitWidth = (int)energy.GetComponent<RectTransform>().rect.width;
+        float unitStartGenPos = -(singleUnitWidth * energyPointImageList.Count / 2) + singleUnitWidth / 2;
+        for (int i = 0; i < energyPointImageList.Count; i++)
         {
-            if (i > energyPoint)
+            float unitXPos = unitStartGenPos + singleUnitWidth * i;
+            energyPointImageList[i].GetComponent<RectTransform>().anchoredPosition = new Vector3(unitXPos, 0, 0);
+        }
+    }
+
+    public void EnergyUISlotSync()
+    {
+        for (int i = 0; i < energyPointImageList.Count; i++)
+        {
+            if (i < energyPoint)
             {
-                energyPointImageList[i - 1].color = Color.white;
+                energyPointImageList[i].color = Color.blue;
             }
             else
             {
-                energyPointImageList[i - 1].color = Color.blue;
+                energyPointImageList[i].color = Color.white;
             }
         }
     }
 
+    public void GenerateIntention()
+    {
+        int random = Random.Range(0, intentions.Count);
+        IntentionManager intentionM = intentions[random];
+        SyncIntention(intentionM);
+        IntentionValueSync();
+    }
+
+    public void ChangeIntention()
+    {
+        int random = Random.Range(0, intentions.Count);
+        IntentionManager intentionM = intentions[random];
+        while (intentionM.intention == currentIntention)
+        {
+            random = Random.Range(0, intentions.Count);
+            intentionM = intentions[random];
+        }
+        SyncIntention(intentionM);
+    }
+
+    public void SyncIntention(IntentionManager intentionM)
+    {
+        switch (intentionM.intention)
+        {
+            case Intentions.None:
+                break;
+            case Intentions.Attack:
+                currentIntention = Intentions.Attack;
+                transform.Find("IntentionPos").Find("Image").GetComponent<Image>().sprite = intentionM.image;
+                transform.Find("IntentionPos").Find("Name").GetComponent<Text>().text = "Attack";
+                break;
+            case Intentions.Heal:
+                currentIntention = Intentions.Heal;
+                transform.Find("IntentionPos").Find("Image").GetComponent<Image>().sprite = intentionM.image;
+                transform.Find("IntentionPos").Find("Name").GetComponent<Text>().text = "Heal";
+                break;
+            case Intentions.Shield:
+                currentIntention = Intentions.Shield;
+                transform.Find("IntentionPos").Find("Image").GetComponent<Image>().sprite = intentionM.image;
+                transform.Find("IntentionPos").Find("Name").GetComponent<Text>().text = "Shield";
+                break;
+            case Intentions.Buff:
+                currentIntention = Intentions.Buff;
+                transform.Find("IntentionPos").Find("Image").GetComponent<Image>().sprite = intentionM.image;
+                transform.Find("IntentionPos").Find("Name").GetComponent<Text>().text = "Buff";
+                break;
+            case Intentions.Debuff:
+                currentIntention = Intentions.Debuff;
+                transform.Find("IntentionPos").Find("Image").GetComponent<Image>().sprite = intentionM.image;
+                transform.Find("IntentionPos").Find("Name").GetComponent<Text>().text = "Debuff";
+                break;
+        }
+    }
+
+    public void IntentionValueSync()
+    {
+        switch (energySlotAmount)
+        {
+            case 1:
+                intentionValue = 5;
+                break;
+            case 2:
+                intentionValue = 5;
+                break;
+            case 3:
+                intentionValue = 5;
+                break;
+            case 4:
+                intentionValue = 7;
+                break;
+            case 5:
+                intentionValue = 10;
+                break;
+            case 6:
+                intentionValue = 15;
+                break;
+            case 7:
+                intentionValue = 20;
+                break;
+            case 8:
+                intentionValue = 30;
+                break;
+            case 9:
+                intentionValue = 40;
+                break;
+        }
+        transform.Find("IntentionPos").Find("Value").GetComponent<Text>().text = intentionValue.ToString();
+    }
+
+    public virtual void TakeAction()
+    {
+        switch (currentIntention)
+        {
+            case Intentions.Attack:
+                gM.enM.currentTarget.TakeDamage(intentionValue);
+                break;
+            case Intentions.Heal:
+                gM.characterM.mainCharacter.healthPoint += intentionValue;
+                break;
+            case Intentions.Shield:
+
+                break;
+            case Intentions.Buff:
+                break;
+            case Intentions.Debuff:
+                break;
+        }
+        energyPoint = 0;
+        GenerateIntention();
+    }
 }

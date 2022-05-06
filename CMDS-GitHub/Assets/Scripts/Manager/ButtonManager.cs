@@ -58,7 +58,7 @@ public class ButtonManager : MonoBehaviour
     public void OnClickNextTurn()
     {
         // 对玩家角色进行回合末结算
-        if (gM.characterType == CharacterType.Programmmer)
+        if (gM.characterM.mainCharacterType == CharacterType.Programmmer)
         {
             gM.aiM.pro.OnPlayerTurnEnded();
         }
@@ -74,11 +74,43 @@ public class ButtonManager : MonoBehaviour
         }
 
         // AI队友行动
-        gM.aiM.proAI.TakeAction();
-        gM.aiM.artAI.TakeAction();
+        switch (gM.characterM.mainCharacterType)
+        {
+            case CharacterType.Designer:
+                if (gM.aiM.proAI.energyPoint == gM.aiM.proAI.energySlotAmount)
+                {
+                    gM.aiM.proAI.TakeAction();
+                }
+                if (gM.aiM.artAI.energyPoint == gM.aiM.artAI.energySlotAmount)
+                {
+                    gM.aiM.artAI.TakeAction();
+                }
+                break;
+            case CharacterType.Programmmer:
+                if (gM.aiM.desAI.energyPoint == gM.aiM.desAI.energySlotAmount)
+                {
+                    gM.aiM.desAI.TakeAction();
+                }
+                if (gM.aiM.artAI.energyPoint == gM.aiM.artAI.energySlotAmount)
+                {
+                    gM.aiM.artAI.TakeAction();
+                }
+                break;
+            case CharacterType.Artist:
+                if (gM.aiM.desAI.energyPoint == gM.aiM.desAI.energySlotAmount)
+                {
+                    gM.aiM.desAI.TakeAction();
+                }
+                if (gM.aiM.proAI.energyPoint == gM.aiM.proAI.energySlotAmount)
+                {
+                    gM.aiM.proAI.TakeAction();
+                }
+                break;
+        }
+
 
         //敌人回合开始 - 判定MC
-        if(gM.characterType == CharacterType.Designer)
+        if(gM.characterM.mainCharacterType == CharacterType.Designer)
         {
             
         }
@@ -100,25 +132,19 @@ public class ButtonManager : MonoBehaviour
 
     public void OnClickDesigner()
     {
-        //gM.characterM.chosenCharacter = "Designer";
         globalM.characterType = CharacterType.Designer;
         SceneManager.LoadScene("FightScene");
-        //gM.sceneM.LoadThisScene("FightScene");
     }
 
     public void OnClickProgrammer()
     {
-        //gM.characterM.chosenCharacter = "Programmer";
         globalM.characterType = CharacterType.Programmmer;
         SceneManager.LoadScene("FightScene");
-        //gM.sceneM.LoadThisScene("FightScene");
     }
 
     public void OnClickArtist()
     {
-        //gM.characterM.chosenCharacter = "Artist";
+        globalM.characterType = CharacterType.Artist;
         SceneManager.LoadScene("FightScene");
-        //gM.sceneM.LoadThisScene("FightScene");
-
     }
 }

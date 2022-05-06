@@ -16,12 +16,11 @@ public class E_JosefFames : Enemy
     {
         if (enemySequence == 1)
         {
-            gM.mainCharacter.TakeDamage(damage1P);
-            Debug.Log("hhhh");
+            gM.characterM.mainCharacter.TakeDamage(damage1P);
         }
         if (enemySequence == 2)
         {
-            gM.mainCharacter.TakeDamage(damage2P);
+            gM.characterM.mainCharacter.TakeDamage(damage2P);
         }
     }
 }

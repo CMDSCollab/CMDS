@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: IntentionCArt
   m_EditorClassIdentifier: 
   cardName: IntentionChange-Art
-  description: "\u827A\u672F\u5BB6\u610F\u56FE\u8F6C\u6362\uFF0C\u5BF9\u654C\u65B9\u9020\u62104\u70B9\u4F24\u5BB3"
+  description: "\u827A\u672F\u5BB6\u610F\u56FE\u8F6C\u6362\uFF0C\u83B7\u5F973\u683C\u6321"
   baseFunctions:
   - functionType: 1
     value: 3

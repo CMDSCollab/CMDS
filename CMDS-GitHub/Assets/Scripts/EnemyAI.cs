@@ -22,7 +22,6 @@ public class EnemyAI : MonoBehaviour
         enemy.ShowIntention();
     }
 
-
     public string GenerateRandomIntention()
     {
         int index = Random.Range(0, enemy.intentionList.Count);
@@ -62,13 +61,13 @@ public class EnemyAI : MonoBehaviour
     //嗅血：遍历角色的生命值，当有角色的血量可以被一次单体攻击击杀时，返回true
     public bool SmellBlood()
     {
-        foreach(BasicCharacter cha in enemy.gM.characterM.charactersList)
-        {
-            if(cha.healthPoint < enemy.singleDmg)
-            {
-                return true;
-            }
-        }
+        //foreach(BasicCharacter cha in enemy.gM.characterM.charactersList)
+        //{
+        //    if(cha.healthPoint < enemy.singleDmg)
+        //    {
+        //        return true;
+        //    }
+        //}
 
         return false;
     }

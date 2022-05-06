@@ -16,29 +16,16 @@ public class GameMaster : MonoBehaviour
     public LocalMaster localM;
 
     public Canvas uiCanvas;
-    public CharacterType characterType;
-    [HideInInspector]
-    public BasicCharacter mainCharacter;
+
 
     public void Start()
     {
         if (GameObject.Find("GlobalManager") != null)
         {
-            characterType = GameObject.Find("GlobalManager").GetComponent<GlobalMaster>().characterType;
+            characterM.mainCharacterType = GameObject.Find("GlobalManager").GetComponent<GlobalMaster>().characterType;
+            //characterType = GameObject.Find("GlobalManager").GetComponent<GlobalMaster>().characterType;
         }
-
-        if (characterType == CharacterType.Designer)
-        {
-            mainCharacter = aiM.des;
-            //characterM.designerPl = aiM.des;
-        }
-        if (characterType == CharacterType.Programmmer)
-        {
-            mainCharacter = aiM.pro;
-            //characterM.programmerPl = aiM.pro;
-            //characterM.programmerPl.OnNewGameStarted();
-            aiM.pro.OnNewGameStarted();
-        }
+        characterM.InitializeCharacters();
         PrepareFight();
     }
 

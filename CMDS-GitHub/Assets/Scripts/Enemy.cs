@@ -199,26 +199,26 @@ public class Enemy : MonoBehaviour
     {
         int index = Random.Range(0, 3);
 
-        if (index == 0)
-        {
-            gM.aiM.desAI.TakeDamage(currentDmg);
-        }
-        else if (index == 1)
-        {
-            gM.aiM.proAI.TakeDamage(currentDmg);
-        }
-        else
-        {
-            gM.aiM.artAI.TakeDamage(currentDmg);
-        }
+        //if (index == 0)
+        //{
+        //    gM.aiM.desAI.TakeDamage(currentDmg);
+        //}
+        //else if (index == 1)
+        //{
+        //    gM.aiM.proAI.TakeDamage(currentDmg);
+        //}
+        //else
+        //{
+        //    gM.aiM.artAI.TakeDamage(currentDmg);
+        //}
 
     }
 
     public void AOEAttack()
     {
-        gM.aiM.proAI.TakeDamage(currentDmg);
-        gM.aiM.desAI.TakeDamage(currentDmg);
-        gM.aiM.artAI.TakeDamage(currentDmg);
+        //gM.aiM.proAI.TakeDamage(currentDmg);
+        //gM.aiM.desAI.TakeDamage(currentDmg);
+        //gM.aiM.artAI.TakeDamage(currentDmg);
     }
 
     public void HealSelf(int healAmount)

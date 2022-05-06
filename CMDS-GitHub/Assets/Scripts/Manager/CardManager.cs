@@ -100,30 +100,30 @@ public class CardManager : MonoBehaviour
                     gM.enM.currentTarget.TakeDamage(cardInfo.baseFunctions[i].value);
                     break;
                 case BaseFunctionType.Shield:
-                    //gM.characterM.programmerPl.shieldPoint += cardInfo.baseFunctions[i].value;
                     gM.aiM.pro.shieldPoint += cardInfo.baseFunctions[i].value;
+                    gM.aiM.pro.SetBuff(BuffType.Shield, gM.aiM.pro.shieldPoint);
                     break;
                 case BaseFunctionType.Heal:
                     break;
                 case BaseFunctionType.ArtEnergy:
                     gM.aiM.artAI.energyPoint += cardInfo.baseFunctions[i].value;
-                    gM.aiM.artAI.FillTheEnergyUI();
                     break;
                 case BaseFunctionType.DsgnEnergy:
                     gM.aiM.desAI.energyPoint += cardInfo.baseFunctions[i].value;
-                    gM.aiM.desAI.FillTheEnergyUI();
                     break;
                 case BaseFunctionType.ProEnergy:
                     gM.aiM.proAI.energyPoint += cardInfo.baseFunctions[i].value;
-                    gM.aiM.proAI.FillTheEnergyUI();
                     break;
                 case BaseFunctionType.ArtSlot:
+                    gM.aiM.artAI.energySlotAmount++;
                     gM.aiM.artAI.AddTheEnergySlot();
                     break;
                 case BaseFunctionType.DsgnSlot:
-                    //gM.aiM.desAI.AddTheEnergySlot();
+                    gM.aiM.desAI.energySlotAmount++;
+                    gM.aiM.desAI.AddTheEnergySlot();
                     break;
                 case BaseFunctionType.ProSlot:
+                    gM.aiM.proAI.energySlotAmount++;
                     gM.aiM.proAI.AddTheEnergySlot();
                     break;
                 case BaseFunctionType.DrawCard:
@@ -138,8 +138,6 @@ public class CardManager : MonoBehaviour
         {
             switch (cardInfo.specialFunctions[i])
             {
-                case SpecialFunctionType.None:
-                    break;
                 case SpecialFunctionType.ArtIntentionChange:
                     gM.aiM.artAI.ChangeIntention();
                     break;
@@ -166,7 +164,7 @@ public class CardManager : MonoBehaviour
         // 射击师 卡牌相关功能
         if (cardInfo is CardInfoDsgn)
         {
-            if (gM.characterType == CharacterType.Designer)
+            if (gM.characterM.mainCharacterType == CharacterType.Designer)
             {
                 return;
             }
@@ -181,56 +179,20 @@ public class CardManager : MonoBehaviour
                     case SpecialDesFunctionType.None:
                         break;
                     case SpecialDesFunctionType.ChangeChallenge:
-                        gM.characterM.designerPl.challengeInt += cardDsgn.desSpecialFunctions[i].value;
+                        gM.aiM.des.challengeInt += cardDsgn.desSpecialFunctions[i].value;
                         break;
                     case SpecialDesFunctionType.ChangeSkill:
                         gM.enM.currentTarget.skillLv += cardDsgn.desSpecialFunctions[i].value;
                         break;
                 }
             }
-
-
- 
-/*
-            if (cardDsgn.isArtEnergy)
-            {
-                gM.aiM.artAI.energyPoint += cardDsgn.eneryPoint;
-                gM.aiM.artAI.FillTheEnergyUI();
-            }
-            if (cardDsgn.isProEnergy)
-            {
-                gM.aiM.proAI.energyPoint += cardDsgn.eneryPoint;
-                gM.aiM.proAI.FillTheEnergyUI();
-            }
-            if (cardDsgn.isAddCubeSlot)
-            {
-                gM.aiM.proAI.AddTheEnergySlot();
-            }
-            if (cardDsgn.isAddCircleSlot)
-            {
-                gM.aiM.artAI.AddTheEnergySlot();
-            }
-            if (cardDsgn.isChangeProIntention)
-            {
-                gM.aiM.proAI.ChangeIntention();
-            }
-            if (cardDsgn.isChangeArtIntention)
-            {
-                gM.aiM.artAI.ChangeIntention();
-            }
-            if (cardDsgn.isAddChallenge)
-            {
-                //gM.characterM.designerPl.challengeInt += 1;
-                gM.aiM.des.challengeInt += 1;
-            }
-*/
         }
 
         // 程序猿 卡牌相关功能
         //if (cardInfo is CardInfoPro)
         if (cardInfo is CardInfoPro)
         {
-            if (gM.characterType != CharacterType.Programmmer)
+            if (gM.characterM.mainCharacterType != CharacterType.Programmmer)
             {
                 return;
             }
@@ -248,6 +210,7 @@ public class CardManager : MonoBehaviour
                     break;
                 case SpecialFunctionPro.DoubleShield:
                     gM.aiM.pro.shieldPoint += gM.aiM.pro.shieldPoint;
+                    gM.aiM.pro.SetBuff(BuffType.Shield, gM.aiM.pro.shieldPoint);
                     break;
                 case SpecialFunctionPro.UseHandCardsGainShield:
                     gM.cardFunctionM.isUseCardGainShield = true;
@@ -268,10 +231,12 @@ public class CardManager : MonoBehaviour
                     break;
                 case SpecialFunctionPro.Vengeance:
                     gM.cardFunctionM.isVengeance = true;
+                    gM.aiM.pro.SetBuff(BuffType.Vengeance, 4);
                     break;
                 case SpecialFunctionPro.ConsumeShieldDoubleDamage:
                     gM.enM.currentTarget.TakeDamage(gM.aiM.pro.shieldPoint * 2);
                     gM.aiM.pro.shieldPoint = 0;
+                    gM.aiM.pro.SetBuff(BuffType.Shield, gM.aiM.pro.shieldPoint);
                     break;
                 default:
                     break;

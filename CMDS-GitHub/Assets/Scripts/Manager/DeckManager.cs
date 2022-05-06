@@ -30,7 +30,7 @@ public class DeckManager : MonoBehaviour
 
     public void InitializeDicCardInDeck()
     {
-        if (gM.characterType == CharacterType.Designer)
+        if (gM.characterM.mainCharacterType == CharacterType.Designer)
         {
             cardPrefab = cardPrefabs[1];
 
@@ -39,7 +39,7 @@ public class DeckManager : MonoBehaviour
                 cardInDeck[i] = designerBaseCard[i];
             }
         }
-        else if (gM.characterType == CharacterType.Programmmer)
+        else if (gM.characterM.mainCharacterType == CharacterType.Programmmer)
         {
             cardPrefab = cardPrefabs[1];
             for (int i = 0; i < programmerBaseCard.Count; i++)

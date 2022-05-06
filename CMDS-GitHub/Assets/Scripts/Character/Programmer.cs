@@ -11,16 +11,17 @@ public struct Error
     public DebugType debug;
 }
 
-public class Programmer : BasicCharacter
+public class Programmer : CharacterMate
 {
-    [SerializeField] private Canvas UIParent;
-    [SerializeField] private ProDebugUI debugUIPrefab;
-    [SerializeField] private List<Error> potentialErrors;
-
-    public const int MAX_ERROR_COUNT = 6; 
+    private Canvas UIParent;
+    private List<Error> potentialErrors;
+    public const int MAX_ERROR_COUNT = 6;
     public List<Error> currentErrors { get; private set; }
     [HideInInspector] public int codeRedundancy = 0;
     private ProDebugUI debugUI;
+
+
+    public int shieldPoint;
 
     public override void OnNewGameStarted()
     {
@@ -28,14 +29,39 @@ public class Programmer : BasicCharacter
 
         InitCharacter();
 
-        if (gM.characterType == CharacterType.Programmmer)
+        if (gM.characterM.mainCharacterType == CharacterType.Programmmer)
         {
             CreateDebugUI();
         }
     }
 
+    public override void TakeDamage(int dmg)
+    {
+        if (shieldPoint > 0)
+        {
+            if (shieldPoint >= dmg)
+            {
+                shieldPoint -= dmg;
+            }
+            else
+            {
+                int overdmg = dmg - shieldPoint;
+                shieldPoint = 0;
+
+                healthPoint -= overdmg;
+            }
+        }
+        else
+        {
+            healthPoint -= dmg;
+        }
+    }
+
     private void InitCharacter()
     {
+        UIParent = gM.uiCanvas;
+        potentialErrors = gM.characterM.potentialErrors;
+
         if (currentErrors == null)
         {
             currentErrors = new List<Error>();
@@ -47,9 +73,9 @@ public class Programmer : BasicCharacter
 
     private void CreateDebugUI()
     {
-        debugUI = Instantiate(debugUIPrefab, UIParent.transform, false);
+        debugUI = Instantiate(gM.characterM.debugUIPrefab, UIParent.transform, false);
         debugUI.SetUp(this);
-        debugUI.GetComponent<RectTransform>().anchoredPosition = new Vector3(-600, 250, 0);
+        debugUI.GetComponent<RectTransform>().anchoredPosition = new Vector3(-650, 250, 0);
         debugUI.transform.SetAsFirstSibling();
     }
 

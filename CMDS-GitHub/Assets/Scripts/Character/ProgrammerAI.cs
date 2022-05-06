@@ -16,24 +16,15 @@ public class ProgrammerAI : AIMate
     public GameObject AttackUI;
     public GameObject chargeUI;
 
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        gM = FindObjectOfType<GameMaster>();
-        GenerateIntention();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        UpdateUI();
-        //能量满后，立即触发。
-        if (energyPoint >= energyPointImageList.Count)
-        {
-            TakeAction();
-        }
-    }
+    //void Update()
+    //{
+    //    //UpdateUI();
+    //    ////能量满后，立即触发。
+    //    //if (energyPoint >= energyPointImageList.Count)
+    //    //{
+    //    //    TakeAction();
+    //    //}
+    //}
 
     //单体攻击伤害公式
     public int CalculateDMG()
@@ -42,64 +33,36 @@ public class ProgrammerAI : AIMate
         return dmg;
     }
 
-    public void GenerateIntention()
-    {
-        int index = Random.Range(0, 2);
-        if (index == 0)
-        {
-            currentIntention = "Attack";
-        }
-        else
-        {
-            currentIntention = "Charge";
-        }
-    }
+    //public void TakeAction()
+    //{
+    //    if (currentIntention == Intentions.Attack)
+    //    {
+    //        gM.enM.currentTarget.TakeDamage(CalculateDMG());
+    //    }
+    //    //else if (currentIntention == "Charge")
+    //    //{
+    //    //    chargeLv += 1;
+    //    //}
+    //    energyPoint = 0;
 
+    //    GenerateIntention();
+    //}
 
-    public void ChangeIntention()
-    {
-        if (currentIntention == "Attack")
-        {
-            currentIntention = "Charge";
-        }
-        else
-        {
-            currentIntention = "Attack";
-        }
-    }
+    //public void UpdateUI()
+    //{
+    //    //hpText.text = healthPoint.ToString() + "/" + maxHp.ToString();
+    //    dmgText.text = dmgInt.ToString();
+    //    chargeText.text = chargeLv.ToString();
 
-    public void TakeAction()
-    {
-        if (currentIntention == "Attack")
-        {
-            gM.enM.currentTarget.TakeDamage(CalculateDMG());
-        }
-        else if (currentIntention == "Charge")
-        {
-            chargeLv += 1;
-        }
-        energyPoint = 0;
-        isReadyAction = false;
-
-        GenerateIntention();
-    }
-
-    public void UpdateUI()
-    {
-        hpText.text = healthPoint.ToString() + "/" + maxHp.ToString();
-        dmgText.text = dmgInt.ToString();
-        shieldPText.text = shieldPoint.ToString();
-        chargeText.text = chargeLv.ToString();
-
-        if (currentIntention == "Attack")
-        {
-            AttackUI.SetActive(true);
-            chargeUI.SetActive(false);
-        }
-        else
-        {
-            chargeUI.SetActive(true);
-            AttackUI.SetActive(false);
-        }
-    }
+    //    if (currentIntention == Intentions.Attack)
+    //    {
+    //        AttackUI.SetActive(true);
+    //        chargeUI.SetActive(false);
+    //    }
+    //    else
+    //    {
+    //        chargeUI.SetActive(true);
+    //        AttackUI.SetActive(false);
+    //    }
+    //}
 }

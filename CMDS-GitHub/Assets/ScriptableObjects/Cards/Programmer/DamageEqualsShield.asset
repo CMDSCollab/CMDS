@@ -17,8 +17,8 @@ MonoBehaviour:
   baseFunctions:
   - functionType: 4
     value: 2
-  specialFunction: 0
+  specialFunctions: 
   cardType: 0
   debugType: 0
   codeRedundancy: 3
-  proSpecialFunction: 2
+  proSpecialFunction: 1
