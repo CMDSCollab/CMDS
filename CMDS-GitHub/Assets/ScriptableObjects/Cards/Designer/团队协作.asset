@@ -10,14 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e61e1691c47110143b506c5abd13c55d, type: 3}
-  m_Name: FindCardInDrawPile
+  m_Name: "\u56E2\u961F\u534F\u4F5C"
   m_EditorClassIdentifier: 
-  cardName: "\u5934\u8111\u98CE\u66B4"
-  description: "-2\u6311\u6218 \u62BD2\u5361"
-  baseFunctions:
-  - functionType: 9
-    value: 2
+  cardName: "\u56E2\u961F\u534F\u4F5C"
+  description: "\u6BCF\u62BD1\u5361 \u968F\u673A\u52A01\u80FD\u91CF"
+  baseFunctions: []
   specialFunctions: 
-  desSpecialFunctions:
-  - desFunctionType: 1
-    value: -2
+  desSpecialFunctions: []
+  desPassiveEffects:
+  - desPassiveEType: 1

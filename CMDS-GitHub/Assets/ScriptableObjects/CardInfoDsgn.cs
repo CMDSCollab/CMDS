@@ -11,6 +11,15 @@ public enum SpecialDesFunctionType
     ChangeSkill
 }
 
+public enum SpecialPassiveEffectType 
+{ 
+    None,
+    IsTeamWork,
+    IsSycn,
+    IsPMH
+}
+
+
 [System.Serializable]
 
 public struct specialDesFunction
@@ -19,11 +28,20 @@ public struct specialDesFunction
     public int value;
 }
 
+[System.Serializable]
+
+public struct specialPassiveEffect 
+{
+    public SpecialPassiveEffectType desPassiveEType;
+}
+
+
 [CreateAssetMenu(fileName = "New Designer Card", menuName = "Scriptable Object/New Designer Card")]
 public class CardInfoDsgn : CardInfo
 {
     [Header("Designer Area")]
 
     public List<specialDesFunction> desSpecialFunctions;
+    public List<specialPassiveEffect> desPassiveEffects;
 
 }
