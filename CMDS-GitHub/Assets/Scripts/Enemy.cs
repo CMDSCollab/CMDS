@@ -29,7 +29,7 @@ public class Enemy : MonoBehaviour
 
     //意图bool值
     public bool isSingleAttack;
-    public bool isAoeAttack;
+    //public bool isAoeAttack;
     public bool isShielding;
     public bool isCharging;
     public bool isHealing;
@@ -42,6 +42,14 @@ public class Enemy : MonoBehaviour
     public bool isWeak;//易伤
     public bool isSoft;//虚弱
     public bool isMagicCircle;//被MC包围
+
+
+    //与射击狮联动UI
+
+    public Image softImg;
+    public Image magicCircleImg;
+    public Image anexityImg;
+    public Image boringImg;
 
     //与射击狮联动机制的数值
 
@@ -73,7 +81,15 @@ public class Enemy : MonoBehaviour
         shieldText.text = shieldPoint.ToString();
         chargeText.text = chargeLv.ToString();
         skillText.text = skillLv.ToString();
+        CheckStatus();
+    }
 
+    public void CheckStatus()
+    {
+        anexityImg.enabled = isAnexity;
+        softImg.enabled = isSoft;
+        magicCircleImg.enabled = isMagicCircle;
+        boringImg.enabled = isBored;
     }
 
     public void GenerateInitialIntentionList()
@@ -83,10 +99,10 @@ public class Enemy : MonoBehaviour
         {
             intentionList.Add("SingleA");
         }
-        if(isAoeAttack)
+/*        if(isAoeAttack)
         {
             intentionList.Add("AOE");
-        }
+        }*/
         if (isCharging)
         {
             intentionList.Add("Charging");
@@ -114,13 +130,13 @@ public class Enemy : MonoBehaviour
             currentIntentionUI = enInUI.singleAUI;
             enInUI.singleAUI.SetActive(true);
         }
-        else if (currentIntention == "AOE")
+/*        else if (currentIntention == "AOE")
         {
             currentDmg = GetCurrentDmg();
             enInUI.aoeIntText.text = currentDmg.ToString();
             currentIntentionUI = enInUI.aoeUI;
             enInUI.aoeUI.SetActive(true);
-        }
+        }*/
         else if (currentIntention == "Charging")
         {
             currentIntentionUI = enInUI.chargeUI;
@@ -156,15 +172,7 @@ public class Enemy : MonoBehaviour
     {
         int dmg = 0;
 
-        if(currentIntention == "SingleA")
-        {
-            dmg = singleDmg + chargeLv * dmgPerCharge;
-
-        }
-        else if(currentIntention == "AOE")
-        {
-            dmg = aoeDmg + chargeLv * dmgPerCharge;
-        }
+        dmg = singleDmg + chargeLv * dmgPerCharge;
 
         if (isSoft)
         {
@@ -180,29 +188,15 @@ public class Enemy : MonoBehaviour
 
     public void SingleAttack()
     {
-        int index = Random.Range(0, 3);
-
-        if (index == 0)
-        {
-            gM.aiM.desAI.TakeDamage(currentDmg);
-        }
-        else if (index == 1)
-        {
-            gM.aiM.proAI.TakeDamage(currentDmg);
-        }
-        else
-        {
-            gM.aiM.artAI.TakeDamage(currentDmg);
-        }
-
+        gM.characterM.mainCharacter.TakeDamage(currentDmg);
     }
 
-    public void AOEAttack()
+/*    public void AOEAttack()
     {
         gM.aiM.proAI.TakeDamage(currentDmg);
         gM.aiM.desAI.TakeDamage(currentDmg);
         gM.aiM.artAI.TakeDamage(currentDmg);
-    }
+    }*/
 
     public void HealSelf(int healAmount)
     {
@@ -237,10 +231,10 @@ public class Enemy : MonoBehaviour
         {
             SingleAttack();
         }
-        else if (currentIntention == "AOE")
+/*        else if (currentIntention == "AOE")
         {
             AOEAttack();
-        }
+        }*/
         else if (currentIntention == "Charging")
         {
             ChargeSelf();
@@ -265,6 +259,11 @@ public class Enemy : MonoBehaviour
 
     public void TakeDamage(int dmg)
     {
+        if (isSoft)
+        {
+            float adjustDmg = dmg * (1 + weakweight);
+            dmg = (int)adjustDmg;
+        }
         if (shieldPoint > 0)
         {
             if (shieldPoint >= dmg)
@@ -321,6 +320,8 @@ public class Enemy : MonoBehaviour
         isSoft = isMC;
     }
 
+    //判定是否掉出MagicCircle，输入weight权重，一个0到100的整数值。和随机数进行比较，weight越大，掉出的可能性越高。
+
     public void RollMagicCircleDice(int weight)
     {
         int dice = Random.Range(0, 100);
@@ -335,9 +336,21 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    //判定是否掉出MagicCircle，输入weight权重，一个0到100的整数值。和随机数进行比较，weight越大，掉出的可能性越高。
-    public void MagicCircleDetect(int weight)
+    public void MagicCircleDetection(int boredMCRate)
     {
+        ChallengeVsSkill();
+        if(skillLv < gM.characterM.designerPl.challengeInt)
+        {
+            MagicCircle(true);
 
+            if(skillLv + 10 < gM.characterM.designerPl.challengeInt)
+            {
+                RollMagicCircleDice(30);
+            }
+        }
+        else
+        {
+            RollMagicCircleDice(boredMCRate);
+        }
     }
 }

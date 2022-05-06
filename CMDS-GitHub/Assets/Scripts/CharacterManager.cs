@@ -9,4 +9,5 @@ public class CharacterManager : MonoBehaviour
 
     public Designer designerPl;
     public Programmer programmerPl;
+    public BasicCharacter mainCharacter;
 }

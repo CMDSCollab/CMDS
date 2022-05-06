@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: AddChallenge
   m_EditorClassIdentifier: 
   cardName: "\u589E\u52A0\u6311\u6218"
-  description: "\u589E\u52A02\u70B9\u6311\u6218"
+  description: "\u589E\u52A03\u70B9\u6311\u6218"
   baseFunctions: []
   specialFunctions: 
   desSpecialFunctions:
   - desFunctionType: 1
-    value: 2
+    value: 3
+  desPassiveEffects: []

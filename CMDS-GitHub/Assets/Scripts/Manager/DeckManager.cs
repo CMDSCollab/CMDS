@@ -18,6 +18,7 @@ public class DeckManager : MonoBehaviour
     public int initialCardAmount;
     public int drawCardAmount;
 
+
     private void Awake()
     {
         gM = FindObjectOfType<GameMaster>();
@@ -51,6 +52,7 @@ public class DeckManager : MonoBehaviour
         }
     }
 
+    
     public void GetNewCopyDeck()
     {
         cardInDeckCopy = new Dictionary<int, CardInfo>(cardInDeck);

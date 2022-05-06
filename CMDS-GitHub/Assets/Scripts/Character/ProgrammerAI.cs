@@ -22,6 +22,7 @@ public class ProgrammerAI : AIMate
     {
         gM = FindObjectOfType<GameMaster>();
         GenerateIntention();
+        dmgInt = CalculateDMG();
     }
 
     // Update is called once per frame
@@ -32,13 +33,15 @@ public class ProgrammerAI : AIMate
         if (energyPoint >= energyPointImageList.Count)
         {
             TakeAction();
+            energyPoint -= energyPointImageList.Count;
+            FillTheEnergyUI();
         }
     }
 
     //单体攻击伤害公式
     public int CalculateDMG()
     {
-        int dmg = baseDmg + (energyPoint - baseDmg) + chargeLv * dmgPerCharge;
+        int dmg = baseDmg + (energyPointImageList.Count - 3) + chargeLv * dmgPerCharge;
         return dmg;
     }
 
@@ -72,22 +75,19 @@ public class ProgrammerAI : AIMate
     {
         if (currentIntention == "Attack")
         {
-            gM.enM.currentTarget.TakeDamage(CalculateDMG());
+            gM.enM.currentTarget.TakeDamage(dmgInt);
         }
         else if (currentIntention == "Charge")
         {
             chargeLv += 1;
         }
-        energyPoint = 0;
-        isReadyAction = false;
-
         GenerateIntention();
     }
 
     public void UpdateUI()
     {
         hpText.text = healthPoint.ToString() + "/" + maxHp.ToString();
-        dmgText.text = dmgInt.ToString();
+        dmgText.text = CalculateDMG().ToString();
         shieldPText.text = shieldPoint.ToString();
         chargeText.text = chargeLv.ToString();
 

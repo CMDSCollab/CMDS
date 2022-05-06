@@ -23,6 +23,7 @@ public class GameMaster : MonoBehaviour
 
     public void PrepareFight()
     {
+        enM.currentTarget.MagicCircleDetection(100);
         deckM.PrepareDeckAndHand();
     }
 
@@ -40,11 +41,13 @@ public class GameMaster : MonoBehaviour
         if (characterM.chosenCharacter == "Designer")
         {
             characterM.designerPl = aiM.des;
+            characterM.mainCharacter = aiM.des;
         }
 
         if(characterM.chosenCharacter == "Programmer")
         {
             characterM.programmerPl = aiM.pro;
+            characterM.mainCharacter = aiM.pro;
             characterM.programmerPl.OnNewGameStarted();
         }
 

@@ -9,14 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e61e1691c47110143b506c5abd13c55d, type: 3}
-  m_Name: AddSquare
+  m_Script: {fileID: 11500000, guid: 78b7968d8ea7479409bbba1b04d28228, type: 3}
+  m_Name: New Programmer Card
   m_EditorClassIdentifier: 
-  cardName: "\u7A0B\u5E8F\u80FD\u91CF"
-  description: "\u52A02\u7A0B\u5E8F\u80FD\u91CF"
-  baseFunctions:
-  - functionType: 5
-    value: 2
+  cardName: 
+  description: 
+  baseFunctions: []
   specialFunctions: 
-  desSpecialFunctions: []
-  desPassiveEffects: []
+  cardType: 0
+  debugType: 0
+  codeRedundancy: 0
+  proSpecialFunction: 0

@@ -60,18 +60,19 @@ public class EnemyAI : MonoBehaviour
 
     }
 
-    //嗅血：遍历角色的生命值，当有角色的血量可以被一次单体攻击击杀时，返回true
+    //嗅血：比较角色的生命值与自己的攻击力，当有角色的血量可以被一次单体攻击击杀时，返回true
     public bool SmellBlood()
     {
-        foreach(BasicCharacter cha in enemy.gM.characterM.charactersList)
+        if(enemy.gM.characterM.mainCharacter != null)
         {
-            if(cha.healthPoint < enemy.singleDmg)
+            if (enemy.gM.characterM.mainCharacter.healthPoint < enemy.GetCurrentDmg())
             {
                 return true;
             }
         }
 
         return false;
+
     }
 
     //遍历敌人的intentionList，删除指定intention

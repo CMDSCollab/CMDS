@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class ArtistAI : AIMate
 {
-
+    public int baseHeal;
     public int healInt;
     public int shieldingInt;
     public Text healText;
@@ -24,6 +24,8 @@ public class ArtistAI : AIMate
         if (energyPoint >= energyPointImageList.Count)
         {
             TakeAction();
+            energyPoint -= energyPointImageList.Count;
+            FillTheEnergyUI();
         }
     }
 
@@ -55,7 +57,7 @@ public class ArtistAI : AIMate
     public void UpdateUI()
     {
         hpText.text = healthPoint.ToString() + "/" + maxHp.ToString();
-        healText.text = healInt.ToString();
+        healText.text = CalculateHeal().ToString();
         shieldingText.text = shieldingInt.ToString();
         shieldPText.text = shieldPoint.ToString();
 
@@ -74,26 +76,39 @@ public class ArtistAI : AIMate
 
     public void TakeAction()
     {
-        if (isReadyAction)
+        gM = FindObjectOfType<GameMaster>();
+        if (currentIntention == "Heal")
         {
-            if (currentIntention == "Heal")
-            {
-                gM.aiM.artAI.healthPoint += gM.aiM.artAI.healInt;
-                gM.aiM.proAI.healthPoint += gM.aiM.artAI.healInt;
-                gM.aiM.desAI.healthPoint += gM.aiM.artAI.healInt;
-                gM.aiM.artAI.healInt = 0;
-            }
-            else if (currentIntention == "Shield")
-            {
-                gM.aiM.artAI.shieldPoint += gM.aiM.artAI.shieldingInt;
-                gM.aiM.proAI.shieldPoint += gM.aiM.artAI.shieldingInt;
-                gM.aiM.desAI.shieldPoint += gM.aiM.artAI.shieldingInt;
-            }
-            energyPoint = 0;
-            isReadyAction = false;
-
+            Heal(CalculateHeal());    
         }
+        else if (currentIntention == "Shield")
+        {
+            gM.characterM.mainCharacter.shieldPoint += gM.aiM.artAI.shieldingInt;
+        }
+        isReadyAction = false;
+
+        
 
         GenerateIntention();
+    }
+
+    public void Heal(int healValue)
+    {
+        BasicCharacter baseM = gM.characterM.mainCharacter; 
+        if(baseM.healthPoint + healValue >= baseM.maxHp)
+        {
+            baseM.healthPoint = baseM.maxHp;
+        }
+        else
+        {
+            baseM.healthPoint += healValue;
+        }
+    }
+
+
+    public int CalculateHeal()
+    {
+        int heal = baseHeal + (energyPointImageList.Count - 3);
+        return heal;
     }
 }

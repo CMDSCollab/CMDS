@@ -71,9 +71,6 @@ public class ButtonManager : MonoBehaviour
             }
         }
 
-        // AI队友行动
-        gM.aiM.proAI.TakeAction();
-        gM.aiM.artAI.TakeAction();
 
         //敌人回合开始 - 判定MC
         if(gM.characterM.chosenCharacter == "Designer")

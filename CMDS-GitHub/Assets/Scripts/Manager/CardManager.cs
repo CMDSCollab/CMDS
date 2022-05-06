@@ -61,7 +61,7 @@ public class CardManager : MonoBehaviour
 
     public void UpdateUI()
     {
-        cardNameText.text = cardInfo.cardName;
+        cardNameText.text = cardInfo.cardName;  
         cardTemplate.color = new Color(Random.Range(0.2f,0.7f), Random.Range(0.2f, 0.7f), Random.Range(0.2f, 0.7f));
         transform.Find("CardDescription").GetComponent<Text>().text = "Description:" +"\n" +cardInfo.description;
         for (int i = 0; i < cardInfo.baseFunctions.Count; i++)
@@ -105,28 +105,42 @@ public class CardManager : MonoBehaviour
                 case BaseFunctionType.Heal:
                     break;
                 case BaseFunctionType.ArtEnergy:
-                    gM.aiM.artAI.energyPoint += cardInfo.baseFunctions[i].value;
-                    gM.aiM.artAI.FillTheEnergyUI();
+                    AddEnergy(gM.aiM.artAI, cardInfo.baseFunctions[i].value);
                     break;
                 case BaseFunctionType.DsgnEnergy:
-                    gM.aiM.desAI.energyPoint += cardInfo.baseFunctions[i].value;
-                    gM.aiM.desAI.FillTheEnergyUI();
+                    AddEnergy(gM.aiM.desAI, cardInfo.baseFunctions[i].value);
                     break;
                 case BaseFunctionType.ProEnergy:
-                    gM.aiM.proAI.energyPoint += cardInfo.baseFunctions[i].value;
-                    gM.aiM.proAI.FillTheEnergyUI();
+                    AddEnergy(gM.aiM.proAI, cardInfo.baseFunctions[i].value);
                     break;
                 case BaseFunctionType.ArtSlot:
                     gM.aiM.artAI.AddTheEnergySlot();
+                    if(gM.characterM.chosenCharacter == "Designer" && gM.characterM.designerPl.isSycn)
+                    {
+                        AddEnergy(gM.aiM.artAI, 1);
+                    }
                     break;
                 case BaseFunctionType.DsgnSlot:
                     //gM.aiM.desAI.AddTheEnergySlot();
                     break;
                 case BaseFunctionType.ProSlot:
                     gM.aiM.proAI.AddTheEnergySlot();
+                    if (gM.characterM.chosenCharacter == "Designer" && gM.characterM.designerPl.isSycn)
+                    {
+                        AddEnergy(gM.aiM.proAI, 1);
+                    }
                     break;
                 case BaseFunctionType.DrawCard:
                     gM.deckM.DrawCardFromDeckRandomly(cardInfo.baseFunctions[i].value);
+                    if(gM.characterM.chosenCharacter == "Designer" && gM.characterM.designerPl.isTeamWork)
+                    {
+                        for(int times = 0; times < cardInfo.baseFunctions[i].value; times++)
+                        {
+                            AddEnergy(gM.aiM.proAI, 2);
+                            Debug.Log("Test" + gM.aiM.proAI.energyPoint);
+                            //RandomAddEnergy(gM.aiM.proAI, gM.aiM.artAI, 1);
+                        }
+                    }
                     break;
                 default:
                     break;
@@ -181,47 +195,69 @@ public class CardManager : MonoBehaviour
                         break;
                     case SpecialDesFunctionType.ChangeChallenge:
                         gM.characterM.designerPl.challengeInt += cardDsgn.desSpecialFunctions[i].value;
+                        gM.enM.currentTarget.MagicCircleDetection(60);
                         break;
                     case SpecialDesFunctionType.ChangeSkill:
                         gM.enM.currentTarget.skillLv += cardDsgn.desSpecialFunctions[i].value;
+                        gM.enM.currentTarget.MagicCircleDetection(60);
                         break;
                 }
             }
 
+            for(int i = 0; i < cardDsgn.desPassiveEffects.Count; i++)
+            {
+                switch (cardDsgn.desPassiveEffects[i].desPassiveEType) 
+                {
+                    case SpecialPassiveEffectType.None:
+                        break;
+                    case SpecialPassiveEffectType.IsTeamWork:
+                        gM.characterM.designerPl.isTeamWork = true;
+                        break;
+                    case SpecialPassiveEffectType.IsSycn:
+                        gM.characterM.designerPl.isSycn = true;
+                        break;
+                    
+                }
+                
+            }
 
- 
-/*
-            if (cardDsgn.isArtEnergy)
-            {
-                gM.aiM.artAI.energyPoint += cardDsgn.eneryPoint;
-                gM.aiM.artAI.FillTheEnergyUI();
-            }
-            if (cardDsgn.isProEnergy)
-            {
-                gM.aiM.proAI.energyPoint += cardDsgn.eneryPoint;
-                gM.aiM.proAI.FillTheEnergyUI();
-            }
-            if (cardDsgn.isAddCubeSlot)
-            {
-                gM.aiM.proAI.AddTheEnergySlot();
-            }
-            if (cardDsgn.isAddCircleSlot)
-            {
-                gM.aiM.artAI.AddTheEnergySlot();
-            }
-            if (cardDsgn.isChangeProIntention)
-            {
-                gM.aiM.proAI.ChangeIntention();
-            }
-            if (cardDsgn.isChangeArtIntention)
-            {
-                gM.aiM.artAI.ChangeIntention();
-            }
-            if (cardDsgn.isAddChallenge)
-            {
-                gM.characterM.designerPl.challengeInt += 1;
-            }
-*/
+            //小功能
+
+            //1.
+
+
+            /*
+                        if (cardDsgn.isArtEnergy)
+                        {
+                            gM.aiM.artAI.energyPoint += cardDsgn.eneryPoint;
+                            gM.aiM.artAI.FillTheEnergyUI();
+                        }
+                        if (cardDsgn.isProEnergy)
+                        {
+                            gM.aiM.proAI.energyPoint += cardDsgn.eneryPoint;
+                            gM.aiM.proAI.FillTheEnergyUI();
+                        }
+                        if (cardDsgn.isAddCubeSlot)
+                        {
+                            gM.aiM.proAI.AddTheEnergySlot();
+                        }
+                        if (cardDsgn.isAddCircleSlot)
+                        {
+                            gM.aiM.artAI.AddTheEnergySlot();
+                        }
+                        if (cardDsgn.isChangeProIntention)
+                        {
+                            gM.aiM.proAI.ChangeIntention();
+                        }
+                        if (cardDsgn.isChangeArtIntention)
+                        {
+                            gM.aiM.artAI.ChangeIntention();
+                        }
+                        if (cardDsgn.isAddChallenge)
+                        {
+                            gM.characterM.designerPl.challengeInt += 1;
+                        }
+            */
         }
 
         // 程序猿 卡牌相关功能
@@ -273,6 +309,30 @@ public class CardManager : MonoBehaviour
                 default:
                     break;
             }
+        }
+    }
+
+
+
+    //小功能
+
+    //1.
+    public void AddEnergy(AIMate target, int value)
+    {
+        target.energyPoint += value;
+        target.FillTheEnergyUI();
+    }
+
+    public void RandomAddEnergy(AIMate x, AIMate y,int value)
+    {
+        int dice = Random.Range(0, 2);
+        if(dice == 0)
+        {
+            AddEnergy(x, value);
+        }
+        else
+        {
+            AddEnergy(y, value);
         }
     }
 }

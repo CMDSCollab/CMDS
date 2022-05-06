@@ -13,11 +13,12 @@ MonoBehaviour:
   m_Name: "\u96BE\u5EA6\u63D0\u5347"
   m_EditorClassIdentifier: 
   cardName: "\u96BE\u5EA6\u63D0\u5347"
-  description: "+2\u6311\u6218+2\u6280\u80FD"
+  description: "+2\u6311\u6218"
   baseFunctions: []
   specialFunctions: 
   desSpecialFunctions:
   - desFunctionType: 1
     value: 2
   - desFunctionType: 2
-    value: 2
+    value: 0
+  desPassiveEffects: []
