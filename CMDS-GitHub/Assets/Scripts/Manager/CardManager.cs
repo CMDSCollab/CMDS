@@ -74,6 +74,9 @@ public class CardManager : MonoBehaviour
                 case BaseFunctionType.DsgnEnergy:
                     transform.Find("DsgnEnergy").Find("Value").GetComponent<Text>().text = "+" + cardInfo.baseFunctions[i].value.ToString();
                     break;
+                case BaseFunctionType.ProEnergy:
+                    transform.Find("ProEnergy").Find("Value").GetComponent<Text>().text = "+" + cardInfo.baseFunctions[i].value.ToString();
+                    break;
                 default:
                     break;
             }
@@ -97,11 +100,11 @@ public class CardManager : MonoBehaviour
             switch (cardInfo.baseFunctions[i].functionType)
             {
                 case BaseFunctionType.Damage:
-                    gM.enM.currentTarget.TakeDamage(cardInfo.baseFunctions[i].value);
+                    gM.enM.enemyTarget.TakeDamage(cardInfo.baseFunctions[i].value);
                     break;
                 case BaseFunctionType.Shield:
                     gM.aiM.pro.shieldPoint += cardInfo.baseFunctions[i].value;
-                    gM.aiM.pro.SetBuff(BuffType.Shield, gM.aiM.pro.shieldPoint);
+                    gM.buffM.SetCharacterBuff(CharacterBuff.Shield, true, gM.aiM.pro.shieldPoint);
                     break;
                 case BaseFunctionType.Heal:
                     break;
@@ -179,10 +182,10 @@ public class CardManager : MonoBehaviour
                     case SpecialDesFunctionType.None:
                         break;
                     case SpecialDesFunctionType.ChangeChallenge:
-                        gM.aiM.des.challengeInt += cardDsgn.desSpecialFunctions[i].value;
+                        gM.aiM.des.challengeLv += cardDsgn.desSpecialFunctions[i].value;
                         break;
                     case SpecialDesFunctionType.ChangeSkill:
-                        gM.enM.currentTarget.skillLv += cardDsgn.desSpecialFunctions[i].value;
+                        gM.enM.enemyTarget.skillLv += cardDsgn.desSpecialFunctions[i].value;
                         break;
                 }
             }
@@ -206,11 +209,11 @@ public class CardManager : MonoBehaviour
                 case SpecialFunctionPro.None:
                     break;
                 case SpecialFunctionPro.DamageEqualsShield:
-                    gM.enM.currentTarget.TakeDamage(gM.aiM.pro.shieldPoint);
+                    gM.enM.enemyTarget.TakeDamage(gM.aiM.pro.shieldPoint);
                     break;
                 case SpecialFunctionPro.DoubleShield:
                     gM.aiM.pro.shieldPoint += gM.aiM.pro.shieldPoint;
-                    gM.aiM.pro.SetBuff(BuffType.Shield, gM.aiM.pro.shieldPoint);
+                    gM.buffM.SetCharacterBuff(CharacterBuff.Shield, true, gM.aiM.pro.shieldPoint);
                     break;
                 case SpecialFunctionPro.UseHandCardsGainShield:
                     gM.cardFunctionM.isUseCardGainShield = true;
@@ -224,6 +227,7 @@ public class CardManager : MonoBehaviour
                             {
                                 gM.handM.handCardList[i - 1].GetComponent<CardManager>().DiscardHandCard();
                                 gM.aiM.pro.shieldPoint += 5;
+                                gM.buffM.SetCharacterBuff(CharacterBuff.Shield, true, gM.aiM.pro.shieldPoint);
                             }
                             handIndex = 1;
                         }
@@ -231,12 +235,12 @@ public class CardManager : MonoBehaviour
                     break;
                 case SpecialFunctionPro.Vengeance:
                     gM.cardFunctionM.isVengeance = true;
-                    gM.aiM.pro.SetBuff(BuffType.Vengeance, 4);
+                    gM.buffM.SetCharacterBuff(CharacterBuff.Vengeance, true, 4);
                     break;
                 case SpecialFunctionPro.ConsumeShieldDoubleDamage:
-                    gM.enM.currentTarget.TakeDamage(gM.aiM.pro.shieldPoint * 2);
+                    gM.enM.enemyTarget.TakeDamage(gM.aiM.pro.shieldPoint * 2);
                     gM.aiM.pro.shieldPoint = 0;
-                    gM.aiM.pro.SetBuff(BuffType.Shield, gM.aiM.pro.shieldPoint);
+                    gM.buffM.SetCharacterBuff(CharacterBuff.Shield, true, gM.aiM.pro.shieldPoint);
                     break;
                 default:
                     break;

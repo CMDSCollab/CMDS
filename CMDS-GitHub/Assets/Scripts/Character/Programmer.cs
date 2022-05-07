@@ -75,7 +75,7 @@ public class Programmer : CharacterMate
     {
         debugUI = Instantiate(gM.characterM.debugUIPrefab, UIParent.transform, false);
         debugUI.SetUp(this);
-        debugUI.GetComponent<RectTransform>().anchoredPosition = new Vector3(-650, 250, 0);
+        debugUI.GetComponent<RectTransform>().anchoredPosition = new Vector3(650, 250, 0);
         debugUI.transform.SetAsFirstSibling();
     }
 

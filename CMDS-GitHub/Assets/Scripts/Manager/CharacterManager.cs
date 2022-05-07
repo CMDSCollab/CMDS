@@ -3,12 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-[System.Serializable]
-public struct BuffRecord
-{
-    public BuffType buffType;
-    public Sprite buffImage;
-}
 public class CharacterManager : MonoBehaviour
 {
     #region 角色通用变量
@@ -23,8 +17,6 @@ public class CharacterManager : MonoBehaviour
     public CharacterMate mainCharacter;
     public GameObject energyPrefab;
     public List<Sprite> energyImages;
-    public List<BuffRecord> buffRecord;
-    public GameObject buffPrefab;
     #endregion
 
     #region 程序变量
@@ -77,11 +69,11 @@ public class CharacterManager : MonoBehaviour
         aiObj.transform.SetAsFirstSibling();
         if (leftOrRight == "Left")
         {
-            aiObj.GetComponent<RectTransform>().anchoredPosition = new Vector3(350, 0, 0);
+            aiObj.GetComponent<RectTransform>().anchoredPosition = new Vector3(-750, -30, 0);
         }
         else
         {
-            aiObj.GetComponent<RectTransform>().anchoredPosition = new Vector3(-350, 0, 0);
+            aiObj.GetComponent<RectTransform>().anchoredPosition = new Vector3(-500, -30, 0);
         }
         switch (characterType)
         {
@@ -110,7 +102,7 @@ public class CharacterManager : MonoBehaviour
     {
         GameObject chaObj = Instantiate(templateCha, gM.uiCanvas.transform, false);
         chaObj.transform.SetAsFirstSibling();
-        chaObj.GetComponent<RectTransform>().anchoredPosition = new Vector3(0, 0, 0);
+        chaObj.GetComponent<RectTransform>().anchoredPosition = new Vector3(-625, 300, 0);
         
         switch (characterType)
         {

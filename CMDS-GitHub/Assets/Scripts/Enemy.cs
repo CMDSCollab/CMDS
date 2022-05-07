@@ -304,12 +304,12 @@ public class Enemy : MonoBehaviour
 
     public void ChallengeVsSkill()
     {
-        int chaInt = gM.aiM.des.challengeInt;
-        if (chaInt >= skillLv)
+        int chaLv = gM.aiM.des.challengeLv;
+        if (chaLv >= skillLv)
         {
             isBored = false;
 
-            if(chaInt - skillLv > 10)
+            if(chaLv - skillLv > 10)
             {
                 isAnexity = true;
             }
@@ -317,7 +317,7 @@ public class Enemy : MonoBehaviour
             {
                 isAnexity = false;
                 MagicCircle(true);
-                TakeChallengeDamage(chaInt);
+                TakeChallengeDamage(chaLv);
             }
         }
         else

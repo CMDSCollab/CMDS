@@ -31,29 +31,4 @@ public abstract class CardInfo : ScriptableObject
     public List<BaseFunction> baseFunctions;
     public List<SpecialFunctionType> specialFunctions;
     #endregion
-
-    //#region 攻击牌部分
-    //[Header("Function - Attack")]
-    //[Tooltip("攻击的次数（0则不具有攻击功能）")]
-    //public int attackTimes;
-    //[Tooltip("单次攻击造成的伤害")]
-    //public int damage;
-    //#endregion
-
-    //#region 技能牌部分
-    //[Header("Function - Skill")]
-    //[Tooltip("给自己加盾 0则不具有加盾功能")]
-    //public int shieldPoint;
-    //[Tooltip("抽牌数量 0则不具有过牌功能")]
-    //public int drawAmount;
-    //[Tooltip("是否可以“发现”卡牌")]
-    //public bool isFindCardInDrawPile;
-    //#endregion
-
-    //#region 能力牌部分
-    ////[Header("Function - Power")]
-    ////public int buff;
-    ////public int applyDebuff;
-    //#endregion
-
 }

@@ -33,7 +33,7 @@ public class DeckManager : MonoBehaviour
     {
         if (gM.characterM.mainCharacterType == CharacterType.Designer)
         {
-            cardPrefab = cardPrefabs[1];
+            cardPrefab = cardPrefabs[0];
 
             for (int i = 0; i < designerBaseCard.Count; i++)
             {

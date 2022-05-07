@@ -175,7 +175,7 @@ public class AIMate : BasicCharacter
         switch (currentIntention)
         {
             case Intentions.Attack:
-                gM.enM.currentTarget.TakeDamage(intentionValue);
+                gM.enM.enemyTarget.TakeDamage(intentionValue);
                 break;
             case Intentions.Heal:
                 gM.characterM.mainCharacter.healthPoint += intentionValue;
