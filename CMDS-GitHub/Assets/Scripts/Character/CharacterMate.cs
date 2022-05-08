@@ -7,7 +7,8 @@ public enum BuffType
 {
     Shield,
     Vengeance,
-    PowerUp
+    PowerUp,
+    Challenge
 }
 
 public class CharacterMate : BasicCharacter

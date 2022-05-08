@@ -180,6 +180,7 @@ public class CardManager : MonoBehaviour
                         break;
                     case SpecialDesFunctionType.ChangeChallenge:
                         gM.aiM.des.challengeInt += cardDsgn.desSpecialFunctions[i].value;
+                        gM.aiM.des.SetBuff(BuffType.Challenge, gM.aiM.des.challengeInt);
                         break;
                     case SpecialDesFunctionType.ChangeSkill:
                         gM.enM.currentTarget.skillLv += cardDsgn.desSpecialFunctions[i].value;
