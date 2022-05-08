@@ -15,7 +15,7 @@ MonoBehaviour:
   cardName: "\u96BE\u5EA6\u63D0\u5347"
   description: "+2\u6311\u6218"
   baseFunctions: []
-  specialFunctions: 
+  specialFunctions: 00000000
   desSpecialFunctions:
   - desFunctionType: 1
     value: 2

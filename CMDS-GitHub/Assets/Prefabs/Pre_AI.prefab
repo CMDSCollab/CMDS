@@ -391,7 +391,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4570558573117446158}
   m_Layer: 5
-  m_Name: Temp_AI
+  m_Name: Pre_AI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

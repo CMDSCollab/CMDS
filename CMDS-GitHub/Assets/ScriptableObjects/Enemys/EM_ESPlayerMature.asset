@@ -10,8 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b2d0455e84d5f16449d3ec21eeaae345, type: 3}
-  m_Name: JosefFames
+  m_Name: EM_ESPlayerMature
   m_EditorClassIdentifier: 
-  enemyName: Josef Fames
-  enemyType: 2
-  enemyRace: 0
+  enemyType: 0
+  minionType: 1
+  bossType: 0
+  eliteType: 0
+  enemyName: ESPlayer Mature
+  images:
+  - {fileID: 21300000, guid: c3a76ded2b67f2e4d9bf59f0fd8d2f7e, type: 3}
+  maxHealth: 50
+  basicIntentions:
+  - intention: 0
+    tendency: 60
+  - intention: 1
+    tendency: 20
+  - intention: 3
+    tendency: 20
+  specialFunctions: 

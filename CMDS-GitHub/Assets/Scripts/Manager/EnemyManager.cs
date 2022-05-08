@@ -16,9 +16,9 @@ public class EnemyManager : MonoBehaviour
     {
         gM = FindObjectOfType<GameMaster>();
 
-        enemyInfo = enemyObjs[0].GetComponent<Enemy>().enemyInfo;
-        InitializeEnemy(enemyObjs[0]);
-        FacingPlayerAsDesigner();
+        //enemyInfo = enemyObjs[0].GetComponent<Enemy>().enemyInfo;
+        //InitializeEnemy(enemyObjs[0]);
+        //FacingPlayerAsDesigner();
     }
 
     public void InitializeEnemy(GameObject enemyToGenerate)
@@ -56,9 +56,5 @@ public class EnemyManager : MonoBehaviour
     public void EnemiesActions()
     {
         currentTarget.TakeAction();
-        //foreach(Enemy unit in currentEnemies)
-        //{
-        //    unit.TakeAction();
-        //}
     }
 }

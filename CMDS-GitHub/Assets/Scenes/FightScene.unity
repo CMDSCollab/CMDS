@@ -835,6 +835,7 @@ GameObject:
   m_Component:
   - component: {fileID: 377646750}
   - component: {fileID: 377646751}
+  - component: {fileID: 377646752}
   m_Layer: 0
   m_Name: EnemyManager
   m_TagString: Untagged
@@ -875,6 +876,31 @@ MonoBehaviour:
   enemyObjs:
   - {fileID: 4715589943061099282, guid: f0fcc3cd7e070854e90d5b0771d808b9, type: 3}
   enemyInfo: {fileID: 0}
+--- !u!114 &377646752
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 377646749}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a68f52d7a2be26344b64ebab04f794c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gM: {fileID: 0}
+  enemyTarget: {fileID: 0}
+  enemyPrefab: {fileID: 4715589943061099282, guid: f0fcc3cd7e070854e90d5b0771d808b9, type: 3}
+  intentionImages:
+  - enemyIntention: 0
+    image: {fileID: 21300000, guid: 25aaf2d8d388f0b4d8b25a81286dc2a3, type: 3}
+  - enemyIntention: 1
+    image: {fileID: 21300000, guid: a80e04fd486acbe42adc743c5e3b9e2e, type: 3}
+  - enemyIntention: 2
+    image: {fileID: 21300000, guid: 8d3eb64547ea45d4c88aa86dc45a9e46, type: 3}
+  - enemyIntention: 3
+    image: {fileID: 21300000, guid: 3d4df953d5713f84a96931f0a15357d8, type: 3}
+  testEnemy: {fileID: 11400000, guid: b26c6f40cf701b644a42d29dc3b15a9c, type: 2}
 --- !u!1 &469202290
 GameObject:
   m_ObjectHideFlags: 0
@@ -1205,6 +1231,7 @@ Transform:
   - {fileID: 765918135}
   - {fileID: 1466778471}
   - {fileID: 1669911207}
+  - {fileID: 666923056}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1539,6 +1566,75 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 592193781}
   m_CullTransparentMesh: 1
+--- !u!1 &666923055
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 666923056}
+  - component: {fileID: 666923057}
+  m_Layer: 0
+  m_Name: BuffManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &666923056
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 666923055}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 550195943}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &666923057
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 666923055}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a67654ed8ef1d745851f6bdc5aa0aa7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gM: {fileID: 0}
+  characterBuffs:
+  - buffType: 0
+    buffImage: {fileID: 21300000, guid: a80e04fd486acbe42adc743c5e3b9e2e, type: 3}
+  - buffType: 1
+    buffImage: {fileID: 21300000, guid: c5539b24ebc3e274ebdc3b2a1f93064b, type: 3}
+  - buffType: 2
+    buffImage: {fileID: 21300000, guid: 0fcc4f43ca4ec9847adbd576601aaa55, type: 3}
+  - buffType: 3
+    buffImage: {fileID: 21300000, guid: 0061a89775b437048ac45edbf35b073c, type: 3}
+  enemyBuffs:
+  - buffType: 0
+    buffImage: {fileID: 21300000, guid: 727ad5620d4a0284986bbe9e36096c6a, type: 3}
+  - buffType: 1
+    buffImage: {fileID: 21300000, guid: 6626c1fee16591d448828948e1f38618, type: 3}
+  - buffType: 2
+    buffImage: {fileID: 21300000, guid: 17fcf6410f0cd0b4fb2a4f712ceb28d5, type: 3}
+  - buffType: 3
+    buffImage: {fileID: 21300000, guid: b97b6dcfc4b4b444c85d9435b077248a, type: 3}
+  - buffType: 4
+    buffImage: {fileID: 21300000, guid: 0061a89775b437048ac45edbf35b073c, type: 3}
+  - buffType: 5
+    buffImage: {fileID: 21300000, guid: 6aabf55f1021e0242b253285de77a44f, type: 3}
+  - buffType: 6
+    buffImage: {fileID: 21300000, guid: d84a8526bb931ac4ab459fc70d5c1398, type: 3}
+  buffPrefab: {fileID: 58876584110005318, guid: 7e3d29eef0ce3cd49b93b2419c79b393, type: 3}
 --- !u!1 &670905913
 GameObject:
   m_ObjectHideFlags: 0
@@ -2430,7 +2526,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f2f4789c36af8374fbb9dfd2fcb672bf, type: 2}
   - {fileID: 11400000, guid: 8be4ea44c71d3914ebd91996e3e3e8da, type: 2}
   cardPrefabs:
-  - {fileID: 6711243203288300317, guid: 08cafe877b0822b4d953b9746eb94b93, type: 3}
+  - {fileID: 1596943046692765748, guid: 701f33fa0496a9d41b84c2e7550f1814, type: 3}
   - {fileID: 2198812027880452365, guid: 182ccee00739a724baa330837b025f1b, type: 3}
   gM: {fileID: 0}
   initialCardAmount: 4
@@ -3097,7 +3193,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cardPrefabs:
-  - {fileID: 6711243203288300317, guid: 08cafe877b0822b4d953b9746eb94b93, type: 3}
+  - {fileID: 1596943046692765748, guid: 701f33fa0496a9d41b84c2e7550f1814, type: 3}
   - {fileID: 2198812027880452365, guid: 182ccee00739a724baa330837b025f1b, type: 3}
   parentLayout: {fileID: 823509005}
   deckM: {fileID: 1244911075}
@@ -3375,7 +3471,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gM: {fileID: 0}
-  mainCharacterType: 1
+  mainCharacterType: 0
   templateAI: {fileID: 4570558573117446159, guid: 78cc2b9754e73104581b8f0f9390200c, type: 3}
   templateCha: {fileID: 1170723625861745983, guid: 331f25fbefe7b2a4b92b7cdc089184d2, type: 3}
   characters:
@@ -3392,14 +3488,6 @@ MonoBehaviour:
   - {fileID: 21300000, guid: c9fd7df94f9b2ac46b63d7b626d4b077, type: 3}
   - {fileID: 21300000, guid: 758bbf4cfeefc664a828c661bf8c81be, type: 3}
   - {fileID: 21300000, guid: fc3b2a1d8d86f5540bcfbf0f3eaff2e6, type: 3}
-  buffRecord:
-  - buffType: 0
-    buffImage: {fileID: 21300000, guid: a80e04fd486acbe42adc743c5e3b9e2e, type: 3}
-  - buffType: 2
-    buffImage: {fileID: 21300000, guid: 0fcc4f43ca4ec9847adbd576601aaa55, type: 3}
-  - buffType: 1
-    buffImage: {fileID: 21300000, guid: 5aea45f4890fdb04eb48c40f3eaceb95, type: 3}
-  buffPrefab: {fileID: 58876584110005318, guid: 7e3d29eef0ce3cd49b93b2419c79b393, type: 3}
   debugUIPrefab: {fileID: 1336081559263251259, guid: 9a54a365dd8e4b441a7f5a5d4f102250, type: 3}
   potentialErrors:
   - errorName: Null Reference
@@ -3557,13 +3645,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   aiM: {fileID: 1978081096}
-  enM: {fileID: 377646751}
+  enM: {fileID: 377646752}
   handM: {fileID: 683001706}
   deckM: {fileID: 1244911075}
   cardRepoM: {fileID: 1532964524}
   buttonM: {fileID: 1466778472}
   cardFunctionM: {fileID: 765918136}
   characterM: {fileID: 1669911208}
+  buffM: {fileID: 666923057}
   localM: {fileID: 550195944}
   uiCanvas: {fileID: 151348835}
 --- !u!4 &1703458575

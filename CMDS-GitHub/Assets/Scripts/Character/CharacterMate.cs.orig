@@ -3,13 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+<<<<<<< HEAD
 public enum BuffType
 {
     Shield,
     Vengeance,
-    PowerUp
+    PowerUp,
+    Challenge
 }
 
+=======
+>>>>>>> 23699c4cc17a2cba0c263ed33e621911d30ee0c0
 public class CharacterMate : BasicCharacter
 {
     public int maxHp;

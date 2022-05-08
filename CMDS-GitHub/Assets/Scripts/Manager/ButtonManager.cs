@@ -115,7 +115,7 @@ public class ButtonManager : MonoBehaviour
             
         }
         //Ö´ÐÐÐÐ¶¯
-        gM.enM.EnemiesActions();
+        gM.enM.enemyTarget.TakeAction();
 
         gM.deckM.DrawCardFromDeckRandomly(gM.deckM.drawCardAmount);
 

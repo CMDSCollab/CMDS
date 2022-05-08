@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Designer : CharacterMate
 {
-    public int challengeInt;
+    public int challengeLv;
 
     public List<bool> statusPerTurn;
 
