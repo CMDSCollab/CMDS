@@ -48,7 +48,8 @@ public class BasicEnemy : MonoBehaviour
     public void Update()
     {
         UpdateUI();
-        MainChaMCChange();
+        //不建议让MC每帧做一次检测
+        //MainChaMCChange();
     }
 
     public void InitializeEnemy()
@@ -141,6 +142,10 @@ public class BasicEnemy : MonoBehaviour
                 break;
             case EnemyIntention.Taunt:
                 transform.Find("Intention").Find("Name").GetComponent<Text>().text = "Taunt";
+                transform.Find("Intention").Find("Image").GetComponent<Image>().sprite = imageToSet;
+                break;
+            case EnemyIntention.Skill:
+                transform.Find("Intention").Find("Name").GetComponent<Text>().text = "Skill";
                 transform.Find("Intention").Find("Image").GetComponent<Image>().sprite = imageToSet;
                 break;
         }

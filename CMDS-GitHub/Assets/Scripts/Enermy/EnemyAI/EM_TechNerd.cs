@@ -3,13 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class EM_ESPlayerMature : BasicEnemy
+
+public class EM_TechNerd : BasicEnemy
 {
     private int defaultShieldP = 10;
     private int recordShieldP;
     private int defaultDmg = 10;
     private int defaultSkill = 1;
-
+    private bool isBlocked = false;
+    // Start is called before the first frame update
     void Start()
     {
         
@@ -17,6 +19,11 @@ public class EM_ESPlayerMature : BasicEnemy
 
     public override void TakeDamage(int dmgValue)
     {
+        if (isBlocked)
+        {
+            return;
+        }
+
         if (recordShieldP > 0)
         {
             recordShieldP -= dmgValue;
@@ -42,6 +49,9 @@ public class EM_ESPlayerMature : BasicEnemy
 
     public override void TakeAction()
     {
+        isBlocked = false;
+        gM.buffM.SetEnemyBuff(EnemyBuff.Block, false, skillLv);
+
         switch (currentIntention)
         {
             case EnemyIntention.Attack:
@@ -76,7 +86,10 @@ public class EM_ESPlayerMature : BasicEnemy
                 transform.Find("Intention").Find("Value").gameObject.SetActive(true);
                 transform.Find("Intention").Find("Value").GetComponent<Text>().text = defaultShieldP.ToString();
                 break;
-            case EnemyIntention.Taunt:
+            case EnemyIntention.MultiAttack:
+                transform.Find("Intention").Find("Value").gameObject.SetActive(false);
+                break;
+            case EnemyIntention.Charge:
                 transform.Find("Intention").Find("Value").gameObject.SetActive(false);
                 break;
             case EnemyIntention.Skill:

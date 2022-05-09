@@ -167,7 +167,7 @@ public class CardManager : MonoBehaviour
         // 射击师 卡牌相关功能
         if (cardInfo is CardInfoDsgn)
         {
-            if (gM.characterM.mainCharacterType == CharacterType.Designer)
+            if (gM.characterM.mainCharacterType != CharacterType.Designer)
             {
                 return;
             }
@@ -182,10 +182,14 @@ public class CardManager : MonoBehaviour
                     case SpecialDesFunctionType.None:
                         break;
                     case SpecialDesFunctionType.ChangeChallenge:
-                        gM.aiM.des.challengeInt += cardDsgn.desSpecialFunctions[i].value;
+                        Debug.Log("Test" + cardDsgn.desSpecialFunctions[i].value);
+                        gM.aiM.des.challengeLv += cardDsgn.desSpecialFunctions[i].value;
+                        gM.buffM.SetCharacterBuff(CharacterBuff.Challenge, true, gM.aiM.des.challengeLv);
+                        gM.enM.enemyTarget.MainChaMCChange();
                         break;
                     case SpecialDesFunctionType.ChangeSkill:
                         gM.enM.enemyTarget.skillLv += cardDsgn.desSpecialFunctions[i].value;
+                        gM.enM.enemyTarget.MainChaMCChange();
                         break;
                 }
             }

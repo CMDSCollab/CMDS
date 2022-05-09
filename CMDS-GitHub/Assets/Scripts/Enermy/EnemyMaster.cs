@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public enum EnemyIntention { Attack, Defence, Heal, Taunt }
+public enum EnemyIntention { Attack, Defence, Heal, Taunt, Skill, MultiAttack, Charge}
 [System.Serializable]
 public struct EnemyIntentionImages
 {
@@ -54,6 +54,7 @@ public class EnemyMaster : MonoBehaviour
                 switch (enemyInfo.minionType)
                 {
                     case MinionType.TechNerd:
+                        objToAdd.AddComponent<EM_TechNerd>();
                         break;
                     case MinionType.ESPlayerMature:
                         objToAdd.AddComponent<EM_ESPlayerMature>();

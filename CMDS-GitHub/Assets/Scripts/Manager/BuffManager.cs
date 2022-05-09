@@ -3,8 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public enum EnemyBuff { Bored, Anxiety, InFlow, Vulnerable, Weak, Instability, WeakMind, Defence }
-public enum CharacterBuff { Shield, Vengeance, PowerUp, Weak }
+#region EnemyBuff说明
+//Bored 
+//Anxiety
+//InFlow
+//Vulnerable
+//Weak
+//Instability
+//WeakMind
+//Defence
+//Skill 技能值 将与设计师的challenge比较 只存在于主要角色为设计师的情况下
+//Block 该轮不会受到伤害
+#endregion
+public enum EnemyBuff { Bored, Anxiety, InFlow, Vulnerable, Weak, Instability, WeakMind, Defence, Skill, Block}
+public enum CharacterBuff { Shield, Vengeance, PowerUp, Weak,Challenge}
 
 [System.Serializable]
 public struct EnemyBuffInfo { public EnemyBuff buffType; public Sprite buffImage; }
