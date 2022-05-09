@@ -22,11 +22,13 @@ MonoBehaviour:
   maxHealth: 50
   basicIntentions:
   - intention: 0
-    tendency: 0
+    tendency: 30
   - intention: 5
-    tendency: 0
+    tendency: 20
   - intention: 6
+    tendency: 30
+  - intention: 4
     tendency: 0
-  - intention: 0
-    tendency: 0
+  - intention: 7
+    tendency: 20
   specialFunctions: 
