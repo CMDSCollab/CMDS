@@ -50,7 +50,6 @@ public class MapNodeManager : MonoBehaviour
             case NodeType.Uncertainty:
                 break;
         }
-        Debug.Log(mapNode.nodeType);
     }
 
     public void EnterBattleScene(EnemyType enemyType)

@@ -29,7 +29,7 @@ public class AIMate : BasicCharacter
 
     public void Update()
     {
-        EnergyUISlotSync();
+        
     }
 
     public void AddTheEnergySlot()
@@ -51,12 +51,7 @@ public class AIMate : BasicCharacter
         }
         energy.transform.localScale = new Vector3(1, 1, 1);
         energyPointImageList.Add(energy.GetComponent<Image>());
-        ResetEnergyPos();
-        IntentionValueSync();
-    }
-
-    public void ResetEnergyPos()
-    {
+        //÷ÿ÷√EnergySlotµƒŒª÷√
         int singleUnitWidth = (int)energy.GetComponent<RectTransform>().rect.width;
         float unitStartGenPos = -(singleUnitWidth * energyPointImageList.Count / 2) + singleUnitWidth / 2;
         for (int i = 0; i < energyPointImageList.Count; i++)
@@ -66,8 +61,10 @@ public class AIMate : BasicCharacter
         }
     }
 
-    public void EnergyUISlotSync()
+    public void EnergyValueChange(int changeAmount)
     {
+        energyPoint += changeAmount;
+
         for (int i = 0; i < energyPointImageList.Count; i++)
         {
             if (i < energyPoint)
@@ -79,14 +76,16 @@ public class AIMate : BasicCharacter
                 energyPointImageList[i].color = Color.white;
             }
         }
+        IntentionValueChangeAndUISync();
     }
 
+    #region Intention
     public void GenerateIntention()
     {
         int random = Random.Range(0, intentions.Count);
         IntentionManager intentionM = intentions[random];
         SyncIntention(intentionM);
-        IntentionValueSync();
+        IntentionValueChangeAndUISync();
     }
 
     public void ChangeIntention()
@@ -135,7 +134,7 @@ public class AIMate : BasicCharacter
         }
     }
 
-    public void IntentionValueSync()
+    public void IntentionValueChangeAndUISync()
     {
         switch (energyPoint)
         {
@@ -163,7 +162,7 @@ public class AIMate : BasicCharacter
         }
         transform.Find("IntentionPos").Find("Value").GetComponent<Text>().text = intentionValue.ToString();
     }
-
+    #endregion
     public virtual void TakeAction()
     {
         switch (currentIntention)
@@ -175,14 +174,14 @@ public class AIMate : BasicCharacter
                 gM.characterM.mainCharacter.healthPoint += intentionValue;
                 break;
             case Intentions.Shield:
-
+                gM.buffM.SetCharacterBuff(CharacterBuff.Shield, true, intentionValue);
                 break;
             case Intentions.Buff:
                 break;
             case Intentions.Debuff:
                 break;
         }
-        energyPoint = 0;
+        EnergyValueChange(-energyPoint);
         GenerateIntention();
     }
 }

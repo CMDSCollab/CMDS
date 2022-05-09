@@ -77,40 +77,22 @@ public class ButtonManager : MonoBehaviour
         switch (gM.characterM.mainCharacterType)
         {
             case CharacterType.Designer:
-                if (gM.aiM.proAI.energyPoint == gM.aiM.proAI.energySlotAmount)
-                {
-                    gM.aiM.proAI.TakeAction();
-                }
-                if (gM.aiM.artAI.energyPoint == gM.aiM.artAI.energySlotAmount)
-                {
-                    gM.aiM.artAI.TakeAction();
-                }
+                gM.aiM.proAI.TakeAction();
+                gM.aiM.artAI.TakeAction();
                 break;
             case CharacterType.Programmmer:
-                if (gM.aiM.desAI.energyPoint == gM.aiM.desAI.energySlotAmount)
-                {
-                    gM.aiM.desAI.TakeAction();
-                }
-                if (gM.aiM.artAI.energyPoint == gM.aiM.artAI.energySlotAmount)
-                {
-                    gM.aiM.artAI.TakeAction();
-                }
+                gM.aiM.desAI.TakeAction();
+                gM.aiM.artAI.TakeAction();
                 break;
             case CharacterType.Artist:
-                if (gM.aiM.desAI.energyPoint == gM.aiM.desAI.energySlotAmount)
-                {
-                    gM.aiM.desAI.TakeAction();
-                }
-                if (gM.aiM.proAI.energyPoint == gM.aiM.proAI.energySlotAmount)
-                {
-                    gM.aiM.proAI.TakeAction();
-                }
+                gM.aiM.desAI.TakeAction();
+                gM.aiM.proAI.TakeAction();
                 break;
         }
 
 
         //敌人回合开始 - 判定MC
-        if(gM.characterM.mainCharacterType == CharacterType.Designer)
+        if (gM.characterM.mainCharacterType == CharacterType.Designer)
         {
             
         }
@@ -150,25 +132,7 @@ public class ButtonManager : MonoBehaviour
 
     public void EndFightBackToMap()
     {
-        switch (gM.characterM.mainCharacterType)
-        {
-            case CharacterType.Designer:
-                Destroy(gM.aiM.proAI.gameObject);
-                Destroy(gM.aiM.artAI.gameObject);
-                Destroy(gM.aiM.des.gameObject);
-                break;
-            case CharacterType.Programmmer:
-                break;
-            case CharacterType.Artist:
-                break;
-        }
-        Destroy(gM.enM.enemyTarget.gameObject);
-        gM.handM.handCardList.Clear();
-        GameObject handObj = gM.uiCanvas.transform.Find("Hand").gameObject;
-        for (int i = 0; i < handObj.transform.childCount; i++)
-        {
-            Destroy(handObj.transform.GetChild(i).gameObject);
-        }
+        gM.EndFightReset();
         gM.mapM.gameObject.SetActive(true);
         gM.uiCanvas.gameObject.SetActive(false);
     }

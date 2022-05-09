@@ -109,13 +109,13 @@ public class CardManager : MonoBehaviour
                 case BaseFunctionType.Heal:
                     break;
                 case BaseFunctionType.ArtEnergy:
-                    gM.aiM.artAI.energyPoint += cardInfo.baseFunctions[i].value;
+                    gM.aiM.artAI.EnergyValueChange(cardInfo.baseFunctions[i].value);
                     break;
                 case BaseFunctionType.DsgnEnergy:
-                    gM.aiM.desAI.energyPoint += cardInfo.baseFunctions[i].value;
+                    gM.aiM.desAI.EnergyValueChange(cardInfo.baseFunctions[i].value);
                     break;
                 case BaseFunctionType.ProEnergy:
-                    gM.aiM.proAI.energyPoint += cardInfo.baseFunctions[i].value;
+                    gM.aiM.proAI.EnergyValueChange(cardInfo.baseFunctions[i].value);
                     break;
                 case BaseFunctionType.ArtSlot:
                     gM.aiM.artAI.energySlotAmount++;

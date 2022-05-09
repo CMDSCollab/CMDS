@@ -34,4 +34,29 @@ public class GameMaster : MonoBehaviour
         enM.InitializeEnemy();
         deckM.PrepareDeckAndHand();
     }
+
+    public void EndFightReset()
+    {
+        buffM.activeCharacterBuffs.Clear();
+        buffM.activeEnemyBuffs.Clear();
+        handM.handCardList.Clear();
+        switch (characterM.mainCharacterType)
+        {
+            case CharacterType.Designer:
+                Destroy(aiM.proAI.gameObject);
+                Destroy(aiM.artAI.gameObject);
+                Destroy(aiM.des.gameObject);
+                break;
+            case CharacterType.Programmmer:
+                break;
+            case CharacterType.Artist:
+                break;
+        }
+        Destroy(enM.enemyTarget.gameObject);
+        GameObject handObj = uiCanvas.transform.Find("Hand").gameObject;
+        for (int i = 0; i < handObj.transform.childCount; i++)
+        {
+            Destroy(handObj.transform.GetChild(i).gameObject);
+        }
+    }
 }
