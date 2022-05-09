@@ -148,6 +148,18 @@ public class BasicEnemy : MonoBehaviour
                 transform.Find("Intention").Find("Name").GetComponent<Text>().text = "Skill";
                 transform.Find("Intention").Find("Image").GetComponent<Image>().sprite = imageToSet;
                 break;
+            case EnemyIntention.MultiAttack:
+                transform.Find("Intention").Find("Name").GetComponent<Text>().text = "MultiAttack";
+                transform.Find("Intention").Find("Image").GetComponent<Image>().sprite = imageToSet;
+                break;
+            case EnemyIntention.Charge:
+                transform.Find("Intention").Find("Name").GetComponent<Text>().text = "Charge";
+                transform.Find("Intention").Find("Image").GetComponent<Image>().sprite = imageToSet;
+                break;
+            case EnemyIntention.Block:
+                transform.Find("Intention").Find("Name").GetComponent<Text>().text = "Block";
+                transform.Find("Intention").Find("Image").GetComponent<Image>().sprite = imageToSet;
+                break;
         }
     }
     #endregion

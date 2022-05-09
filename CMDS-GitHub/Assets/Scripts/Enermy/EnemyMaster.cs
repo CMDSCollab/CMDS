@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public enum EnemyIntention { Attack, Defence, Heal, Taunt, Skill, MultiAttack, Charge}
+public enum EnemyIntention { Attack, Defence, Heal, Taunt, Skill, MultiAttack, Charge, Block}
 [System.Serializable]
 public struct EnemyIntentionImages
 {

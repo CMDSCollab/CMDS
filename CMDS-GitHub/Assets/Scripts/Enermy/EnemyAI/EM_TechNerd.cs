@@ -9,8 +9,10 @@ public class EM_TechNerd : BasicEnemy
     private int defaultShieldP = 10;
     private int recordShieldP;
     private int defaultDmg = 10;
+    private int defaultMultAttackTimes = 10;
     private int defaultSkill = 1;
     private bool isBlocked = false;
+    public bool isCharged = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -50,24 +52,53 @@ public class EM_TechNerd : BasicEnemy
     public override void TakeAction()
     {
         isBlocked = false;
-        gM.buffM.SetEnemyBuff(EnemyBuff.Block, false, skillLv);
+        gM.buffM.SetEnemyBuff(EnemyBuff.Block, false, 0);
 
         switch (currentIntention)
         {
             case EnemyIntention.Attack:
-                gM.characterM.mainCharacter.TakeDamage(defaultDmg);
+                if (isCharged)
+                {
+                    gM.characterM.mainCharacter.TakeDamage(defaultDmg * 2);
+                    isCharged = false;
+                    gM.buffM.SetEnemyBuff(EnemyBuff.Charge, false, 0);
+                }
+                else
+                {
+                    gM.characterM.mainCharacter.TakeDamage(defaultDmg);
+                }
                 break;
             case EnemyIntention.Defence:
                 recordShieldP = defaultShieldP;
                 gM.buffM.SetEnemyBuff(EnemyBuff.Defence, true, recordShieldP);
                 break;
-            case EnemyIntention.Taunt:
-                gM.buffM.SetCharacterBuff(CharacterBuff.Weak, false, 1);
+            case EnemyIntention.MultiAttack:
+
+                int slightDmg = (int)(defaultDmg * 0.1f);
+                if (isCharged)
+                {
+                    slightDmg *= 2;
+                }
+
+                for (int i = 0; i < defaultMultAttackTimes; i++)
+                {
+                    gM.characterM.mainCharacter.TakeDamage(slightDmg);
+                }
+                isCharged = false;
+                gM.buffM.SetEnemyBuff(EnemyBuff.Charge, false, 0);
                 break;
             case EnemyIntention.Skill:
                 skillLv += 1;
                 gM.buffM.SetEnemyBuff(EnemyBuff.Skill, true, skillLv);
                 MainChaMCChange();
+                break;
+            case EnemyIntention.Charge:
+                isCharged = true;
+                gM.buffM.SetEnemyBuff(EnemyBuff.Charge, false, 1);
+                break;
+            case EnemyIntention.Block:
+                isBlocked = true;
+                gM.buffM.SetEnemyBuff(EnemyBuff.Block, false, 1);
                 break;
         }
         GenerateEnemyIntention();
@@ -91,10 +122,14 @@ public class EM_TechNerd : BasicEnemy
                 break;
             case EnemyIntention.Charge:
                 transform.Find("Intention").Find("Value").gameObject.SetActive(false);
+                transform.Find("Intention").Find("Value").GetComponent<Text>().text = defaultMultAttackTimes.ToString();
                 break;
             case EnemyIntention.Skill:
                 transform.Find("Intention").Find("Value").gameObject.SetActive(true);
                 transform.Find("Intention").Find("Value").GetComponent<Text>().text = defaultSkill.ToString();
+                break;
+            case EnemyIntention.Block:
+                transform.Find("Intention").Find("Value").gameObject.SetActive(false);
                 break;
         }
     }

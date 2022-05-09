@@ -14,8 +14,9 @@ using UnityEngine.UI;
 //Defence
 //Skill 技能值 将与设计师的challenge比较 只存在于主要角色为设计师的情况下
 //Block 该轮不会受到伤害
+//Charge 下回合造成双倍伤害
 #endregion
-public enum EnemyBuff { Bored, Anxiety, InFlow, Vulnerable, Weak, Instability, WeakMind, Defence, Skill, Block}
+public enum EnemyBuff { Bored, Anxiety, InFlow, Vulnerable, Weak, Instability, WeakMind, Defence, Skill, Block, Charge}
 public enum CharacterBuff { Shield, Vengeance, PowerUp, Weak,Challenge}
 
 [System.Serializable]
