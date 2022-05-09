@@ -15,6 +15,10 @@ public class Designer : CharacterMate
 
     public Text challengeIntText;
 
+    private void Awake()
+    {
+        
+    }
     //void Update()
     //{
     //    UpdateUI();

@@ -300,7 +300,13 @@ MonoBehaviour:
     image: {fileID: 21300000, guid: 8d3eb64547ea45d4c88aa86dc45a9e46, type: 3}
   - enemyIntention: 3
     image: {fileID: 21300000, guid: 3d4df953d5713f84a96931f0a15357d8, type: 3}
-  testEnemy: {fileID: 11400000, guid: b26c6f40cf701b644a42d29dc3b15a9c, type: 2}
+  - enemyIntention: 4
+    image: {fileID: 21300000, guid: ee715396465b75d4cb4fc9ed72614951, type: 3}
+  - enemyIntention: 5
+    image: {fileID: 21300000, guid: 6aabf55f1021e0242b253285de77a44f, type: 3}
+  - enemyIntention: 6
+    image: {fileID: 21300000, guid: 25b886743fc50f840bbc95e0f9441d70, type: 3}
+  testEnemy: {fileID: 11400000, guid: b8958ab463ae23c4d9c037c8d3e832cc, type: 2}
 --- !u!1 &469202290
 GameObject:
   m_ObjectHideFlags: 0
@@ -786,6 +792,8 @@ MonoBehaviour:
     buffImage: {fileID: 21300000, guid: 0fcc4f43ca4ec9847adbd576601aaa55, type: 3}
   - buffType: 3
     buffImage: {fileID: 21300000, guid: 0061a89775b437048ac45edbf35b073c, type: 3}
+  - buffType: 4
+    buffImage: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
   enemyBuffs:
   - buffType: 0
     buffImage: {fileID: 21300000, guid: 727ad5620d4a0284986bbe9e36096c6a, type: 3}
@@ -801,6 +809,12 @@ MonoBehaviour:
     buffImage: {fileID: 21300000, guid: 6aabf55f1021e0242b253285de77a44f, type: 3}
   - buffType: 6
     buffImage: {fileID: 21300000, guid: d84a8526bb931ac4ab459fc70d5c1398, type: 3}
+  - buffType: 8
+    buffImage: {fileID: 21300000, guid: ee715396465b75d4cb4fc9ed72614951, type: 3}
+  - buffType: 8
+    buffImage: {fileID: 21300000, guid: ee715396465b75d4cb4fc9ed72614951, type: 3}
+  - buffType: 8
+    buffImage: {fileID: 21300000, guid: ee715396465b75d4cb4fc9ed72614951, type: 3}
   buffPrefab: {fileID: 58876584110005318, guid: 7e3d29eef0ce3cd49b93b2419c79b393, type: 3}
 --- !u!1 &683001704
 GameObject:

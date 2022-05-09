@@ -22,7 +22,11 @@ MonoBehaviour:
   maxHealth: 50
   basicIntentions:
   - intention: 0
+<<<<<<< HEAD
+    tendency: 20
+=======
     tendency: 40
+>>>>>>> a4238437fda8d29d58af716a96b7e002d7f0131c
   - intention: 1
     tendency: 20
   - intention: 3

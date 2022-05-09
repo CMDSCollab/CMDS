@@ -19,6 +19,11 @@ public class CharacterManager : MonoBehaviour
     public List<Sprite> energyImages;
     #endregion
 
+    #region 设计变量
+    [Header("设计")]
+
+    #endregion
+
     #region 程序变量
     [Header("程序")]
     public ProDebugUI debugUIPrefab;

@@ -14,11 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: "\u5F15\u5BFC\u8BBE\u8BA1"
   description: "-2\u6311\u6218-2\u6280\u672F"
-  baseFunctions:
-  - functionType: 3
-    value: 2
-  - functionType: 6
-    value: 1
+  baseFunctions: []
   specialFunctions: 00000000
   desSpecialFunctions:
   - desFunctionType: 1
