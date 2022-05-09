@@ -51,7 +51,7 @@ public class BasicEnemy : MonoBehaviour
         MainChaMCChange();
     }
 
-    public void InitializeEnemy()
+    public void InitializeEnemyUI()
     {
         enemyName = transform.Find("Name").GetComponent<Text>(); 
         portrait = transform.Find("Portrait").GetComponent<Image>();

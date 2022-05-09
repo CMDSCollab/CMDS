@@ -27,7 +27,7 @@ public class EnemyMaster : MonoBehaviour
     void Start()
     {
         gM = FindObjectOfType<GameMaster>();
-        SetEnemyInfo(testEnemy);
+        //SetEnemyInfo(testEnemy);
     }
 
     public void SetEnemyInfo(EnemyInfo enemyInfoToSet)
@@ -43,7 +43,7 @@ public class EnemyMaster : MonoBehaviour
 
         enemyTarget = enemyObj.GetComponent<BasicEnemy>();
         enemyTarget.enemyInfo = enemyInfo;
-        enemyTarget.InitializeEnemy();
+        enemyTarget.InitializeEnemyUI();
     }
 
     private void EnemyObjAddComponent(GameObject objToAdd)

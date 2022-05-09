@@ -6,6 +6,7 @@ using UnityEngine.UI;
 //放置在Canvas的Map上，用于管理具体Node的生成，并将其分成16层layer包装记录
 public class MapManager : MonoBehaviour
 {
+    public GameMaster gM;
     public MapConfig mapConfig;
     public GameObject mapNodePrefab;
     public GameObject linePrefab;
@@ -18,18 +19,17 @@ public class MapManager : MonoBehaviour
     public float nodePosYStartValue;
     public float nodeVerMinApartDistance;
 
+    public List<EnemyInfo> levelEnemyPool;
+
     void Start()
     {
+        gM = FindObjectOfType<GameMaster>();
         GenerateAllLayerNodes();
         LineConnectionSet();
         DrawLine();
     }
 
-    void Update()
-    {
-        
-    }
-
+    #region MapGeneration
     public void GenerateAllLayerNodes() //生成所有Node
     {
         //float nodePosYRecord = nodePosYStartValue;
@@ -244,4 +244,5 @@ public class MapManager : MonoBehaviour
             }
         }
     }
+    #endregion
 }

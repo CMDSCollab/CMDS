@@ -147,4 +147,29 @@ public class ButtonManager : MonoBehaviour
         globalM.characterType = CharacterType.Artist;
         SceneManager.LoadScene("FightScene");
     }
+
+    public void EndFightBackToMap()
+    {
+        switch (gM.characterM.mainCharacterType)
+        {
+            case CharacterType.Designer:
+                Destroy(gM.aiM.proAI.gameObject);
+                Destroy(gM.aiM.artAI.gameObject);
+                Destroy(gM.aiM.des.gameObject);
+                break;
+            case CharacterType.Programmmer:
+                break;
+            case CharacterType.Artist:
+                break;
+        }
+        Destroy(gM.enM.enemyTarget.gameObject);
+        gM.handM.handCardList.Clear();
+        GameObject handObj = gM.uiCanvas.transform.Find("Hand").gameObject;
+        for (int i = 0; i < handObj.transform.childCount; i++)
+        {
+            Destroy(handObj.transform.GetChild(i).gameObject);
+        }
+        gM.mapM.gameObject.SetActive(true);
+        gM.uiCanvas.gameObject.SetActive(false);
+    }
 }

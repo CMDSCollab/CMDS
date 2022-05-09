@@ -137,34 +137,28 @@ public class AIMate : BasicCharacter
 
     public void IntentionValueSync()
     {
-        switch (energySlotAmount)
+        switch (energyPoint)
         {
-            case 1:
+            case 0:
                 intentionValue = 5;
+                break;
+            case 1:
+                intentionValue = 6;
                 break;
             case 2:
-                intentionValue = 5;
+                intentionValue = 7;
                 break;
             case 3:
-                intentionValue = 5;
+                intentionValue = 8;
                 break;
             case 4:
-                intentionValue = 7;
+                intentionValue = 9;
                 break;
             case 5:
                 intentionValue = 10;
                 break;
             case 6:
                 intentionValue = 15;
-                break;
-            case 7:
-                intentionValue = 20;
-                break;
-            case 8:
-                intentionValue = 30;
-                break;
-            case 9:
-                intentionValue = 40;
                 break;
         }
         transform.Find("IntentionPos").Find("Value").GetComponent<Text>().text = intentionValue.ToString();

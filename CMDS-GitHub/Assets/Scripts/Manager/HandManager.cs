@@ -4,14 +4,8 @@ using UnityEngine;
 
 public class HandManager : MonoBehaviour
 {
-    public List<GameObject> handCardList;
+    public List<GameObject> handCardList = new List<GameObject>();
     public Vector3 initialCardPos;
-
-
-    private void Start()
-    {
-        handCardList = new List<GameObject>();
-    }
 
     public void OrganizeHand()
     {

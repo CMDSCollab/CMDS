@@ -15,11 +15,16 @@ public class GameMaster : MonoBehaviour
     public BuffManager buffM;
     //public SceneMaster sceneM;
     public LocalMaster localM;
+    public MapManager mapM;
 
     public Canvas uiCanvas;
 
-
     public void Start()
+    {
+        //PrepareFight();
+    }
+
+    public void PrepareFight()
     {
         if (GameObject.Find("GlobalManager") != null)
         {
@@ -27,11 +32,6 @@ public class GameMaster : MonoBehaviour
         }
         characterM.InitializeCharacters();
         enM.InitializeEnemy();
-        PrepareFight();
-    }
-
-    public void PrepareFight()
-    {
         deckM.PrepareDeckAndHand();
     }
 }
