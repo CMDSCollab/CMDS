@@ -20,9 +20,6 @@ public class Programmer : CharacterMate
     [HideInInspector] public int codeRedundancy = 0;
     private ProDebugUI debugUI;
 
-
-    public int shieldPoint;
-
     public override void OnNewGameStarted()
     {
         base.OnNewGameStarted();

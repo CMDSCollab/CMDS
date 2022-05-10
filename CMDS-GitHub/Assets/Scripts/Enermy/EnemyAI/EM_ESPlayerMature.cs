@@ -6,37 +6,42 @@ using UnityEngine.UI;
 public class EM_ESPlayerMature : BasicEnemy
 {
     private int defaultShieldP = 10;
-    private int recordShieldP;
+    public int recordShieldP;
     private int defaultDmg = 10;
     private int defaultSkill = 1;
 
     void Start()
     {
-        
+        gM.buffM.SetEnemyBuff(EnemyBuff.Skill, true, skillLv);
     }
 
-    public override void TakeDamage(int dmgValue)
+    public override int DmgValueCalculation(int dmgValue)
     {
         if (recordShieldP > 0)
         {
             recordShieldP -= dmgValue;
-            if (recordShieldP > 0)
+            if (recordShieldP >= 0)
             {
-                gM.buffM.SetEnemyBuff(EnemyBuff.Defence, true, recordShieldP);
+                if (recordShieldP>0)
+                {
+                    gM.buffM.SetEnemyBuff(EnemyBuff.Defence, true, recordShieldP);
+                    return 0;
+                }
+                else
+                {
+                    gM.buffM.SetEnemyBuff(EnemyBuff.Defence, true, 0);
+                    return 0;
+                }
             }
-            if (recordShieldP < 0)
-            {
-                healthPoint += recordShieldP;
-                gM.buffM.SetEnemyBuff(EnemyBuff.Defence, true, 0);
-            }
-            if (recordShieldP == 0)
+            else
             {
                 gM.buffM.SetEnemyBuff(EnemyBuff.Defence, true, 0);
+                return dmgValue -= recordShieldP;
             }
         }
         else
         {
-            healthPoint -= dmgValue;
+            return dmgValue;
         }
     }
 
@@ -45,10 +50,10 @@ public class EM_ESPlayerMature : BasicEnemy
         switch (currentIntention)
         {
             case EnemyIntention.Attack:
-                gM.characterM.mainCharacter.TakeDamage(defaultDmg);
+                gM.characterM.mainCharacter.TakeDamage(gM.buffM.EnemyAttack(defaultDmg));
                 break;
             case EnemyIntention.Defence:
-                recordShieldP = defaultShieldP;
+                recordShieldP += defaultShieldP;
                 gM.buffM.SetEnemyBuff(EnemyBuff.Defence, true, recordShieldP);
                 break;
             case EnemyIntention.Taunt:

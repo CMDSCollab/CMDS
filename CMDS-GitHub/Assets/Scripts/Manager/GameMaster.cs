@@ -13,16 +13,10 @@ public class GameMaster : MonoBehaviour
     public CardFuntionManager cardFunctionM;
     public CharacterManager characterM;
     public BuffManager buffM;
-    //public SceneMaster sceneM;
-    public LocalMaster localM;
+    public FightManager fightM;
     public MapManager mapM;
 
     public Canvas uiCanvas;
-
-    public void Start()
-    {
-        //PrepareFight();
-    }
 
     public void PrepareFight()
     {
@@ -35,7 +29,7 @@ public class GameMaster : MonoBehaviour
         deckM.PrepareDeckAndHand();
     }
 
-    public void EndFightReset()
+    public void FightEndReset()
     {
         buffM.activeCharacterBuffs.Clear();
         buffM.activeEnemyBuffs.Clear();

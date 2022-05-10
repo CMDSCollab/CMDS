@@ -15,6 +15,7 @@ public class CharacterMate : BasicCharacter
 {
     public int maxHp;
     public int healthPoint;
+    public int shieldPoint;
     private Slider hpBar;
     private Text hpRatio;
 
@@ -46,6 +47,35 @@ public class CharacterMate : BasicCharacter
 
     public virtual void TakeDamage(int dmg)
     {
-        healthPoint -= dmg;
+        if (shieldPoint > 0)
+        {
+            shieldPoint -= dmg;
+            if (shieldPoint > 0)
+            {
+                gM.buffM.SetCharacterBuff(CharacterBuff.Shield, true, shieldPoint);
+            }
+            if (shieldPoint < 0)
+            {
+                healthPoint += shieldPoint;
+                gM.buffM.SetCharacterBuff(CharacterBuff.Shield, true, 0);
+            }
+            if (shieldPoint == 0)
+            {
+                gM.buffM.SetCharacterBuff(CharacterBuff.Shield, true, 0);
+            }
+        }
+        else
+        {
+            healthPoint -= dmg;
+        }
+    }
+
+    public virtual void HealSelf(int healAmount)
+    {
+        healthPoint += healAmount;
+        if (healthPoint >= maxHp)
+        {
+            healthPoint = maxHp;
+        }
     }
 }

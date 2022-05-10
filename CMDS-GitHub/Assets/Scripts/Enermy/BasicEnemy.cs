@@ -89,7 +89,12 @@ public class BasicEnemy : MonoBehaviour
 
     public virtual void TakeDamage(int dmgValue)
     {
-        healthPoint -= dmgValue;
+        healthPoint -= DmgValueCalculation(gM.buffM.EnemyTakeDamage(dmgValue));
+    }
+
+    public virtual int DmgValueCalculation(int dmgValue)
+    {
+        return dmgValue;
     }
 
     #region Intention

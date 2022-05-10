@@ -171,9 +171,10 @@ public class AIMate : BasicCharacter
                 gM.enM.enemyTarget.TakeDamage(intentionValue);
                 break;
             case Intentions.Heal:
-                gM.characterM.mainCharacter.healthPoint += intentionValue;
+                gM.characterM.mainCharacter.HealSelf(intentionValue);
                 break;
             case Intentions.Shield:
+                gM.characterM.mainCharacter.shieldPoint += intentionValue;
                 gM.buffM.SetCharacterBuff(CharacterBuff.Shield, true, intentionValue);
                 break;
             case Intentions.Buff:

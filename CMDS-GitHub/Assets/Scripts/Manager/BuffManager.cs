@@ -153,4 +153,41 @@ public class BuffManager : MonoBehaviour
             }
         }
     }
+
+    #region
+    public int CharacterAttack(int valueToCalculate)
+    {
+        if (activeCharacterBuffs.ContainsKey(CharacterBuff.Weak))
+        {
+            valueToCalculate -= 3;
+        }
+        if (activeCharacterBuffs.ContainsKey(CharacterBuff.PowerUp))
+        {
+            valueToCalculate += 3;
+        }
+        return valueToCalculate;
+    }
+
+    public int EnemyTakeDamage(int valueToCalculate)
+    {
+        if (activeEnemyBuffs.ContainsKey(EnemyBuff.Vulnerable))
+        {
+            valueToCalculate += 3;
+        }
+        return valueToCalculate;
+    }
+
+    public int EnemyAttack(int valueToCalculate)
+    {
+        if (activeEnemyBuffs.ContainsKey(EnemyBuff.Weak))
+        {
+            valueToCalculate -= 3;
+        }
+        if (activeCharacterBuffs.ContainsKey(CharacterBuff.Vengeance))
+        {
+            gM.enM.enemyTarget.TakeDamage(4);
+        }
+        return valueToCalculate;
+    }
+    #endregion
 }
