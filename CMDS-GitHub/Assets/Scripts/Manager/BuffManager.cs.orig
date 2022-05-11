@@ -16,10 +16,7 @@ using UnityEngine.UI;
 //Block 该轮不会受到伤害
 //Charge 下回合造成双倍伤害
 #endregion
-public enum EnemyBuff { Bored, Anxiety, InFlow, Vulnerable, Weak, Instability, WeakMind, Defence, Skill, Block, Charge,
-    PartialInvincibility
-}
-public enum CharacterBuff { Shield, Vengeance, PowerUp, Weak,Challenge}
+<<<<<<< HEAD
 
 public enum BuffTimeType { Permanent,Temporary }
 public enum BuffValueType { NoValue, SetValue, AddValue}
@@ -36,6 +33,12 @@ public class BuffInfo
     public int value;
     public bool isReadyToRemove = false;
 }
+=======
+public enum EnemyBuff { Bored, Anxiety, InFlow, Vulnerable, Weak, Instability, WeakMind, Defence, Skill, Block, Charge,
+    PartialInvincibility
+}
+public enum CharacterBuff { Shield, Vengeance, PowerUp, Weak,Challenge}
+>>>>>>> e7c40f3d43993abe4fdb5be9d3941829e367dc7c
 
 [System.Serializable]
 public struct EnemyBuffImage { public EnemyBuff buffType; public Sprite buffImage; }
