@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public enum EnemyIntention { Attack, Defence, Heal, Taunt, Skill, MultiAttack, Charge, Block}
+public enum EnemyIntention { Attack, Defence, Heal, Taunt, Skill, MultiAttack, Charge, Block, ToComment, Comment
+}
 [System.Serializable]
 public struct EnemyIntentionImages
 {
@@ -71,6 +72,7 @@ public class EnemyMaster : MonoBehaviour
                 switch (enemyInfo.eliteType)
                 {
                     case EliteType.Streamer:
+                        objToAdd.AddComponent<EE_Streamer>();
                         break;
                     case EliteType.Ea:
                         break;

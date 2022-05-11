@@ -306,7 +306,7 @@ MonoBehaviour:
     image: {fileID: 21300000, guid: 6aabf55f1021e0242b253285de77a44f, type: 3}
   - enemyIntention: 6
     image: {fileID: 21300000, guid: 25b886743fc50f840bbc95e0f9441d70, type: 3}
-  testEnemy: {fileID: 11400000, guid: b8958ab463ae23c4d9c037c8d3e832cc, type: 2}
+  testEnemy: {fileID: 11400000, guid: d2a2583e55ed90b49b3ab8f5d22aeed9, type: 2}
 --- !u!1 &469202290
 GameObject:
   m_ObjectHideFlags: 0
@@ -754,6 +754,8 @@ MonoBehaviour:
     buffImage: {fileID: 21300000, guid: d84a8526bb931ac4ab459fc70d5c1398, type: 3}
   - buffType: 8
     buffImage: {fileID: 21300000, guid: ed006f7e39a702a42b9331ddeb0bd794, type: 3}
+  - buffType: 11
+    buffImage: {fileID: 21300000, guid: 1bd17a552da66ca41ad4012919e07845, type: 3}
   buffPrefab: {fileID: 58876584110005318, guid: 7e3d29eef0ce3cd49b93b2419c79b393, type: 3}
 --- !u!1 &683001704
 GameObject:

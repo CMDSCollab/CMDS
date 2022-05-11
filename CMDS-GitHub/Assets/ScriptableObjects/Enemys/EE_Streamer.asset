@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2d0455e84d5f16449d3ec21eeaae345, type: 3}
+  m_Name: EE_Streamer
+  m_EditorClassIdentifier: 
+  enemyType: 1
+  minionType: 0
+  bossType: 0
+  eliteType: 0
+  enemyName: Streamer
+  images:
+  - {fileID: 21300000, guid: 0b8b26eee6697114693248b2840b2e3d, type: 3}
+  maxHealth: 80
+  basicIntentions:
+  - intention: 0
+    tendency: 50
+  - intention: 8
+    tendency: 50
+  specialFunctions: 
