@@ -16,14 +16,10 @@ using UnityEngine.UI;
 //Block 该轮不会受到伤害
 //Charge 下回合造成双倍伤害
 #endregion
-public enum EnemyBuff { Bored, Anxiety, InFlow, Vulnerable, Weak, Instability, WeakMind, Defence, Skill, Block, Charge,
-    PartialInvincibility
-}
-public enum CharacterBuff { Shield, Vengeance, PowerUp, Weak,Challenge}
 
 public enum BuffTimeType { Permanent,Temporary }
 public enum BuffValueType { NoValue, SetValue, AddValue}
-public enum EnemyBuff { Bored, Anxiety, InFlow, Vulnerable, Weak, Instability, WeakMind, Defence, Skill, Block, Charge}
+public enum EnemyBuff { Bored, Anxiety, InFlow, Vulnerable, Weak, Instability, WeakMind, Defence, Skill, Block, Charge, PartialInvincibility }
 public enum CharacterBuff { Defence, Vengeance, PowerUp, Weak,Challenge,Inflammable}
 public class BuffInfo 
 {
