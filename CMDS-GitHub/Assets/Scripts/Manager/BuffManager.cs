@@ -180,7 +180,7 @@ public class BuffManager : MonoBehaviour
             {
                 isBuffAlreadyExist = true;
                 activeCBuffs[i].lastTime = lastTime;
-                activeEBuffs[i].valueType = valueType;
+                activeCBuffs[i].valueType = valueType;
                 switch (valueType)
                 {
                     case BuffValueType.NoValue:

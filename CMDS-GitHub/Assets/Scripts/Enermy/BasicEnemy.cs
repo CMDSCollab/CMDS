@@ -160,6 +160,14 @@ public class BasicEnemy : MonoBehaviour
                 transform.Find("Intention").Find("Name").GetComponent<Text>().text = "Block";
                 transform.Find("Intention").Find("Image").GetComponent<Image>().sprite = imageToSet;
                 break;
+            case EnemyIntention.ToComment:
+                transform.Find("Intention").Find("Name").GetComponent<Text>().text = "To Comment";
+                transform.Find("Intention").Find("Image").GetComponent<Image>().sprite = imageToSet;
+                break;
+            case EnemyIntention.Comment:
+                transform.Find("Intention").Find("Name").GetComponent<Text>().text = "Comment";
+                transform.Find("Intention").Find("Image").GetComponent<Image>().sprite = imageToSet;
+                break;
         }
     }
     #endregion
