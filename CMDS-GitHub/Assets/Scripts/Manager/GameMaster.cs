@@ -33,6 +33,8 @@ public class GameMaster : MonoBehaviour
     {
         buffM.activeCharacterBuffs.Clear();
         buffM.activeEnemyBuffs.Clear();
+        buffM.activeCBuffs.Clear();
+        buffM.activeEBuffs.Clear();
         handM.handCardList.Clear();
         switch (characterM.mainCharacterType)
         {

@@ -46,14 +46,13 @@ public class FightManager : MonoBehaviour
                 break;
         }
 
+        //gM.buffM.EBuffLastTimeDecrease();
 
-        //敌人回合开始 - 判定MC
-        if (gM.characterM.mainCharacterType == CharacterType.Designer)
-        {
-
-        }
         //执行行动
         gM.enM.enemyTarget.TakeAction();
+
+        //gM.buffM.CBuffLastTimeDecrease();
+        ////gM.buffM.CheckBuffAndRemove();
 
         gM.deckM.DrawCardFromDeckRandomly(gM.deckM.drawCardAmount);
 

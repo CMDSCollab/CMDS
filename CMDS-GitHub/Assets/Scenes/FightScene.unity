@@ -234,7 +234,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 377646750}
-  - component: {fileID: 377646751}
   - component: {fileID: 377646752}
   m_Layer: 0
   m_Name: EnemyManager
@@ -257,25 +256,6 @@ Transform:
   m_Father: {fileID: 1703458575}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &377646751
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 377646749}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b0aedcd90565e94ba17d418c06da935, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentEnemies:
-  - {fileID: 0}
-  currentTarget: {fileID: 0}
-  gM: {fileID: 0}
-  enemyObjs:
-  - {fileID: 4715589943061099282, guid: f0fcc3cd7e070854e90d5b0771d808b9, type: 3}
-  enemyInfo: {fileID: 0}
 --- !u!114 &377646752
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -303,9 +283,17 @@ MonoBehaviour:
   - enemyIntention: 4
     image: {fileID: 21300000, guid: ed006f7e39a702a42b9331ddeb0bd794, type: 3}
   - enemyIntention: 5
-    image: {fileID: 21300000, guid: 6aabf55f1021e0242b253285de77a44f, type: 3}
+    image: {fileID: 21300000, guid: 81009cda377c1734a9aa1d959917dbba, type: 3}
   - enemyIntention: 6
-    image: {fileID: 21300000, guid: 25b886743fc50f840bbc95e0f9441d70, type: 3}
+    image: {fileID: 21300000, guid: 0573a7cf4c1edcc4d9e4702458f42b5f, type: 3}
+  - enemyIntention: 7
+    image: {fileID: 21300000, guid: b67d185fd3e479447ab5ee1c9746879e, type: 3}
+  - enemyIntention: 8
+    image: {fileID: 21300000, guid: 8e9a7fa56094cd34ab8038e7ff254215, type: 3}
+  - enemyIntention: 9
+    image: {fileID: 21300000, guid: 68ecfcf6b6a400b43bb823503e3cde86, type: 3}
+  - enemyIntention: 10
+    image: {fileID: 21300000, guid: 52bd1c62abc84ce4d8221842d6c9ddd2, type: 3}
   testEnemy: {fileID: 11400000, guid: b8958ab463ae23c4d9c037c8d3e832cc, type: 2}
 --- !u!1 &469202290
 GameObject:
@@ -737,6 +725,8 @@ MonoBehaviour:
     buffImage: {fileID: 21300000, guid: 0061a89775b437048ac45edbf35b073c, type: 3}
   - buffType: 4
     buffImage: {fileID: 21300000, guid: 3f1f3e6d1b99a84459faa81bf5f85a63, type: 3}
+  - buffType: 5
+    buffImage: {fileID: 21300000, guid: d1f584fdc4884594c805ec3b7f078882, type: 3}
   enemyBuffs:
   - buffType: 0
     buffImage: {fileID: 21300000, guid: 727ad5620d4a0284986bbe9e36096c6a, type: 3}
@@ -754,6 +744,12 @@ MonoBehaviour:
     buffImage: {fileID: 21300000, guid: d84a8526bb931ac4ab459fc70d5c1398, type: 3}
   - buffType: 8
     buffImage: {fileID: 21300000, guid: ed006f7e39a702a42b9331ddeb0bd794, type: 3}
+  - buffType: 7
+    buffImage: {fileID: 21300000, guid: a80e04fd486acbe42adc743c5e3b9e2e, type: 3}
+  - buffType: 9
+    buffImage: {fileID: 21300000, guid: b67d185fd3e479447ab5ee1c9746879e, type: 3}
+  - buffType: 10
+    buffImage: {fileID: 21300000, guid: 0573a7cf4c1edcc4d9e4702458f42b5f, type: 3}
   buffPrefab: {fileID: 58876584110005318, guid: 7e3d29eef0ce3cd49b93b2419c79b393, type: 3}
 --- !u!1 &683001704
 GameObject:
@@ -2118,7 +2114,6 @@ MonoBehaviour:
     debug: 4
   - errorName: Out of memory
     debug: 3
-  charactersList: []
 --- !u!1 &1703458573
 GameObject:
   m_ObjectHideFlags: 0
@@ -2536,10 +2531,14 @@ PrefabInstance:
     - target: {fileID: 1400908855204755767, guid: 9586ba38c438cfa4198c26cebd3089cb, type: 3}
       propertyPath: levelEnemyPool.Array.data[0]
       value: 
-      objectReference: {fileID: 11400000, guid: b26c6f40cf701b644a42d29dc3b15a9c, type: 2}
+      objectReference: {fileID: 11400000, guid: a591e909ece9b4b49b8c5f6170a43c51, type: 2}
     - target: {fileID: 1400908855204755767, guid: 9586ba38c438cfa4198c26cebd3089cb, type: 3}
       propertyPath: levelEnemyPool.Array.data[1]
       value: 
-      objectReference: {fileID: 11400000, guid: a591e909ece9b4b49b8c5f6170a43c51, type: 2}
+      objectReference: {fileID: 11400000, guid: b26c6f40cf701b644a42d29dc3b15a9c, type: 2}
+    - target: {fileID: 1400908855204755767, guid: 9586ba38c438cfa4198c26cebd3089cb, type: 3}
+      propertyPath: levelEnemyPool.Array.data[2]
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9586ba38c438cfa4198c26cebd3089cb, type: 3}

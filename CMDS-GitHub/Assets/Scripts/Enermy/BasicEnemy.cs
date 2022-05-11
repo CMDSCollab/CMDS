@@ -89,12 +89,7 @@ public class BasicEnemy : MonoBehaviour
 
     public virtual void TakeDamage(int dmgValue)
     {
-        healthPoint -= DmgValueCalculation(gM.buffM.EnemyTakeDamage(dmgValue));
-    }
-
-    public virtual int DmgValueCalculation(int dmgValue)
-    {
-        return dmgValue;
+        healthPoint -= gM.buffM.EnemyTakeDamage(dmgValue);
     }
 
     #region Intention
@@ -179,24 +174,33 @@ public class BasicEnemy : MonoBehaviour
                 int difference = skillLv - chaLv;
                 if (difference > 10)
                 {
-                    gM.buffM.SetEnemyBuff(EnemyBuff.InFlow, false, 0);
-                    gM.buffM.SetEnemyBuff(EnemyBuff.Bored, false, 1);
-                    gM.buffM.SetEnemyBuff(EnemyBuff.Anxiety, false, 0);
-                    MagicCirleStateControl(30);
+                    //gM.buffM.SetEnemyBuff(EnemyBuff.InFlow, false, 0);
+                    //gM.buffM.SetEnemyBuff(EnemyBuff.Bored, false, 1);
+                    //gM.buffM.SetEnemyBuff(EnemyBuff.Anxiety, false, 0);
+                    gM.buffM.SetBuff(EnemyBuff.InFlow, BuffTimeType.Permanent, 999, BuffValueType.NoValue, 0);
+                    gM.buffM.SetBuff(EnemyBuff.Bored, BuffTimeType.Permanent, 999, BuffValueType.NoValue, 1);
+                    gM.buffM.SetBuff(EnemyBuff.Anxiety, BuffTimeType.Permanent, 999, BuffValueType.NoValue, 0);
+                    MagicCircleDropOut(30);
                 }
                 if (10 > difference && difference >= 0)
                 {
-                    gM.buffM.SetEnemyBuff(EnemyBuff.InFlow, false, 1);
-                    gM.buffM.SetEnemyBuff(EnemyBuff.Bored, false, 0);
-                    gM.buffM.SetEnemyBuff(EnemyBuff.Anxiety, false, 0);
-                    MagicCirleStateControl(0);
+                    //gM.buffM.SetEnemyBuff(EnemyBuff.InFlow, false, 1);
+                    //gM.buffM.SetEnemyBuff(EnemyBuff.Bored, false, 0);
+                    //gM.buffM.SetEnemyBuff(EnemyBuff.Anxiety, false, 0);
+                    gM.buffM.SetBuff(EnemyBuff.InFlow, BuffTimeType.Permanent, 999, BuffValueType.NoValue, 1);
+                    gM.buffM.SetBuff(EnemyBuff.Bored, BuffTimeType.Permanent, 999, BuffValueType.NoValue, 0);
+                    gM.buffM.SetBuff(EnemyBuff.Anxiety, BuffTimeType.Permanent, 999, BuffValueType.NoValue, 0);
+                    MagicCirleRecapture();
                 }
                 if (difference < 0)
                 {
-                    gM.buffM.SetEnemyBuff(EnemyBuff.InFlow, false, 0);
-                    gM.buffM.SetEnemyBuff(EnemyBuff.Bored, false, 0);
-                    gM.buffM.SetEnemyBuff(EnemyBuff.Anxiety, false, 1);
-                    MagicCirleStateControl(60);
+                    //gM.buffM.SetEnemyBuff(EnemyBuff.InFlow, false, 0);
+                    //gM.buffM.SetEnemyBuff(EnemyBuff.Bored, false, 0);
+                    //gM.buffM.SetEnemyBuff(EnemyBuff.Anxiety, false, 1);
+                    gM.buffM.SetBuff(EnemyBuff.InFlow, BuffTimeType.Permanent, 999, BuffValueType.NoValue, 0);
+                    gM.buffM.SetBuff(EnemyBuff.Bored, BuffTimeType.Permanent, 999, BuffValueType.NoValue, 0);
+                    gM.buffM.SetBuff(EnemyBuff.Anxiety, BuffTimeType.Permanent, 999, BuffValueType.NoValue, 1);
+                    MagicCircleDropOut(60);
                 }
                 break;
             case CharacterType.Programmmer:
@@ -206,23 +210,28 @@ public class BasicEnemy : MonoBehaviour
         }
     }
 
-    public void MagicCirleStateControl(int weight)
+    public void MagicCircleDropOut(int weight)
     {
         int dice = Random.Range(0, 100);
         if (dice < weight)
         {
             magicCircleState = MagicCircleState.Out;
             transform.Find("MagicCircle").gameObject.SetActive(false);
-            gM.buffM.SetEnemyBuff(EnemyBuff.Vulnerable, false, 0);
-            gM.buffM.SetEnemyBuff(EnemyBuff.Weak, false, 0);
+            gM.buffM.SetBuff(EnemyBuff.Weak, BuffTimeType.Permanent, 999, BuffValueType.NoValue, 0);
+            gM.buffM.SetBuff(EnemyBuff.Vulnerable, BuffTimeType.Permanent, 999, BuffValueType.NoValue, 0);
+            //gM.buffM.SetEnemyBuff(EnemyBuff.Vulnerable, false, 0);
+            //gM.buffM.SetEnemyBuff(EnemyBuff.Weak, false, 0);
         }
-        else
-        {
+    }
+
+    public void MagicCirleRecapture()
+    {
             magicCircleState = MagicCircleState.In;
             transform.Find("MagicCircle").gameObject.SetActive(true);
-            gM.buffM.SetEnemyBuff(EnemyBuff.Vulnerable, false, 1);
-            gM.buffM.SetEnemyBuff(EnemyBuff.Weak, false, 1);
-        }
+            gM.buffM.SetBuff(EnemyBuff.Weak, BuffTimeType.Permanent, 999, BuffValueType.NoValue, 1);
+            gM.buffM.SetBuff(EnemyBuff.Vulnerable, BuffTimeType.Permanent, 999, BuffValueType.NoValue, 1);
+            //gM.buffM.SetEnemyBuff(EnemyBuff.Vulnerable, false, 1);
+            //gM.buffM.SetEnemyBuff(EnemyBuff.Weak, false, 1);
     }
 
     public void MagicCirleStateControl(string pro)

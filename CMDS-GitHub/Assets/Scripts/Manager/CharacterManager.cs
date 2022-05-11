@@ -30,8 +30,6 @@ public class CharacterManager : MonoBehaviour
     public List<Error> potentialErrors;
     #endregion
 
-    public List<BasicCharacter> charactersList;
-
     public void Start()
     {
         gM = FindObjectOfType<GameMaster>();
