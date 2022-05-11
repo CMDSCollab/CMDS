@@ -170,18 +170,23 @@ public class BasicEnemy : MonoBehaviour
     #endregion
 
     #region Magic Circle
+    //设计师MC逻辑：输入 设计师的cha 与 敌人skillLv 两者进行比较 diff = cha - skillLv
+    //当 diff > 10 时，敌人获得anxiety 并进行MC判定 30%掉出
+    //当10 > diff > 0时，敌人获得MC 并于每回合承受来自设计师的cha伤害
+    //当diff < 0 时，敌人获得bored 并进行MC判定 60%掉出
+    //当敌人处于MC时（inflow），获得虚弱和易伤。
     public void MainChaMCChange()
     {
         switch (gM.characterM.mainCharacterType)
         {
             case CharacterType.Designer:
                 int chaLv = gM.aiM.des.challengeLv;
-                int difference = skillLv - chaLv;
+                int difference = chaLv - skillLv;
                 if (difference > 10)
                 {
                     gM.buffM.SetEnemyBuff(EnemyBuff.InFlow, false, 0);
-                    gM.buffM.SetEnemyBuff(EnemyBuff.Bored, false, 1);
-                    gM.buffM.SetEnemyBuff(EnemyBuff.Anxiety, false, 0);
+                    gM.buffM.SetEnemyBuff(EnemyBuff.Bored, false, 0);
+                    gM.buffM.SetEnemyBuff(EnemyBuff.Anxiety, false, 1);
                     MagicCirleStateControl(30);
                 }
                 if (10 > difference && difference >= 0)
@@ -194,8 +199,8 @@ public class BasicEnemy : MonoBehaviour
                 if (difference < 0)
                 {
                     gM.buffM.SetEnemyBuff(EnemyBuff.InFlow, false, 0);
-                    gM.buffM.SetEnemyBuff(EnemyBuff.Bored, false, 0);
-                    gM.buffM.SetEnemyBuff(EnemyBuff.Anxiety, false, 1);
+                    gM.buffM.SetEnemyBuff(EnemyBuff.Bored, false, 1);
+                    gM.buffM.SetEnemyBuff(EnemyBuff.Anxiety, false, 0);
                     MagicCirleStateControl(60);
                 }
                 break;
