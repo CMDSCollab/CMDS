@@ -20,7 +20,7 @@ using UnityEngine.UI;
 public enum BuffTimeType { Permanent,Temporary }
 public enum BuffValueType { NoValue, SetValue, AddValue}
 public enum EnemyBuff { Bored, Anxiety, InFlow, Vulnerable, Weak, Instability, WeakMind, Defence, Skill, Block, Charge, PartialInvincibility }
-public enum CharacterBuff { Defence, Vengeance, PowerUp, Weak,Challenge,Inflammable}
+public enum CharacterBuff { Defence, Vengeance, PowerUp, Weak,Challenge,Inflammable, IsTeamWork, IsSycn}
 public class BuffInfo 
 {
     public CharacterBuff characterBuffType;

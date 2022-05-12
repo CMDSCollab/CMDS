@@ -121,6 +121,10 @@ public class CardManager : MonoBehaviour
                 case BaseFunctionType.ArtSlot:
                     gM.aiM.artAI.energySlotAmount++;
                     gM.aiM.artAI.AddTheEnergySlot();
+                    if (gM.characterM.mainCharacterType == CharacterType.Designer && gM.aiM.des.isSycn)
+                    {
+                        gM.aiM.artAI.EnergyValueChange(1);
+                    }
                     break;
                 case BaseFunctionType.DsgnSlot:
                     gM.aiM.desAI.energySlotAmount++;
@@ -129,9 +133,14 @@ public class CardManager : MonoBehaviour
                 case BaseFunctionType.ProSlot:
                     gM.aiM.proAI.energySlotAmount++;
                     gM.aiM.proAI.AddTheEnergySlot();
+                    if (gM.characterM.mainCharacterType == CharacterType.Designer && gM.aiM.des.isSycn)
+                    {
+                        gM.aiM.proAI.EnergyValueChange(1);
+                    }
                     break;
                 case BaseFunctionType.DrawCard:
                     gM.deckM.DrawCardFromDeckRandomly(cardInfo.baseFunctions[i].value);
+                    if (gM.characterM.mainCharacterType == CharacterType.Designer && gM.aiM.des.isTeamWork) { gM.aiM.des.GoTeamWork(cardInfo.baseFunctions[i].value); }
                     break;
                 default:
                     break;
@@ -195,6 +204,24 @@ public class CardManager : MonoBehaviour
                         gM.enM.enemyTarget.MainChaMCChange();
                         break;
                 }
+            }
+
+            for (int i = 0; i < cardDsgn.desPassiveEffects.Count; i++)
+            {
+                switch (cardDsgn.desPassiveEffects[i].desPassiveEType)
+                {
+                    case SpecialPassiveEffectType.None:
+                        break;
+                    case SpecialPassiveEffectType.IsTeamWork:
+                        gM.aiM.des.isTeamWork = true;
+                        gM.buffM.SetBuff(CharacterBuff.IsTeamWork, BuffTimeType.Temporary, 1, BuffValueType.SetValue, 1);
+                        break;
+                    case SpecialPassiveEffectType.IsSycn:
+                        gM.aiM.des.isSycn = true;
+                        gM.buffM.SetBuff(CharacterBuff.IsSycn, BuffTimeType.Temporary, 1, BuffValueType.SetValue, 1);
+                        break;
+                }
+
             }
         }
 

@@ -45,6 +45,22 @@ public class Designer : CharacterMate
         gM.enM.enemyTarget.TakeDamage(challengeLv - gM.enM.enemyTarget.skillLv);
     }
 
+    public void GoTeamWork(int times)
+    {
+        for (int i = 0; i < times; i++)
+        {
+            int index = Random.Range(0, 2);
+            if (index == 0)
+            {
+                gM.aiM.proAI.EnergyValueChange(1);
+            }
+            else
+            {
+                gM.aiM.artAI.EnergyValueChange(1);
+            }
+        }
+    }
+
     void UpdateUI()
     {
         //hpText.text = healthPoint.ToString() + "/" + maxHp.ToString();
