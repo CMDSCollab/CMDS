@@ -70,6 +70,7 @@ public class BasicEnemy : MonoBehaviour
         hpBar.maxValue = maxHp;
         hpBar.value = healthPoint;
         hpRatio.text = healthPoint.ToString() + "/" + maxHp.ToString();
+        skillLv = enemyInfo.defaultSkill;
 
         GenerateEnemyIntention();
         MainChaMCChange();
@@ -196,9 +197,11 @@ public class BasicEnemy : MonoBehaviour
         {
             case CharacterType.Designer:
                 int chaLv = gM.aiM.des.challengeLv;
-                //int difference = chaLv - skillLv;
-                int difference = skillLv - chaLv;
-                if (difference > 10)
+                ////int difference = chaLv - skillLv;
+                //int difference = skillLv - chaLv;
+                int chaSubtractSkill = chaLv - skillLv;
+                int skillSubtractCha = skillLv - chaLv;
+                if (skillSubtractCha > 10)
                 {
                     //gM.buffM.SetEnemyBuff(EnemyBuff.InFlow, false, 0);
                     //gM.buffM.SetEnemyBuff(EnemyBuff.Bored, false, 1);
@@ -211,19 +214,19 @@ public class BasicEnemy : MonoBehaviour
                     //gM.buffM.SetBuff(EnemyBuff.Bored, BuffTimeType.Permanent, 999, BuffValueType.NoValue, 1);
                     //gM.buffM.SetBuff(EnemyBuff.Anxiety, BuffTimeType.Permanent, 999, BuffValueType.NoValue, 0);
                     //MagicCircleDropOut(30);
-                    gM.buffM.SetBuff(EnemyBuff.InFlow, BuffTimeType.Permanent, 999, BuffValueType.NoValue, 0,BuffSource.Enemy);
+                    gM.buffM.SetBuff(EnemyBuff.InFlow, BuffTimeType.Permanent, 999, BuffValueType.NoValue, 0, BuffSource.Enemy);
                     gM.buffM.SetBuff(EnemyBuff.Bored, BuffTimeType.Permanent, 999, BuffValueType.NoValue, 1, BuffSource.Enemy);
                     gM.buffM.SetBuff(EnemyBuff.Anxiety, BuffTimeType.Permanent, 999, BuffValueType.NoValue, 0, BuffSource.Enemy);
                     MagicCircleDropOut(30);
                 }
-                if (10 > difference && difference >= 0)
+                if (chaSubtractSkill <= 10  && skillSubtractCha <= 10)
                 {
                     gM.buffM.SetBuff(EnemyBuff.InFlow, BuffTimeType.Permanent, 999, BuffValueType.NoValue, 1, BuffSource.Enemy);
                     gM.buffM.SetBuff(EnemyBuff.Bored, BuffTimeType.Permanent, 999, BuffValueType.NoValue, 0, BuffSource.Enemy);
                     gM.buffM.SetBuff(EnemyBuff.Anxiety, BuffTimeType.Permanent, 999, BuffValueType.NoValue, 0, BuffSource.Enemy);
                     MagicCirleRecapture();
                 }
-                if (difference < 0)
+                if (chaSubtractSkill > 10)
                 {
                     gM.buffM.SetBuff(EnemyBuff.InFlow, BuffTimeType.Permanent, 999, BuffValueType.NoValue, 0, BuffSource.Enemy);
                     gM.buffM.SetBuff(EnemyBuff.Bored, BuffTimeType.Permanent, 999, BuffValueType.NoValue, 0, BuffSource.Enemy);

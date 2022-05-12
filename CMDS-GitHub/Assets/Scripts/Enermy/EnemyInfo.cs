@@ -26,6 +26,7 @@ public class EnemyInfo : ScriptableObject
     public string enemyName;
     public List<Sprite> images;
     public int maxHealth;
+    public int defaultSkill;
     public List<EnemyIntentionRatio> basicIntentions;
     public List<EnemySpecialIntention> specialFunctions;
 }

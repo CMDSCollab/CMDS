@@ -96,6 +96,7 @@ public class EB_JosefFames : BasicEnemy
         hpBar.maxValue = maxHp;
         hpBar.value = healthPoint;
         hpRatio.text = healthPoint.ToString() + "/" + maxHp.ToString();
+        skillLv = enemyInfo.defaultSkill;
 
         GenerateEnemyIntention();
         MainChaMCChange();

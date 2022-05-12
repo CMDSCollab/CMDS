@@ -93,7 +93,8 @@ public class EE_Streamer : BasicEnemy
                 }
                 else
                 {
-                    gM.buffM.SetCharacterBuff(CharacterBuff.Weak, false, 1);
+                    //gM.buffM.SetCharacterBuff(CharacterBuff.Weak, false, 1);
+                    gM.buffM.SetBuff(CharacterBuff.Weak, BuffTimeType.Temporary, 1, BuffValueType.NoValue, 1, BuffSource.Enemy);
                     charToScoreDic[characterToComment] = 1;
                     Debug.Log(characterToComment.ToString() + "获得了中评");
                 }
