@@ -172,6 +172,14 @@ public class BasicEnemy : MonoBehaviour
                 transform.Find("Intention").Find("Name").GetComponent<Text>().text = "FireShoot";
                 transform.Find("Intention").Find("Image").GetComponent<Image>().sprite = imageToSet;
                 break;
+            case EnemyIntention.Comment:
+                transform.Find("Intention").Find("Name").GetComponent<Text>().text = "Comment";
+                transform.Find("Intention").Find("Image").GetComponent<Image>().sprite = imageToSet;
+                break;
+            case EnemyIntention.ToComment:
+                transform.Find("Intention").Find("Name").GetComponent<Text>().text = "ToComment";
+                transform.Find("Intention").Find("Image").GetComponent<Image>().sprite = imageToSet;
+                break;
         }
     }
     #endregion
@@ -188,20 +196,21 @@ public class BasicEnemy : MonoBehaviour
         {
             case CharacterType.Designer:
                 int chaLv = gM.aiM.des.challengeLv;
-                int difference = chaLv - skillLv;
+                //int difference = chaLv - skillLv;
+                int difference = skillLv - chaLv;
                 if (difference > 10)
                 {
-                    gM.buffM.SetEnemyBuff(EnemyBuff.InFlow, false, 0);
-                    gM.buffM.SetEnemyBuff(EnemyBuff.Bored, false, 1);
-                    gM.buffM.SetEnemyBuff(EnemyBuff.Anxiety, false, 0);
-                    MagicCirleStateControl(30);
                     //gM.buffM.SetEnemyBuff(EnemyBuff.InFlow, false, 0);
                     //gM.buffM.SetEnemyBuff(EnemyBuff.Bored, false, 1);
                     //gM.buffM.SetEnemyBuff(EnemyBuff.Anxiety, false, 0);
-                    gM.buffM.SetBuff(EnemyBuff.InFlow, BuffTimeType.Permanent, 999, BuffValueType.NoValue, 0);
-                    gM.buffM.SetBuff(EnemyBuff.Bored, BuffTimeType.Permanent, 999, BuffValueType.NoValue, 1);
-                    gM.buffM.SetBuff(EnemyBuff.Anxiety, BuffTimeType.Permanent, 999, BuffValueType.NoValue, 0);
-                    MagicCircleDropOut(30);
+                    //MagicCirleStateControl(30);
+                    //gM.buffM.SetEnemyBuff(EnemyBuff.InFlow, false, 0);
+                    //gM.buffM.SetEnemyBuff(EnemyBuff.Bored, false, 1);
+                    //gM.buffM.SetEnemyBuff(EnemyBuff.Anxiety, false, 0);
+                    //gM.buffM.SetBuff(EnemyBuff.InFlow, BuffTimeType.Permanent, 999, BuffValueType.NoValue, 0);
+                    //gM.buffM.SetBuff(EnemyBuff.Bored, BuffTimeType.Permanent, 999, BuffValueType.NoValue, 1);
+                    //gM.buffM.SetBuff(EnemyBuff.Anxiety, BuffTimeType.Permanent, 999, BuffValueType.NoValue, 0);
+                    //MagicCircleDropOut(30);
                     gM.buffM.SetBuff(EnemyBuff.InFlow, BuffTimeType.Permanent, 999, BuffValueType.NoValue, 0,BuffSource.Enemy);
                     gM.buffM.SetBuff(EnemyBuff.Bored, BuffTimeType.Permanent, 999, BuffValueType.NoValue, 1, BuffSource.Enemy);
                     gM.buffM.SetBuff(EnemyBuff.Anxiety, BuffTimeType.Permanent, 999, BuffValueType.NoValue, 0, BuffSource.Enemy);
@@ -220,14 +229,14 @@ public class BasicEnemy : MonoBehaviour
                     gM.buffM.SetBuff(EnemyBuff.Bored, BuffTimeType.Permanent, 999, BuffValueType.NoValue, 0, BuffSource.Enemy);
                     gM.buffM.SetBuff(EnemyBuff.Anxiety, BuffTimeType.Permanent, 999, BuffValueType.NoValue, 1, BuffSource.Enemy);
                     MagicCircleDropOut(60);
-                    gM.buffM.SetEnemyBuff(EnemyBuff.InFlow, false, 0);
-                    gM.buffM.SetEnemyBuff(EnemyBuff.Bored, false, 0);
-                    gM.buffM.SetEnemyBuff(EnemyBuff.Anxiety, false, 1);
-                    MagicCirleStateControl(60);
-                    gM.buffM.SetEnemyBuff(EnemyBuff.InFlow, false, 0);
-                    gM.buffM.SetEnemyBuff(EnemyBuff.Bored, false, 1);
-                    gM.buffM.SetEnemyBuff(EnemyBuff.Anxiety, false, 0);
-                    MagicCirleStateControl(60);
+                    //gM.buffM.SetEnemyBuff(EnemyBuff.InFlow, false, 0);
+                    //gM.buffM.SetEnemyBuff(EnemyBuff.Bored, false, 0);
+                    //gM.buffM.SetEnemyBuff(EnemyBuff.Anxiety, false, 1);
+                    //MagicCirleStateControl(60);
+                    //gM.buffM.SetEnemyBuff(EnemyBuff.InFlow, false, 0);
+                    //gM.buffM.SetEnemyBuff(EnemyBuff.Bored, false, 1);
+                    //gM.buffM.SetEnemyBuff(EnemyBuff.Anxiety, false, 0);
+                    //MagicCirleStateControl(60);
                 }
                 break;
             case CharacterType.Programmmer:

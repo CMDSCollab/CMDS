@@ -49,14 +49,16 @@ public class FightManager : MonoBehaviour
                 gM.aiM.proAI.TakeAction();
                 break;
         }
-        gM.buffM.LastTimeDecrease("Enemy", "Character");
+
         gM.buffM.LastTimeDecrease("Character", "Enemy");
         gM.buffM.LastTimeDecrease("Enemy", "Enemy");
 
         // Ö´ÐÐÐÐ¶¯
         gM.enM.enemyTarget.TakeAction();
 
+        gM.buffM.LastTimeDecrease("Enemy", "Character");
         gM.buffM.LastTimeDecrease("Character", "Character");
+
 
         gM.deckM.DrawCardFromDeckRandomly(gM.deckM.drawCardAmount);
 

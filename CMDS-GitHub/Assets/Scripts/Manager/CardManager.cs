@@ -185,13 +185,13 @@ public class CardManager : MonoBehaviour
                     case SpecialDesFunctionType.ChangeChallenge:
                         gM.aiM.des.challengeLv += cardDsgn.desSpecialFunctions[i].value;
                         //gM.buffM.SetCharacterBuff(CharacterBuff.Challenge, true, gM.aiM.des.challengeLv);
-                        gM.buffM.SetBuff(CharacterBuff.Challenge, BuffTimeType.Permanent, 999, BuffValueType.AddValue, cardDsgn.desSpecialFunctions[i].value, BuffSource.Character);
+                        //gM.buffM.SetBuff(CharacterBuff.Challenge, BuffTimeType.Permanent, 999, BuffValueType.AddValue, cardDsgn.desSpecialFunctions[i].value, BuffSource.Character);
                         gM.enM.enemyTarget.MainChaMCChange();
                         break;
                     case SpecialDesFunctionType.ChangeSkill:
                         gM.enM.enemyTarget.skillLv += cardDsgn.desSpecialFunctions[i].value;
                         //gM.buffM.SetEnemyBuff(EnemyBuff.Skill, true, gM.enM.enemyTarget.skillLv);
-                        gM.buffM.SetBuff(EnemyBuff.Skill, BuffTimeType.Permanent, 999, BuffValueType.AddValue, cardDsgn.desSpecialFunctions[i].value, BuffSource.Enemy);
+                        //gM.buffM.SetBuff(EnemyBuff.Skill, BuffTimeType.Permanent, 999, BuffValueType.AddValue, cardDsgn.desSpecialFunctions[i].value, BuffSource.Enemy);
                         gM.enM.enemyTarget.MainChaMCChange();
                         break;
                 }
