@@ -15,19 +15,39 @@ public class Designer : CharacterMate
 
     public Text challengeIntText;
 
+    public GameObject flowChartPrefab;
+    private Canvas UICanvas;
+    private GameObject flowChart;
+
     private void Awake()
     {
         
+    }
+
+    public override void Start()
+    {
+        base.Start();
+        PrepareFlowChart();
     }
     //void Update()
     //{
     //    UpdateUI();
     //}
 
+    void PrepareFlowChart()
+    {
+        UICanvas = gM.uiCanvas;
+        flowChart = Instantiate(gM.characterM.flowChartPrefab, UICanvas.transform, false);
+    }
+
+    public void ChallengeDMG()
+    {
+        gM.enM.enemyTarget.TakeDamage(challengeLv - gM.enM.enemyTarget.skillLv);
+    }
+
     void UpdateUI()
     {
         //hpText.text = healthPoint.ToString() + "/" + maxHp.ToString();
         //challengeIntText.text = challengeInt.ToString();
-
     }
 }
