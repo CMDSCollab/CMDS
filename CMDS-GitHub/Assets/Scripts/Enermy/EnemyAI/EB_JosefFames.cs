@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EB_JosefFames : BasicEnemy
 {
@@ -11,21 +12,53 @@ public class EB_JosefFames : BasicEnemy
     public int respawnTurn;
     private int enemySequence = 1;
     private int respawnCount;
+    private int defaultSkill = 2;
 
     public override void TakeAction()
     {
-        if (enemySequence == 1)
+        switch (currentIntention)
         {
-            gM.characterM.mainCharacter.TakeDamage(damage1P);
+            case EnemyIntention.Attack:
+                gM.characterM.mainCharacter.TakeDamage(gM.buffM.EnemyAttack(damage1P));
+                break;
+            case EnemyIntention.Defence:
+                gM.buffM.SetBuff(EnemyBuff.Defence, BuffTimeType.Temporary, 1, BuffValueType.AddValue, 10);
+                //recordShieldP += defaultShieldP;
+                //gM.buffM.SetEnemyBuff(EnemyBuff.Defence, true, recordShieldP);
+                break;
+            case EnemyIntention.Skill:
+                skillLv += defaultSkill;
+                //gM.buffM.SetEnemyBuff(EnemyBuff.Skill, true, skillLv);
+                gM.buffM.SetBuff(EnemyBuff.Skill, BuffTimeType.Permanent, 999, BuffValueType.AddValue, defaultSkill);
+                MainChaMCChange();
+                break;
         }
-        if (enemySequence == 2)
+        GenerateEnemyIntention();
+    }
+
+    public override void GenerateEnemyIntention()
+    {
+        base.GenerateEnemyIntention();
+        switch (currentIntention)
         {
-            gM.characterM.mainCharacter.TakeDamage(damage2P);
+            case EnemyIntention.Attack:
+                transform.Find("Intention").Find("Value").gameObject.SetActive(true);
+                transform.Find("Intention").Find("Value").GetComponent<Text>().text = 10.ToString();
+                break;
+            case EnemyIntention.Defence:
+                transform.Find("Intention").Find("Value").gameObject.SetActive(true);
+                transform.Find("Intention").Find("Value").GetComponent<Text>().text = 10.ToString();
+                break;
+            case EnemyIntention.Skill:
+                transform.Find("Intention").Find("Value").gameObject.SetActive(true);
+                transform.Find("Intention").Find("Value").GetComponent<Text>().text = defaultSkill.ToString();
+                break;
         }
     }
 
     public override void EnemyDefeated()
     {
+
         base.EnemyDefeated();
     }
 }

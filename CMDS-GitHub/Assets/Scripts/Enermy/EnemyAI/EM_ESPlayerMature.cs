@@ -6,43 +6,13 @@ using UnityEngine.UI;
 public class EM_ESPlayerMature : BasicEnemy
 {
     private int defaultShieldP = 10;
-    public int recordShieldP;
+    //public int recordShieldP;
     private int defaultDmg = 10;
     private int defaultSkill = 1;
 
     void Start()
     {
-        gM.buffM.SetEnemyBuff(EnemyBuff.Skill, true, skillLv);
-    }
 
-    public override int DmgValueCalculation(int dmgValue)
-    {
-        if (recordShieldP > 0)
-        {
-            recordShieldP -= dmgValue;
-            if (recordShieldP >= 0)
-            {
-                if (recordShieldP>0)
-                {
-                    gM.buffM.SetEnemyBuff(EnemyBuff.Defence, true, recordShieldP);
-                    return 0;
-                }
-                else
-                {
-                    gM.buffM.SetEnemyBuff(EnemyBuff.Defence, true, 0);
-                    return 0;
-                }
-            }
-            else
-            {
-                gM.buffM.SetEnemyBuff(EnemyBuff.Defence, true, 0);
-                return dmgValue -= recordShieldP;
-            }
-        }
-        else
-        {
-            return dmgValue;
-        }
     }
 
     public override void TakeAction()
@@ -53,15 +23,18 @@ public class EM_ESPlayerMature : BasicEnemy
                 gM.characterM.mainCharacter.TakeDamage(gM.buffM.EnemyAttack(defaultDmg));
                 break;
             case EnemyIntention.Defence:
-                recordShieldP += defaultShieldP;
-                gM.buffM.SetEnemyBuff(EnemyBuff.Defence, true, recordShieldP);
+                gM.buffM.SetBuff(EnemyBuff.Defence, BuffTimeType.Temporary, 1, BuffValueType.AddValue, defaultShieldP);
+                //recordShieldP += defaultShieldP;
+                //gM.buffM.SetEnemyBuff(EnemyBuff.Defence, true, recordShieldP);
                 break;
             case EnemyIntention.Taunt:
-                gM.buffM.SetCharacterBuff(CharacterBuff.Weak, false, 1);
+                gM.buffM.SetBuff(CharacterBuff.Weak, BuffTimeType.Temporary, 1, BuffValueType.NoValue, 0);
+                //gM.buffM.SetCharacterBuff(CharacterBuff.Weak, false, 1);
                 break;
             case EnemyIntention.Skill:
-                skillLv += 1;
-                gM.buffM.SetEnemyBuff(EnemyBuff.Skill, true, skillLv);
+                skillLv += defaultSkill;
+                //gM.buffM.SetEnemyBuff(EnemyBuff.Skill, true, skillLv);
+                gM.buffM.SetBuff(EnemyBuff.Skill, BuffTimeType.Permanent, 999, BuffValueType.AddValue, defaultSkill);
                 MainChaMCChange();
                 break;
         }

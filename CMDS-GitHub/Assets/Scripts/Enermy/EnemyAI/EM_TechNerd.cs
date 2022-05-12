@@ -26,27 +26,29 @@ public class EM_TechNerd : BasicEnemy
             return;
         }
 
-        if (recordShieldP > 0)
-        {
-            recordShieldP -= dmgValue;
-            if (recordShieldP > 0)
-            {
-                gM.buffM.SetEnemyBuff(EnemyBuff.Defence, true, recordShieldP);
-            }
-            if (recordShieldP < 0)
-            {
-                healthPoint += recordShieldP;
-                gM.buffM.SetEnemyBuff(EnemyBuff.Defence, true, 0);
-            }
-            if (recordShieldP == 0)
-            {
-                gM.buffM.SetEnemyBuff(EnemyBuff.Defence, true, 0);
-            }
-        }
-        else
-        {
-            healthPoint -= dmgValue;
-        }
+        //if (recordShieldP > 0)
+        //{
+        //    recordShieldP -= dmgValue;
+        //    if (recordShieldP > 0)
+        //    {
+        //        gM.buffM.SetEnemyBuff(EnemyBuff.Defence, true, recordShieldP);
+        //    }
+        //    if (recordShieldP < 0)
+        //    {
+        //        healthPoint += recordShieldP;
+        //        gM.buffM.SetEnemyBuff(EnemyBuff.Defence, true, 0);
+        //    }
+        //    if (recordShieldP == 0)
+        //    {
+        //        gM.buffM.SetEnemyBuff(EnemyBuff.Defence, true, 0);
+        //    }
+        //}
+        //else
+        //{
+        //    healthPoint -= dmgValue;
+        //}
+
+        healthPoint -= gM.buffM.EnemyTakeDamage(dmgValue);
     }
 
     public override void TakeAction()

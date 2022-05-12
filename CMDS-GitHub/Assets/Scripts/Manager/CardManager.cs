@@ -103,8 +103,9 @@ public class CardManager : MonoBehaviour
                     gM.enM.enemyTarget.TakeDamage(gM.buffM.CharacterAttack(cardInfo.baseFunctions[i].value));
                     break;
                 case BaseFunctionType.Shield:
-                    gM.aiM.pro.shieldPoint += cardInfo.baseFunctions[i].value;
-                    gM.buffM.SetCharacterBuff(CharacterBuff.Shield, true, gM.aiM.pro.shieldPoint);
+                    //gM.aiM.pro.shieldPoint += cardInfo.baseFunctions[i].value;
+                    //gM.buffM.SetCharacterBuff(CharacterBuff.Defence, true, gM.aiM.pro.shieldPoint);
+                    gM.buffM.SetBuff(CharacterBuff.Defence, BuffTimeType.Temporary, 1, BuffValueType.AddValue, cardInfo.baseFunctions[i].value);
                     break;
                 case BaseFunctionType.Heal:
                     break;
@@ -183,12 +184,14 @@ public class CardManager : MonoBehaviour
                         break;
                     case SpecialDesFunctionType.ChangeChallenge:
                         gM.aiM.des.challengeLv += cardDsgn.desSpecialFunctions[i].value;
-                        gM.buffM.SetCharacterBuff(CharacterBuff.Challenge, true, gM.aiM.des.challengeLv);
+                        //gM.buffM.SetCharacterBuff(CharacterBuff.Challenge, true, gM.aiM.des.challengeLv);
+                        gM.buffM.SetBuff(CharacterBuff.Challenge, BuffTimeType.Permanent, 999, BuffValueType.AddValue, cardDsgn.desSpecialFunctions[i].value);
                         gM.enM.enemyTarget.MainChaMCChange();
                         break;
                     case SpecialDesFunctionType.ChangeSkill:
                         gM.enM.enemyTarget.skillLv += cardDsgn.desSpecialFunctions[i].value;
-                        gM.buffM.SetEnemyBuff(EnemyBuff.Skill, true, gM.enM.enemyTarget.skillLv);
+                        //gM.buffM.SetEnemyBuff(EnemyBuff.Skill, true, gM.enM.enemyTarget.skillLv);
+                        gM.buffM.SetBuff(EnemyBuff.Skill, BuffTimeType.Permanent, 999, BuffValueType.AddValue, cardDsgn.desSpecialFunctions[i].value);
                         gM.enM.enemyTarget.MainChaMCChange();
                         break;
                 }
@@ -216,8 +219,9 @@ public class CardManager : MonoBehaviour
                     gM.enM.enemyTarget.TakeDamage(gM.buffM.CharacterAttack(gM.aiM.pro.shieldPoint));
                     break;
                 case SpecialFunctionPro.DoubleShield:
-                    gM.aiM.pro.shieldPoint += gM.aiM.pro.shieldPoint;
-                    gM.buffM.SetCharacterBuff(CharacterBuff.Shield, true, gM.aiM.pro.shieldPoint);
+                    gM.buffM.SetBuff(CharacterBuff.Defence, BuffTimeType.Temporary, 1, BuffValueType.AddValue, gM.buffM.FindBuff(CharacterBuff.Defence).value);
+                    //gM.aiM.pro.shieldPoint += gM.aiM.pro.shieldPoint;
+                    //gM.buffM.SetCharacterBuff(CharacterBuff.Defence, true, gM.aiM.pro.shieldPoint);
                     break;
                 case SpecialFunctionPro.UseHandCardsGainShield:
                     gM.cardFunctionM.isUseCardGainShield = true;
@@ -230,21 +234,25 @@ public class CardManager : MonoBehaviour
                             if (gM.handM.handCardList[i - 1].GetComponent<CardManager>().handIndex != handIndex)
                             {
                                 gM.handM.handCardList[i - 1].GetComponent<CardManager>().DiscardHandCard();
-                                gM.aiM.pro.shieldPoint += 5;
-                                gM.buffM.SetCharacterBuff(CharacterBuff.Shield, true, gM.aiM.pro.shieldPoint);
+                                gM.buffM.SetBuff(CharacterBuff.Defence, BuffTimeType.Temporary, 1, BuffValueType.AddValue, 5);
+                                //gM.aiM.pro.shieldPoint += 5;
+                                //gM.buffM.SetCharacterBuff(CharacterBuff.Defence, true, gM.aiM.pro.shieldPoint);
                             }
                             handIndex = 1;
                         }
                     }
                     break;
                 case SpecialFunctionPro.Vengeance:
-                    gM.cardFunctionM.isVengeance = true;
-                    gM.buffM.SetCharacterBuff(CharacterBuff.Vengeance, true, 4);
+                    //gM.cardFunctionM.isVengeance = true;
+                    //gM.buffM.SetCharacterBuff(CharacterBuff.Vengeance, true, 4);
+                    gM.buffM.SetBuff(CharacterBuff.Vengeance, BuffTimeType.Temporary, 1, BuffValueType.SetValue, 4);
                     break;
                 case SpecialFunctionPro.ConsumeShieldDoubleDamage:
-                    gM.enM.enemyTarget.TakeDamage(gM.buffM.CharacterAttack(gM.aiM.pro.shieldPoint * 2));
-                    gM.aiM.pro.shieldPoint = 0;
-                    gM.buffM.SetCharacterBuff(CharacterBuff.Shield, true, gM.aiM.pro.shieldPoint);
+                    //gM.enM.enemyTarget.TakeDamage(gM.buffM.CharacterAttack(gM.aiM.pro.shieldPoint * 2));
+                    //gM.aiM.pro.shieldPoint = 0;
+                    //gM.buffM.SetCharacterBuff(CharacterBuff.Defence, true, gM.aiM.pro.shieldPoint);
+                    gM.enM.enemyTarget.TakeDamage(gM.buffM.CharacterAttack(gM.buffM.FindBuff(CharacterBuff.Defence).value * 2));
+                    gM.buffM.SetBuff(CharacterBuff.Defence, BuffTimeType.Temporary, 1, BuffValueType.AddValue, -gM.buffM.FindBuff(CharacterBuff.Defence).value);
                     break;
                 default:
                     break;

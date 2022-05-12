@@ -13,7 +13,7 @@ public enum BossType { JosefFames, Ba, Bb, Bc}
 [System.Serializable]
 public struct EnemyIntentionRatio { public EnemyIntention intention; [Range(0, 100)] public int tendency; }
 
-public enum EnemySpecialIntention { MultipleAtk, Revive}
+public enum EnemySpecialIntention { MultipleAtk, Revive,FireShoot,HoneyShoot}
 
 [CreateAssetMenu(fileName = "New Card", menuName = "Scriptable Object/Enemy")]
 public class EnemyInfo : ScriptableObject

@@ -47,27 +47,7 @@ public class CharacterMate : BasicCharacter
 
     public virtual void TakeDamage(int dmg)
     {
-        if (shieldPoint > 0)
-        {
-            shieldPoint -= dmg;
-            if (shieldPoint > 0)
-            {
-                gM.buffM.SetCharacterBuff(CharacterBuff.Shield, true, shieldPoint);
-            }
-            if (shieldPoint < 0)
-            {
-                healthPoint += shieldPoint;
-                gM.buffM.SetCharacterBuff(CharacterBuff.Shield, true, 0);
-            }
-            if (shieldPoint == 0)
-            {
-                gM.buffM.SetCharacterBuff(CharacterBuff.Shield, true, 0);
-            }
-        }
-        else
-        {
-            healthPoint -= dmg;
-        }
+        healthPoint -= gM.buffM.CharacterTakeDamage(dmg);
     }
 
     public virtual void HealSelf(int healAmount)
