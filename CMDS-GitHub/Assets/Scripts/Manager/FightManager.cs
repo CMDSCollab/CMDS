@@ -50,13 +50,15 @@ public class FightManager : MonoBehaviour
                 break;
         }
 
-        //gM.buffM.EBuffLastTimeDecrease();
+        gM.buffM.LastTimeDecrease("Character", "Enemy");
+        gM.buffM.LastTimeDecrease("Enemy", "Enemy");
 
-        //执行行动
+        // 执行行动
         gM.enM.enemyTarget.TakeAction();
 
-        //gM.buffM.CBuffLastTimeDecrease();
-        ////gM.buffM.CheckBuffAndRemove();
+        gM.buffM.LastTimeDecrease("Enemy", "Character");
+        gM.buffM.LastTimeDecrease("Character", "Character");
+
 
         gM.deckM.DrawCardFromDeckRandomly(gM.deckM.drawCardAmount);
 

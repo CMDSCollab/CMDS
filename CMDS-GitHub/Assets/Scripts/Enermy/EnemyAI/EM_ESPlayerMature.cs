@@ -23,18 +23,18 @@ public class EM_ESPlayerMature : BasicEnemy
                 gM.characterM.mainCharacter.TakeDamage(gM.buffM.EnemyAttack(defaultDmg));
                 break;
             case EnemyIntention.Defence:
-                gM.buffM.SetBuff(EnemyBuff.Defence, BuffTimeType.Temporary, 1, BuffValueType.AddValue, defaultShieldP);
+                gM.buffM.SetBuff(EnemyBuff.Defence, BuffTimeType.Temporary, 1, BuffValueType.AddValue, defaultShieldP,BuffSource.Enemy);
                 //recordShieldP += defaultShieldP;
                 //gM.buffM.SetEnemyBuff(EnemyBuff.Defence, true, recordShieldP);
                 break;
             case EnemyIntention.Taunt:
-                gM.buffM.SetBuff(CharacterBuff.Weak, BuffTimeType.Temporary, 1, BuffValueType.NoValue, 0);
+                gM.buffM.SetBuff(CharacterBuff.Weak, BuffTimeType.Temporary, 1, BuffValueType.NoValue, 1, BuffSource.Enemy);
                 //gM.buffM.SetCharacterBuff(CharacterBuff.Weak, false, 1);
                 break;
             case EnemyIntention.Skill:
                 skillLv += defaultSkill;
                 //gM.buffM.SetEnemyBuff(EnemyBuff.Skill, true, skillLv);
-                gM.buffM.SetBuff(EnemyBuff.Skill, BuffTimeType.Permanent, 999, BuffValueType.AddValue, defaultSkill);
+                gM.buffM.SetBuff(EnemyBuff.Skill, BuffTimeType.Permanent, 999, BuffValueType.AddValue, defaultSkill, BuffSource.Enemy);
                 MainChaMCChange();
                 break;
         }

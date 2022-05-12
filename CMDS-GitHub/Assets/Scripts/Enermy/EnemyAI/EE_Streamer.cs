@@ -77,11 +77,11 @@ public class EE_Streamer : BasicEnemy
 
             case EnemyIntention.ToComment:
 
-                gM.buffM.SetBuff(EnemyBuff.Defence, BuffTimeType.Temporary, 1, BuffValueType.AddValue, sheildOnComment);
+                gM.buffM.SetBuff(EnemyBuff.Defence, BuffTimeType.Temporary, 1, BuffValueType.AddValue, sheildOnComment,BuffSource.Enemy);
                 sheildOnComment += 10;
                 
                 hasBeenImpressed = false;
-                gM.buffM.SetBuff(EnemyBuff.PartialInvincibility, BuffTimeType.Temporary, 1, BuffValueType.NoValue, 0);
+                gM.buffM.SetBuff(EnemyBuff.PartialInvincibility, BuffTimeType.Temporary, 1, BuffValueType.NoValue, 1, BuffSource.Enemy);
                 break;
                 
             case EnemyIntention.Comment:
@@ -93,7 +93,8 @@ public class EE_Streamer : BasicEnemy
                 }
                 else
                 {
-                    gM.buffM.SetCharacterBuff(CharacterBuff.Weak, false, 1);
+                    //gM.buffM.SetCharacterBuff(CharacterBuff.Weak, false, 1);
+                    gM.buffM.SetBuff(CharacterBuff.Weak, BuffTimeType.Temporary, 1, BuffValueType.NoValue, 1, BuffSource.Enemy);
                     charToScoreDic[characterToComment] = 1;
                     Debug.Log(characterToComment.ToString() + "获得了中评");
                 }

@@ -20,6 +20,7 @@ MonoBehaviour:
   images:
   - {fileID: 21300000, guid: 0b8b26eee6697114693248b2840b2e3d, type: 3}
   maxHealth: 80
+  defaultSkill: 5
   basicIntentions:
   - intention: 0
     tendency: 50

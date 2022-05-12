@@ -136,6 +136,7 @@ public class AIMate : BasicCharacter
 
     public void IntentionValueChangeAndUISync()
     {
+        
         switch (energyPoint)
         {
             case 0:
@@ -168,7 +169,7 @@ public class AIMate : BasicCharacter
         switch (currentIntention)
         {
             case Intentions.Attack:
-                gM.enM.enemyTarget.TakeDamage(intentionValue);
+                gM.enM.enemyTarget.TakeDamage(gM.buffM.CharacterAttack( intentionValue));
                 break;
             case Intentions.Heal:
                 gM.characterM.mainCharacter.HealSelf(intentionValue);
@@ -176,7 +177,7 @@ public class AIMate : BasicCharacter
             case Intentions.Shield:
                 //gM.characterM.mainCharacter.shieldPoint += intentionValue;
                 //gM.buffM.SetCharacterBuff(CharacterBuff.Defence, true, intentionValue);
-                gM.buffM.SetBuff(CharacterBuff.Defence, BuffTimeType.Temporary, 1, BuffValueType.AddValue, intentionValue);
+                gM.buffM.SetBuff(CharacterBuff.Defence, BuffTimeType.Temporary, 1, BuffValueType.AddValue, intentionValue, BuffSource.AI);
                 break;
             case Intentions.Buff:
                 break;

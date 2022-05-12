@@ -19,8 +19,13 @@ using UnityEngine.UI;
 public enum BuffSource { Character,AI,Enemy}
 public enum BuffTimeType { Permanent,Temporary }
 public enum BuffValueType { NoValue, SetValue, AddValue}
+<<<<<<< HEAD
 public enum EnemyBuff { Bored, Anxiety, InFlow, Vulnerable, Weak, Instability, WeakMind, Defence, Skill, Block, Charge, PartialInvincibility }
 public enum CharacterBuff { Defence, Vengeance, PowerUp, Weak,Challenge,Inflammable, IsTeamWork, IsSycn}
+=======
+public enum EnemyBuff { Null, Bored, Anxiety, InFlow, Vulnerable, Weak, Instability, WeakMind, Defence, Skill, Block, Charge, PartialInvincibility,Revive }
+public enum CharacterBuff { Null,Defence, Vengeance, PowerUp, Weak,Challenge,Inflammable}
+>>>>>>> cc4a7b1c7735c994bbf8d7cff38b38879aabc292
 public class BuffInfo 
 {
     public CharacterBuff characterBuffType = CharacterBuff.Null;

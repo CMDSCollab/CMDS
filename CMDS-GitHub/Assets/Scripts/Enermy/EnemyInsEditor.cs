@@ -14,6 +14,7 @@ public class EnemyInsEditor : Editor
     private SerializedProperty maxHealth;
     private SerializedProperty basicIntentions;
     private SerializedProperty specialFunctions;
+    private SerializedProperty defaultSkill;
     //adaptive
     private SerializedProperty minionType;
     private SerializedProperty eliteType;
@@ -29,6 +30,7 @@ public class EnemyInsEditor : Editor
         maxHealth = enemyInfo.FindProperty("maxHealth");
         basicIntentions = enemyInfo.FindProperty("basicIntentions");
         specialFunctions = enemyInfo.FindProperty("specialFunctions");
+        defaultSkill = enemyInfo.FindProperty("defaultSkill");
 
         minionType = enemyInfo.FindProperty("minionType");
         eliteType = enemyInfo.FindProperty("eliteType");
@@ -40,6 +42,7 @@ public class EnemyInsEditor : Editor
         EditorGUILayout.PropertyField(enemyName);
         EditorGUILayout.PropertyField(images);
         EditorGUILayout.PropertyField(maxHealth);
+        EditorGUILayout.PropertyField(defaultSkill);
 
         EditorGUILayout.PropertyField(enemyType);
         switch (enemyType.enumValueIndex)
