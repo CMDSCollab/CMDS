@@ -14,8 +14,6 @@ public class EE_Streamer : BasicEnemy
     private Dictionary<CharacterType, int> charToScoreDic;
     private CharacterType characterToComment;
     private bool hasBeenImpressed = false;
-    private bool hasFinishedComments = false;
-
 
     private void Awake()
     {
@@ -31,43 +29,46 @@ public class EE_Streamer : BasicEnemy
 
     public override void TakeDamage(int dmgValue)
     {
-        if (gM.buffM.activeEnemyBuffs.ContainsKey(EnemyBuff.PartialInvincibility))
+        // 当自身有部分无敌（也就是正在评价的时候）
+        if (gM.buffM.FindBuff(EnemyBuff.PartialInvincibility) != null)
         {
-            if (!true)//对伤害来源进行判定
+            if (true)
+            //如果伤害来源是指定角色，正常受到伤害
             {
-                healthPoint -= 0;// 使用伤害为0
-                return;
+                base.TakeDamage(dmgValue);
+                // 如果破盾，则设置hasBeenImpressed
+                if (gM.buffM.FindBuff(EnemyBuff.Defence) != null)
+                {
+                    if (gM.buffM.FindBuff(EnemyBuff.Defence).value <= 0)
+                    {
+                        hasBeenImpressed = true;
+                    }
+                }
+            }
+            else
+            // 否则，伤害为0
+            {
+                base.TakeDamage(0);
+                gM.buffM.EnemyTakeDamage(0); 
+
             }
         }
-
-
-        if (recordShieldP > 0)
-        {
-            recordShieldP -= dmgValue;
-            if (recordShieldP > 0)
-            {
-                gM.buffM.SetEnemyBuff(EnemyBuff.Defence, true, recordShieldP);
-            }
-            if (recordShieldP < 0)
-            {
-                healthPoint += recordShieldP;
-                gM.buffM.SetEnemyBuff(EnemyBuff.Defence, true, 0);
-                hasBeenImpressed = true;
-            }
-            if (recordShieldP == 0)
-            {
-                gM.buffM.SetEnemyBuff(EnemyBuff.Defence, true, 0);
-                hasBeenImpressed = true;
-            }
-        }
+        // 其余情况正常受到伤害
         else
         {
-            healthPoint -= dmgValue;
+            base.TakeDamage(dmgValue);
         }
     }
 
     public override void TakeAction()
     {
+        if (!charToScoreDic.ContainsValue(0))
+        {
+            TakeDamage(999);
+            Debug.Log("所有评价已完成，战斗结束");
+        }
+
+
         switch (currentIntention)
         {
             case EnemyIntention.Attack:
@@ -75,30 +76,36 @@ public class EE_Streamer : BasicEnemy
                 break;
 
             case EnemyIntention.ToComment:
-                
-                gM.buffM.SetEnemyBuff(EnemyBuff.Defence, true, sheildOnComment);
+
+                gM.buffM.SetBuff(EnemyBuff.Defence, BuffTimeType.Temporary, 1, BuffValueType.AddValue, sheildOnComment);
                 sheildOnComment += 10;
                 
                 hasBeenImpressed = false;
-                gM.buffM.SetEnemyBuff(EnemyBuff.PartialInvincibility, false, 1);
+                gM.buffM.SetBuff(EnemyBuff.PartialInvincibility, BuffTimeType.Temporary, 1, BuffValueType.NoValue, 0);
                 break;
                 
             case EnemyIntention.Comment:
                 if (hasBeenImpressed)
                 {
                     gM.characterM.mainCharacter.HealSelf(10);
+                    charToScoreDic[characterToComment] = 2;
+                    Debug.Log(characterToComment.ToString()+"获得了好评");
                 }
                 else
                 {
                     gM.buffM.SetCharacterBuff(CharacterBuff.Weak, false, 1);
+                    charToScoreDic[characterToComment] = 1;
+                    Debug.Log(characterToComment.ToString() + "获得了中评");
                 }
 
                 break;
         }
+        this.GenerateEnemyIntention();
     }
 
     public override void GenerateEnemyIntention()
     {
+
         // 如果本回合已经准备评价了，则下回合评价
         if (currentIntention == EnemyIntention.ToComment)
         {
@@ -122,12 +129,13 @@ public class EE_Streamer : BasicEnemy
                 transform.Find("Intention").Find("Value").GetComponent<Text>().text = defaultDmg.ToString();
                 break;
             case EnemyIntention.ToComment:
-                transform.Find("Intention").Find("Value").gameObject.SetActive(true);
+                transform.Find("Intention").Find("Value").gameObject.SetActive(false);
                 break;
             case EnemyIntention.Comment:
                 transform.Find("Intention").Find("Value").gameObject.SetActive(false);
                 break;
         }
+        SetIntentionUI();
     }
 
     private void SelectCharToComment()

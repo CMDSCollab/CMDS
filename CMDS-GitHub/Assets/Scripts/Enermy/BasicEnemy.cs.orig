@@ -164,12 +164,21 @@ public class BasicEnemy : MonoBehaviour
                 transform.Find("Intention").Find("Name").GetComponent<Text>().text = "Block";
                 transform.Find("Intention").Find("Image").GetComponent<Image>().sprite = imageToSet;
                 break;
+<<<<<<< HEAD
             case EnemyIntention.HoneyShoot:
                 transform.Find("Intention").Find("Name").GetComponent<Text>().text = "HoneyShoot";
                 transform.Find("Intention").Find("Image").GetComponent<Image>().sprite = imageToSet;
                 break;
             case EnemyIntention.FireShoot:
                 transform.Find("Intention").Find("Name").GetComponent<Text>().text = "FireShoot";
+=======
+            case EnemyIntention.ToComment:
+                transform.Find("Intention").Find("Name").GetComponent<Text>().text = "To Comment";
+                transform.Find("Intention").Find("Image").GetComponent<Image>().sprite = imageToSet;
+                break;
+            case EnemyIntention.Comment:
+                transform.Find("Intention").Find("Name").GetComponent<Text>().text = "Comment";
+>>>>>>> 1a54b0dbc36538ef8caa05babb3ce4c44e002ae4
                 transform.Find("Intention").Find("Image").GetComponent<Image>().sprite = imageToSet;
                 break;
         }
@@ -191,21 +200,17 @@ public class BasicEnemy : MonoBehaviour
                 int difference = chaLv - skillLv;
                 if (difference > 10)
                 {
-                    gM.buffM.SetEnemyBuff(EnemyBuff.InFlow, false, 0);
-                    gM.buffM.SetEnemyBuff(EnemyBuff.Bored, false, 1);
-                    gM.buffM.SetEnemyBuff(EnemyBuff.Anxiety, false, 0);
-                    MagicCirleStateControl(30);
-                    //gM.buffM.SetEnemyBuff(EnemyBuff.InFlow, false, 0);
-                    //gM.buffM.SetEnemyBuff(EnemyBuff.Bored, false, 1);
-                    //gM.buffM.SetEnemyBuff(EnemyBuff.Anxiety, false, 0);
-                    gM.buffM.SetBuff(EnemyBuff.InFlow, BuffTimeType.Permanent, 999, BuffValueType.NoValue, 0);
-                    gM.buffM.SetBuff(EnemyBuff.Bored, BuffTimeType.Permanent, 999, BuffValueType.NoValue, 1);
-                    gM.buffM.SetBuff(EnemyBuff.Anxiety, BuffTimeType.Permanent, 999, BuffValueType.NoValue, 0);
-                    MagicCircleDropOut(30);
+<<<<<<< HEAD
                     gM.buffM.SetBuff(EnemyBuff.InFlow, BuffTimeType.Permanent, 999, BuffValueType.NoValue, 0,BuffSource.Enemy);
                     gM.buffM.SetBuff(EnemyBuff.Bored, BuffTimeType.Permanent, 999, BuffValueType.NoValue, 1, BuffSource.Enemy);
                     gM.buffM.SetBuff(EnemyBuff.Anxiety, BuffTimeType.Permanent, 999, BuffValueType.NoValue, 0, BuffSource.Enemy);
                     MagicCircleDropOut(30);
+=======
+                    gM.buffM.SetEnemyBuff(EnemyBuff.InFlow, false, 0);
+                    gM.buffM.SetEnemyBuff(EnemyBuff.Bored, false, 1);
+                    gM.buffM.SetEnemyBuff(EnemyBuff.Anxiety, false, 0);
+                    MagicCirleStateControl(30);
+>>>>>>> 1a54b0dbc36538ef8caa05babb3ce4c44e002ae4
                 }
                 if (10 > difference && difference >= 0)
                 {
@@ -250,12 +255,20 @@ public class BasicEnemy : MonoBehaviour
     }
 
     public void MagicCirleRecapture()
-    {
+        {
             magicCircleState = MagicCircleState.In;
             transform.Find("MagicCircle").gameObject.SetActive(true);
+<<<<<<< HEAD
             gM.buffM.SetBuff(EnemyBuff.Weak, BuffTimeType.Permanent, 999, BuffValueType.NoValue, 1, BuffSource.Enemy);
             gM.buffM.SetBuff(EnemyBuff.Vulnerable, BuffTimeType.Permanent, 999, BuffValueType.NoValue, 1, BuffSource.Enemy);
     }
+=======
+            gM.buffM.SetBuff(EnemyBuff.Weak, BuffTimeType.Permanent, 999, BuffValueType.NoValue, 1);
+            gM.buffM.SetBuff(EnemyBuff.Vulnerable, BuffTimeType.Permanent, 999, BuffValueType.NoValue, 1);
+            //gM.buffM.SetEnemyBuff(EnemyBuff.Vulnerable, false, 1);
+            //gM.buffM.SetEnemyBuff(EnemyBuff.Weak, false, 1);
+        }
+>>>>>>> 1a54b0dbc36538ef8caa05babb3ce4c44e002ae4
 
     public void MagicCirleStateControl(string pro)
     {

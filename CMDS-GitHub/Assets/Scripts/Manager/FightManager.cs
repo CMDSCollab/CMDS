@@ -18,6 +18,10 @@ public class FightManager : MonoBehaviour
         {
             gM.aiM.pro.OnPlayerTurnEnded();
         }
+        else if(gM.characterM.mainCharacterType == CharacterType.Designer)
+        {
+            gM.aiM.des.ChallengeDMG();
+        }
 
         //ÊÖÅÆ¶ªÆú
 
