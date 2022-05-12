@@ -19,12 +19,12 @@ using UnityEngine.UI;
 public enum BuffSource { Character,AI,Enemy}
 public enum BuffTimeType { Permanent,Temporary }
 public enum BuffValueType { NoValue, SetValue, AddValue}
-public enum EnemyBuff { Bored, Anxiety, InFlow, Vulnerable, Weak, Instability, WeakMind, Defence, Skill, Block, Charge, PartialInvincibility }
-public enum CharacterBuff { Defence, Vengeance, PowerUp, Weak,Challenge,Inflammable, IsTeamWork, IsSycn}
+public enum EnemyBuff { Bored, Anxiety, InFlow, Vulnerable, Weak, Instability, WeakMind, Defence, Block, Charge, PartialInvincibility,Revive }
+public enum CharacterBuff { Defence, Vengeance, PowerUp, Weak, Inflammable, IsTeamWork, IsSycn}
 public class BuffInfo 
 {
-    public CharacterBuff characterBuffType = CharacterBuff.Null;
-    public EnemyBuff enemyBuffType = EnemyBuff.Null;
+    public CharacterBuff characterBuffType;
+    public EnemyBuff enemyBuffType;
     public GameObject uiObj;
     public BuffTimeType timeType;
     public int lastTime;
@@ -50,126 +50,126 @@ public class BuffManager : MonoBehaviour
     public List<BuffInfo> activeCBuffs = new List<BuffInfo>();
     public List<BuffInfo> activeEBuffs = new List<BuffInfo>();
 
-    public Dictionary<EnemyBuff, GameObject> activeEnemyBuffs = new Dictionary<EnemyBuff, GameObject>();
-    public Dictionary<CharacterBuff, GameObject> activeCharacterBuffs = new Dictionary<CharacterBuff, GameObject>();
+    //public Dictionary<EnemyBuff, GameObject> activeEnemyBuffs = new Dictionary<EnemyBuff, GameObject>();
+    //public Dictionary<CharacterBuff, GameObject> activeCharacterBuffs = new Dictionary<CharacterBuff, GameObject>();
     public void Start()
     {
         gM = FindObjectOfType<GameMaster>();
     }
 
-    public void SetCharacterBuff(CharacterBuff buffType, bool isBuffWithValue, int buffValue)
-    {
-        if (isBuffWithValue == true)
-        {
-            if (activeCharacterBuffs.ContainsKey(buffType))
-            {
-                GameObject obj = activeCharacterBuffs[buffType];
-                obj.transform.Find("Value").GetComponent<Text>().text = buffValue.ToString();
-                activeCharacterBuffs.Remove(buffType);
-                activeCharacterBuffs.Add(buffType, obj);
-            }
-            else
-            {
-                GameObject obj;
-                GameObject buffObj = Instantiate(buffPrefab, gM.characterM.mainCharacter.transform.Find("BuffArea"), false);
-                foreach (CharacterBuffImage recordBuff in characterBuffs)
-                {
-                    if (recordBuff.buffType == buffType)
-                    {
-                        buffObj.GetComponent<Image>().sprite = recordBuff.buffImage;
-                    }
-                }
-                obj = buffObj;
-                obj.transform.Find("Value").GetComponent<Text>().text = buffValue.ToString();
-                activeCharacterBuffs.Add(buffType, obj);
-            }
-            if (buffValue == 0)
-            {
-                Destroy(activeCharacterBuffs[buffType]);
-                activeCharacterBuffs.Remove(buffType);
-            }
-        }
-        else
-        {
-            if (activeCharacterBuffs.ContainsKey(buffType) == false)
-            {
-                GameObject obj;
-                GameObject buffObj = Instantiate(buffPrefab, gM.characterM.mainCharacter.transform.Find("BuffArea"), false);
-                foreach (CharacterBuffImage recordBuff in characterBuffs)
-                {
-                    if (recordBuff.buffType == buffType)
-                    {
-                        buffObj.GetComponent<Image>().sprite = recordBuff.buffImage;
-                    }
-                }
-                obj = buffObj;
-                obj.transform.Find("Value").gameObject.SetActive(false);
-                activeCharacterBuffs.Add(buffType, obj);
-            }
-            if (buffValue == 0)
-            {
-                Destroy(activeCharacterBuffs[buffType]);
-                activeCharacterBuffs.Remove(buffType);
-            }
-        }
-    }
+    //public void SetCharacterBuff(CharacterBuff buffType, bool isBuffWithValue, int buffValue)
+    //{
+    //    if (isBuffWithValue == true)
+    //    {
+    //        if (activeCharacterBuffs.ContainsKey(buffType))
+    //        {
+    //            GameObject obj = activeCharacterBuffs[buffType];
+    //            obj.transform.Find("Value").GetComponent<Text>().text = buffValue.ToString();
+    //            activeCharacterBuffs.Remove(buffType);
+    //            activeCharacterBuffs.Add(buffType, obj);
+    //        }
+    //        else
+    //        {
+    //            GameObject obj;
+    //            GameObject buffObj = Instantiate(buffPrefab, gM.characterM.mainCharacter.transform.Find("BuffArea"), false);
+    //            foreach (CharacterBuffImage recordBuff in characterBuffs)
+    //            {
+    //                if (recordBuff.buffType == buffType)
+    //                {
+    //                    buffObj.GetComponent<Image>().sprite = recordBuff.buffImage;
+    //                }
+    //            }
+    //            obj = buffObj;
+    //            obj.transform.Find("Value").GetComponent<Text>().text = buffValue.ToString();
+    //            activeCharacterBuffs.Add(buffType, obj);
+    //        }
+    //        if (buffValue == 0)
+    //        {
+    //            Destroy(activeCharacterBuffs[buffType]);
+    //            activeCharacterBuffs.Remove(buffType);
+    //        }
+    //    }
+    //    else
+    //    {
+    //        if (activeCharacterBuffs.ContainsKey(buffType) == false)
+    //        {
+    //            GameObject obj;
+    //            GameObject buffObj = Instantiate(buffPrefab, gM.characterM.mainCharacter.transform.Find("BuffArea"), false);
+    //            foreach (CharacterBuffImage recordBuff in characterBuffs)
+    //            {
+    //                if (recordBuff.buffType == buffType)
+    //                {
+    //                    buffObj.GetComponent<Image>().sprite = recordBuff.buffImage;
+    //                }
+    //            }
+    //            obj = buffObj;
+    //            obj.transform.Find("Value").gameObject.SetActive(false);
+    //            activeCharacterBuffs.Add(buffType, obj);
+    //        }
+    //        if (buffValue == 0)
+    //        {
+    //            Destroy(activeCharacterBuffs[buffType]);
+    //            activeCharacterBuffs.Remove(buffType);
+    //        }
+    //    }
+    //}
 
-    public void SetEnemyBuff(EnemyBuff buffType, bool isBuffWithValue, int buffValue)
-    {
-        if (isBuffWithValue == true)
-        {
-            if (activeEnemyBuffs.ContainsKey(buffType))
-            {
-                GameObject obj = activeEnemyBuffs[buffType];
-                obj.transform.Find("Value").GetComponent<Text>().text = buffValue.ToString();
-                activeEnemyBuffs.Remove(buffType);
-                activeEnemyBuffs.Add(buffType, obj);
-            }
-            else
-            {
-                GameObject obj;
-                GameObject buffObj = Instantiate(buffPrefab, gM.enM.enemyTarget.transform.Find("BuffArea"), false);
-                foreach (EnemyBuffImage recordBuff in enemyBuffs)
-                {
-                    if (recordBuff.buffType == buffType)
-                    {
-                        buffObj.GetComponent<Image>().sprite = recordBuff.buffImage;
-                    }
-                }
-                obj = buffObj;
-                obj.transform.Find("Value").GetComponent<Text>().text = buffValue.ToString();
-                activeEnemyBuffs.Add(buffType, obj);
-            }
-            if (buffValue == 0)
-            {
-                Destroy(activeEnemyBuffs[buffType]);
-                activeEnemyBuffs.Remove(buffType);
-            }
-        }
-        else
-        {
-            if (activeEnemyBuffs.ContainsKey(buffType) == false)
-            {
-                GameObject obj;
-                GameObject buffObj = Instantiate(buffPrefab, gM.enM.enemyTarget.transform.Find("BuffArea"), false);
-                foreach (EnemyBuffImage recordBuff in enemyBuffs)
-                {
-                    if (recordBuff.buffType == buffType)
-                    {
-                        buffObj.GetComponent<Image>().sprite = recordBuff.buffImage;
-                    }
-                }
-                obj = buffObj;
-                obj.transform.Find("Value").gameObject.SetActive(false);
-                activeEnemyBuffs.Add(buffType, obj);
-            }
-            if (buffValue == 0)
-            {
-                Destroy(activeEnemyBuffs[buffType]);
-                activeEnemyBuffs.Remove(buffType);
-            }
-        }
-    }
+    //public void SetEnemyBuff(EnemyBuff buffType, bool isBuffWithValue, int buffValue)
+    //{
+    //    if (isBuffWithValue == true)
+    //    {
+    //        if (activeEnemyBuffs.ContainsKey(buffType))
+    //        {
+    //            GameObject obj = activeEnemyBuffs[buffType];
+    //            obj.transform.Find("Value").GetComponent<Text>().text = buffValue.ToString();
+    //            activeEnemyBuffs.Remove(buffType);
+    //            activeEnemyBuffs.Add(buffType, obj);
+    //        }
+    //        else
+    //        {
+    //            GameObject obj;
+    //            GameObject buffObj = Instantiate(buffPrefab, gM.enM.enemyTarget.transform.Find("BuffArea"), false);
+    //            foreach (EnemyBuffImage recordBuff in enemyBuffs)
+    //            {
+    //                if (recordBuff.buffType == buffType)
+    //                {
+    //                    buffObj.GetComponent<Image>().sprite = recordBuff.buffImage;
+    //                }
+    //            }
+    //            obj = buffObj;
+    //            obj.transform.Find("Value").GetComponent<Text>().text = buffValue.ToString();
+    //            activeEnemyBuffs.Add(buffType, obj);
+    //        }
+    //        if (buffValue == 0)
+    //        {
+    //            Destroy(activeEnemyBuffs[buffType]);
+    //            activeEnemyBuffs.Remove(buffType);
+    //        }
+    //    }
+    //    else
+    //    {
+    //        if (activeEnemyBuffs.ContainsKey(buffType) == false)
+    //        {
+    //            GameObject obj;
+    //            GameObject buffObj = Instantiate(buffPrefab, gM.enM.enemyTarget.transform.Find("BuffArea"), false);
+    //            foreach (EnemyBuffImage recordBuff in enemyBuffs)
+    //            {
+    //                if (recordBuff.buffType == buffType)
+    //                {
+    //                    buffObj.GetComponent<Image>().sprite = recordBuff.buffImage;
+    //                }
+    //            }
+    //            obj = buffObj;
+    //            obj.transform.Find("Value").gameObject.SetActive(false);
+    //            activeEnemyBuffs.Add(buffType, obj);
+    //        }
+    //        if (buffValue == 0)
+    //        {
+    //            Destroy(activeEnemyBuffs[buffType]);
+    //            activeEnemyBuffs.Remove(buffType);
+    //        }
+    //    }
+    //}
 
     public void SetBuff(CharacterBuff buffType, BuffTimeType timeType, int lastTime, BuffValueType valueType, int value,BuffSource buffSource)
     {
@@ -296,7 +296,7 @@ public class BuffManager : MonoBehaviour
                 }
                 break;
             case BuffValueType.AddValue:
-                if (buff.value == 0)
+                if (buff.value <= 0)
                 {
                     return true;
                 }
@@ -307,7 +307,6 @@ public class BuffManager : MonoBehaviour
 
     public void CheckBuffAndRemove(CharacterBuff buffType)
     {
-        //Debug.Log(FindBuff(buffType).isReadyToRemove);
         if (FindBuff(buffType).isReadyToRemove == true)
         {
             Destroy(FindBuff(buffType).uiObj);
@@ -316,88 +315,83 @@ public class BuffManager : MonoBehaviour
     }
 
     public void CheckBuffAndRemove(EnemyBuff buffType)
-            {
-        //Debug.Log(FindBuff(buffType).isReadyToRemove);
+    {
         if (FindBuff(buffType).isReadyToRemove == true)
         {
             Destroy(FindBuff(buffType).uiObj);
             activeEBuffs.Remove(FindBuff(buffType));
-            }
         }
+    }
 
-    public void LastTimeDecrease(string whichBuffPool,string fromWho)
+    public void LastTimeDecrease(string whichBuffPool, string fromWho)
     {
         if (whichBuffPool == "Enemy")
         {
-        for (int i = 0; i < activeEBuffs.Count; i++)
-        {
-                if (fromWho == "Enemy")
+            for (int i = 0; i < activeEBuffs.Count; i++)
             {
-                 
+                if (fromWho == "Enemy")
+                {
+
                     if (activeEBuffs[i].timeType == BuffTimeType.Temporary && activeEBuffs[i].source == BuffSource.Enemy)
                     {
-                        Debug.Log("EEentered");
                         activeEBuffs[i].lastTime--;
                         activeEBuffs[i].uiObj.transform.Find("Time").GetComponent<Text>().text = activeEBuffs[i].lastTime.ToString();
                         if (activeEBuffs[i].lastTime <= 0)
                         {
                             activeEBuffs[i].isReadyToRemove = true;
-            }
+                        }
                         CheckBuffAndRemove(activeEBuffs[i].enemyBuffType);
-        }
-    }
+                    }
+                }
                 if (fromWho == "Character")
-    {
-                    if (activeEBuffs[i].timeType == BuffTimeType.Temporary )
-        {
+                {
+                    if (activeEBuffs[i].timeType == BuffTimeType.Temporary)
+                    {
                         if (activeEBuffs[i].source == BuffSource.Character || activeEBuffs[i].source == BuffSource.AI)
-            {
-                            Debug.Log("ECentered");
+                        {
                             activeEBuffs[i].lastTime--;
                             activeEBuffs[i].uiObj.transform.Find("Time").GetComponent<Text>().text = activeEBuffs[i].lastTime.ToString();
                             if (activeEBuffs[i].lastTime <= 0)
-                {
+                            {
                                 activeEBuffs[i].isReadyToRemove = true;
-                }
+                            }
                             CheckBuffAndRemove(activeEBuffs[i].enemyBuffType);
-            }
-        }
-    }
+                        }
+                    }
+                }
             }
         }
 
         if (whichBuffPool == "Character")
-    {
-            for (int i = 0; i < activeCBuffs.Count; i++)
         {
-                if (fromWho == "Enemy")
+            for (int i = 0; i < activeCBuffs.Count; i++)
             {
-                   
-                    if (activeCBuffs[i].timeType == BuffTimeType.Temporary && activeCBuffs[i].source == BuffSource.Enemy)
+                if (fromWho == "Enemy")
                 {
-                        Debug.Log("CEentered");
+
+                    if (activeCBuffs[i].timeType == BuffTimeType.Temporary && activeCBuffs[i].source == BuffSource.Enemy)
+                    {
                         activeCBuffs[i].lastTime--;
                         activeCBuffs[i].uiObj.transform.Find("Time").GetComponent<Text>().text = activeCBuffs[i].lastTime.ToString();
                         if (activeCBuffs[i].lastTime <= 0)
                         {
                             activeCBuffs[i].isReadyToRemove = true;
-                }
+                        }
                         CheckBuffAndRemove(activeCBuffs[i].characterBuffType);
-            }
-        }
+                    }
+                }
                 if (fromWho == "Character")
                 {
                     if (activeCBuffs[i].timeType == BuffTimeType.Temporary)
                     {
                         if (activeCBuffs[i].source == BuffSource.Character || activeCBuffs[i].source == BuffSource.AI)
                         {
-                            Debug.Log("CCentered");
                             activeCBuffs[i].lastTime--;
                             activeCBuffs[i].uiObj.transform.Find("Time").GetComponent<Text>().text = activeCBuffs[i].lastTime.ToString();
                             if (activeCBuffs[i].lastTime <= 0)
                             {
                                 activeCBuffs[i].isReadyToRemove = true;
-    }
+                            }
                             CheckBuffAndRemove(activeCBuffs[i].characterBuffType);
                         }
                     }
@@ -459,6 +453,7 @@ public class BuffManager : MonoBehaviour
 
     public int CharacterAttack(int valueToCalculate)
     {
+        //Debug.Log("CA before:" + valueToCalculate);
         if (FindBuff(CharacterBuff.Weak)!=null)
         {
             valueToCalculate -= 3;
@@ -467,11 +462,14 @@ public class BuffManager : MonoBehaviour
         {
             valueToCalculate += 3;
         }
+        //Debug.Log("CA after:" + valueToCalculate);
+
         return valueToCalculate;
     }
 
     public int CharacterTakeDamage(int valueToCalculate)
     {
+        //Debug.Log("CTDEntered");
         if (FindBuff(CharacterBuff.Defence) != null)
         {
             int defenceValueRecord = FindBuff(CharacterBuff.Defence).value;
@@ -486,11 +484,13 @@ public class BuffManager : MonoBehaviour
                 valueToCalculate -= defenceValueRecord;
             }
         }
+
         return valueToCalculate;
     }
 
     public int EnemyTakeDamage(int valueToCalculate)
     {
+        //Debug.Log("ETD before:" + valueToCalculate);
         if (FindBuff(EnemyBuff.Vulnerable)!=null)
         {
             valueToCalculate += 3;
@@ -509,6 +509,7 @@ public class BuffManager : MonoBehaviour
                 valueToCalculate -= defenceValueRecord;
             }
         }
+        //Debug.Log("ETD after:" + valueToCalculate);
         return valueToCalculate;
     }
 
@@ -521,6 +522,10 @@ public class BuffManager : MonoBehaviour
         if (FindBuff(CharacterBuff.Vengeance) != null)
         {
             gM.enM.enemyTarget.TakeDamage(4);
+        }
+        if (valueToCalculate <= 0)
+        {
+            valueToCalculate = 0;
         }
         return valueToCalculate;
     }

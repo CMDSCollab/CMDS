@@ -21,7 +21,7 @@ public class EB_JosefFames : BasicEnemy
                 break;
             case EnemyIntention.Skill:
                 skillLv += defaultSkill;
-                gM.buffM.SetBuff(EnemyBuff.Skill, BuffTimeType.Permanent, 999, BuffValueType.AddValue, defaultSkill, BuffSource.Enemy);
+                //gM.buffM.SetBuff(EnemyBuff.Skill, BuffTimeType.Permanent, 999, BuffValueType.AddValue, defaultSkill, BuffSource.Enemy);
                 MainChaMCChange();
                 break;
             case EnemyIntention.FireShoot:
@@ -117,6 +117,5 @@ public class EB_JosefFames : BasicEnemy
             InitializeEnemyUI();
             gM.buffM.SetBuff(EnemyBuff.Revive, BuffTimeType.Temporary, 4, BuffValueType.NoValue, 1, BuffSource.Enemy);
         }
-        base.EnemyDefeated();
     }
 }

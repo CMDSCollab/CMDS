@@ -15,7 +15,7 @@ public class EE_Streamer : BasicEnemy
     private CharacterType characterToComment;
     private bool hasBeenImpressed = false;
 
-    private void Awake()
+    public override void Awake()
     {
         base.Awake();
 
@@ -62,6 +62,7 @@ public class EE_Streamer : BasicEnemy
 
     public override void TakeAction()
     {
+        //Debug.Log("action entered");
         if (!charToScoreDic.ContainsValue(0))
         {
             TakeDamage(999);
@@ -72,7 +73,7 @@ public class EE_Streamer : BasicEnemy
         switch (currentIntention)
         {
             case EnemyIntention.Attack:
-                gM.characterM.mainCharacter.TakeDamage(defaultDmg);
+                gM.characterM.mainCharacter.TakeDamage(gM.buffM.EnemyAttack( defaultDmg));
                 break;
 
             case EnemyIntention.ToComment:

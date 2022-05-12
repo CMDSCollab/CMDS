@@ -42,7 +42,11 @@ public class Designer : CharacterMate
 
     public void ChallengeDMG()
     {
-        gM.enM.enemyTarget.TakeDamage(challengeLv - gM.enM.enemyTarget.skillLv);
+        int difference = challengeLv - gM.enM.enemyTarget.skillLv;
+        if (challengeLv > gM.enM.enemyTarget.skillLv && difference < 10)
+        {
+            gM.enM.enemyTarget.TakeDamage(difference);
+        }
     }
 
     public void GoTeamWork(int times)
@@ -59,11 +63,5 @@ public class Designer : CharacterMate
                 gM.aiM.artAI.EnergyValueChange(1);
             }
         }
-    }
-
-    void UpdateUI()
-    {
-        //hpText.text = healthPoint.ToString() + "/" + maxHp.ToString();
-        //challengeIntText.text = challengeInt.ToString();
     }
 }

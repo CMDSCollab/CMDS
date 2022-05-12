@@ -27,7 +27,6 @@ public class EnemyMaster : MonoBehaviour
     void Start()
     {
         gM = FindObjectOfType<GameMaster>();
-        //SetEnemyInfo(testEnemy);
     }
 
     public void SetEnemyInfo(EnemyInfo enemyInfoToSet)

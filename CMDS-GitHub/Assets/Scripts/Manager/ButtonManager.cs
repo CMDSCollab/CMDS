@@ -81,8 +81,14 @@ public class ButtonManager : MonoBehaviour
 
     public void EndFightBackToMap()
     {
+        gM.uiCanvas.transform.Find("Buttons").Find("FightEnd").gameObject.SetActive(false);
         gM.FightEndReset();
         gM.mapM.gameObject.SetActive(true);
         gM.uiCanvas.gameObject.SetActive(false);
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
     }
 }

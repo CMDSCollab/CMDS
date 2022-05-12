@@ -47,11 +47,15 @@ public class CharacterMate : BasicCharacter
 
     public virtual void TakeDamage(int dmg)
     {
+        //Debug.Log("tdDmg:" + dmg);
+        //Debug.Log("tdDmgddadsas£º" + gM.buffM.CharacterTakeDamage(dmg));
         healthPoint -= gM.buffM.CharacterTakeDamage(dmg);
     }
 
     public virtual void HealSelf(int healAmount)
     {
+        //Debug.Log("Hp:"+healthPoint);
+        //Debug.Log("Ha:"+healAmount);
         healthPoint += healAmount;
         if (healthPoint >= maxHp)
         {

@@ -13,11 +13,6 @@ public class EM_TechNerd : BasicEnemy
     private int defaultSkill = 1;
     private bool isBlocked = false;
     public bool isCharged = false;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     public override void TakeDamage(int dmgValue)
     {
@@ -25,46 +20,23 @@ public class EM_TechNerd : BasicEnemy
         {
             return;
         }
-
-        //if (recordShieldP > 0)
-        //{
-        //    recordShieldP -= dmgValue;
-        //    if (recordShieldP > 0)
-        //    {
-        //        gM.buffM.SetEnemyBuff(EnemyBuff.Defence, true, recordShieldP);
-        //    }
-        //    if (recordShieldP < 0)
-        //    {
-        //        healthPoint += recordShieldP;
-        //        gM.buffM.SetEnemyBuff(EnemyBuff.Defence, true, 0);
-        //    }
-        //    if (recordShieldP == 0)
-        //    {
-        //        gM.buffM.SetEnemyBuff(EnemyBuff.Defence, true, 0);
-        //    }
-        //}
-        //else
-        //{
-        //    healthPoint -= dmgValue;
-        //}
-
         healthPoint -= gM.buffM.EnemyTakeDamage(dmgValue);
     }
 
     public override void TakeAction()
     {
+        //Debug.Log("action entered");
         isBlocked = false;
-        //gM.buffM.SetEnemyBuff(EnemyBuff.Block, false, 0);
         gM.buffM.SetBuff(EnemyBuff.Block, BuffTimeType.Temporary, 1, BuffValueType.NoValue, 0, BuffSource.Enemy);
 
         switch (currentIntention)
         {
             case EnemyIntention.Attack:
+                Debug.Log("ATKentered");
                 if (isCharged)
                 {
                     gM.characterM.mainCharacter.TakeDamage(gM.buffM.EnemyAttack(defaultDmg * 2));
                     isCharged = false;
-                    //gM.buffM.SetEnemyBuff(EnemyBuff.Charge, false, 0);
                     gM.buffM.SetBuff(EnemyBuff.Charge, BuffTimeType.Permanent, 999, BuffValueType.NoValue, 0, BuffSource.Enemy);
                 }
                 else
@@ -73,8 +45,6 @@ public class EM_TechNerd : BasicEnemy
                 }
                 break;
             case EnemyIntention.Defence:
-                //recordShieldP = defaultShieldP;
-                //gM.buffM.SetEnemyBuff(EnemyBuff.Defence, true, recordShieldP);
                 gM.buffM.SetBuff(EnemyBuff.Defence, BuffTimeType.Temporary, 1, BuffValueType.SetValue, defaultShieldP, BuffSource.Enemy);
                 break;
             case EnemyIntention.MultiAttack:
@@ -91,21 +61,17 @@ public class EM_TechNerd : BasicEnemy
                 }
                 isCharged = false;
                 gM.buffM.SetBuff(EnemyBuff.Charge, BuffTimeType.Permanent, 999, BuffValueType.NoValue, 0, BuffSource.Enemy);
-                //gM.buffM.SetEnemyBuff(EnemyBuff.Charge, false, 0);
                 break;
             case EnemyIntention.Skill:
                 skillLv += 1;
-                //gM.buffM.SetEnemyBuff(EnemyBuff.Skill, true, skillLv);
                 MainChaMCChange();
                 break;
             case EnemyIntention.Charge:
                 isCharged = true;
-                //gM.buffM.SetEnemyBuff(EnemyBuff.Charge, false, 1);
                 gM.buffM.SetBuff(EnemyBuff.Charge, BuffTimeType.Permanent, 999, BuffValueType.NoValue, 1, BuffSource.Enemy);
                 break;
             case EnemyIntention.Block:
                 isBlocked = true;
-                //gM.buffM.SetEnemyBuff(EnemyBuff.Block, false, 1);
                 gM.buffM.SetBuff(EnemyBuff.Block, BuffTimeType.Temporary, 1, BuffValueType.NoValue, 1, BuffSource.Enemy);
                 break;
         }

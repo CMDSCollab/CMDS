@@ -197,8 +197,6 @@ public class CardManager : MonoBehaviour
                         {
                             gM.aiM.des.challengeLv = 0;
                         }
-                        //gM.buffM.SetCharacterBuff(CharacterBuff.Challenge, true, gM.aiM.des.challengeLv);
-                        //gM.buffM.SetBuff(CharacterBuff.Challenge, BuffTimeType.Permanent, 999, BuffValueType.AddValue, cardDsgn.desSpecialFunctions[i].value, BuffSource.Character);
                         gM.enM.enemyTarget.MainChaMCChange();
                         break;
                     case SpecialDesFunctionType.ChangeSkill:
@@ -207,8 +205,6 @@ public class CardManager : MonoBehaviour
                         {
                             gM.enM.enemyTarget.skillLv = 0;
                         }
-                        //gM.buffM.SetEnemyBuff(EnemyBuff.Skill, true, gM.enM.enemyTarget.skillLv);
-                        //gM.buffM.SetBuff(EnemyBuff.Skill, BuffTimeType.Permanent, 999, BuffValueType.AddValue, cardDsgn.desSpecialFunctions[i].value, BuffSource.Enemy);
                         gM.enM.enemyTarget.MainChaMCChange();
                         break;
                 }
@@ -222,11 +218,11 @@ public class CardManager : MonoBehaviour
                         break;
                     case SpecialPassiveEffectType.IsTeamWork:
                         gM.aiM.des.isTeamWork = true;
-                        gM.buffM.SetBuff(CharacterBuff.IsTeamWork, BuffTimeType.Temporary, 1, BuffValueType.SetValue, 1);
+                        gM.buffM.SetBuff(CharacterBuff.IsTeamWork, BuffTimeType.Temporary, 1, BuffValueType.SetValue, 1,BuffSource.Character);
                         break;
                     case SpecialPassiveEffectType.IsSycn:
                         gM.aiM.des.isSycn = true;
-                        gM.buffM.SetBuff(CharacterBuff.IsSycn, BuffTimeType.Temporary, 1, BuffValueType.SetValue, 1);
+                        gM.buffM.SetBuff(CharacterBuff.IsSycn, BuffTimeType.Temporary, 1, BuffValueType.SetValue, 1, BuffSource.Character);
                         break;
                 }
 

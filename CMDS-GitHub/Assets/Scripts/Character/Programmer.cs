@@ -32,28 +32,6 @@ public class Programmer : CharacterMate
         }
     }
 
-    public override void TakeDamage(int dmg)
-    {
-        if (shieldPoint > 0)
-        {
-            if (shieldPoint >= dmg)
-            {
-                shieldPoint -= dmg;
-            }
-            else
-            {
-                int overdmg = dmg - shieldPoint;
-                shieldPoint = 0;
-
-                healthPoint -= overdmg;
-            }
-        }
-        else
-        {
-            healthPoint -= dmg;
-        }
-    }
-
     private void InitCharacter()
     {
         UIParent = gM.uiCanvas;

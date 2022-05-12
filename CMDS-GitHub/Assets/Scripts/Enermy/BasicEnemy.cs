@@ -40,7 +40,7 @@ public class BasicEnemy : MonoBehaviour
     public int skillLv;
     #endregion
 
-    public void Awake()
+    public virtual void Awake()
     {
         gM = FindObjectOfType<GameMaster>();
     }
@@ -84,7 +84,7 @@ public class BasicEnemy : MonoBehaviour
 
     public virtual void EnemyDefeated()
     {
-        Debug.Log("YouWin");
+        gM.uiCanvas.transform.Find("Buttons").Find("FightEnd").gameObject.SetActive(true);
     }
 
     public virtual void TakeAction()

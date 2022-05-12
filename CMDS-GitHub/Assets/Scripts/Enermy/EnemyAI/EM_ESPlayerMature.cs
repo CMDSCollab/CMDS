@@ -23,7 +23,7 @@ public class EM_ESPlayerMature : BasicEnemy
                 gM.characterM.mainCharacter.TakeDamage(gM.buffM.EnemyAttack(defaultDmg));
                 break;
             case EnemyIntention.Defence:
-                gM.buffM.SetBuff(EnemyBuff.Defence, BuffTimeType.Temporary, 1, BuffValueType.AddValue, defaultShieldP,BuffSource.Enemy);
+                gM.buffM.SetBuff(EnemyBuff.Defence, BuffTimeType.Temporary, 1, BuffValueType.SetValue, defaultShieldP,BuffSource.Enemy);
                 //recordShieldP += defaultShieldP;
                 //gM.buffM.SetEnemyBuff(EnemyBuff.Defence, true, recordShieldP);
                 break;
@@ -34,7 +34,7 @@ public class EM_ESPlayerMature : BasicEnemy
             case EnemyIntention.Skill:
                 skillLv += defaultSkill;
                 //gM.buffM.SetEnemyBuff(EnemyBuff.Skill, true, skillLv);
-                gM.buffM.SetBuff(EnemyBuff.Skill, BuffTimeType.Permanent, 999, BuffValueType.AddValue, defaultSkill, BuffSource.Enemy);
+                //gM.buffM.SetBuff(EnemyBuff.Skill, BuffTimeType.Permanent, 999, BuffValueType.AddValue, defaultSkill, BuffSource.Enemy);
                 MainChaMCChange();
                 break;
         }

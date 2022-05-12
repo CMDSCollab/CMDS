@@ -31,8 +31,8 @@ public class GameMaster : MonoBehaviour
 
     public void FightEndReset()
     {
-        buffM.activeCharacterBuffs.Clear();
-        buffM.activeEnemyBuffs.Clear();
+        //buffM.activeCharacterBuffs.Clear();
+        //buffM.activeEnemyBuffs.Clear();
         buffM.activeCBuffs.Clear();
         buffM.activeEBuffs.Clear();
         handM.handCardList.Clear();
