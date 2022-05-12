@@ -720,42 +720,48 @@ MonoBehaviour:
   gM: {fileID: 0}
   characterBuffs:
   - buffType: 0
-    buffImage: {fileID: 21300000, guid: a80e04fd486acbe42adc743c5e3b9e2e, type: 3}
+    buffImage: {fileID: 21300000, guid: 60b6ba2c6775b504b8314fca5bec8c6c, type: 3}
   - buffType: 1
-    buffImage: {fileID: 21300000, guid: c5539b24ebc3e274ebdc3b2a1f93064b, type: 3}
+    buffImage: {fileID: 21300000, guid: a80e04fd486acbe42adc743c5e3b9e2e, type: 3}
   - buffType: 2
-    buffImage: {fileID: 21300000, guid: 0fcc4f43ca4ec9847adbd576601aaa55, type: 3}
+    buffImage: {fileID: 21300000, guid: c5539b24ebc3e274ebdc3b2a1f93064b, type: 3}
   - buffType: 3
-    buffImage: {fileID: 21300000, guid: 0061a89775b437048ac45edbf35b073c, type: 3}
+    buffImage: {fileID: 21300000, guid: 0fcc4f43ca4ec9847adbd576601aaa55, type: 3}
   - buffType: 4
-    buffImage: {fileID: 21300000, guid: 3f1f3e6d1b99a84459faa81bf5f85a63, type: 3}
+    buffImage: {fileID: 21300000, guid: 0061a89775b437048ac45edbf35b073c, type: 3}
   - buffType: 5
+    buffImage: {fileID: 21300000, guid: 3f1f3e6d1b99a84459faa81bf5f85a63, type: 3}
+  - buffType: 6
     buffImage: {fileID: 21300000, guid: d1f584fdc4884594c805ec3b7f078882, type: 3}
   enemyBuffs:
   - buffType: 0
     buffImage: {fileID: 21300000, guid: 727ad5620d4a0284986bbe9e36096c6a, type: 3}
   - buffType: 1
-    buffImage: {fileID: 21300000, guid: 6626c1fee16591d448828948e1f38618, type: 3}
+    buffImage: {fileID: 21300000, guid: 727ad5620d4a0284986bbe9e36096c6a, type: 3}
   - buffType: 2
-    buffImage: {fileID: 21300000, guid: 17fcf6410f0cd0b4fb2a4f712ceb28d5, type: 3}
+    buffImage: {fileID: 21300000, guid: 6626c1fee16591d448828948e1f38618, type: 3}
   - buffType: 3
-    buffImage: {fileID: 21300000, guid: b97b6dcfc4b4b444c85d9435b077248a, type: 3}
+    buffImage: {fileID: 21300000, guid: 17fcf6410f0cd0b4fb2a4f712ceb28d5, type: 3}
   - buffType: 4
-    buffImage: {fileID: 21300000, guid: 0061a89775b437048ac45edbf35b073c, type: 3}
+    buffImage: {fileID: 21300000, guid: b97b6dcfc4b4b444c85d9435b077248a, type: 3}
   - buffType: 5
-    buffImage: {fileID: 21300000, guid: 6aabf55f1021e0242b253285de77a44f, type: 3}
+    buffImage: {fileID: 21300000, guid: 0061a89775b437048ac45edbf35b073c, type: 3}
   - buffType: 6
-    buffImage: {fileID: 21300000, guid: d84a8526bb931ac4ab459fc70d5c1398, type: 3}
+    buffImage: {fileID: 21300000, guid: 6aabf55f1021e0242b253285de77a44f, type: 3}
   - buffType: 8
-    buffImage: {fileID: 21300000, guid: ed006f7e39a702a42b9331ddeb0bd794, type: 3}
-  - buffType: 7
     buffImage: {fileID: 21300000, guid: a80e04fd486acbe42adc743c5e3b9e2e, type: 3}
+  - buffType: 7
+    buffImage: {fileID: 21300000, guid: d84a8526bb931ac4ab459fc70d5c1398, type: 3}
   - buffType: 9
-    buffImage: {fileID: 21300000, guid: b67d185fd3e479447ab5ee1c9746879e, type: 3}
+    buffImage: {fileID: 21300000, guid: ed006f7e39a702a42b9331ddeb0bd794, type: 3}
   - buffType: 10
-    buffImage: {fileID: 21300000, guid: 0573a7cf4c1edcc4d9e4702458f42b5f, type: 3}
+    buffImage: {fileID: 21300000, guid: b67d185fd3e479447ab5ee1c9746879e, type: 3}
   - buffType: 11
+    buffImage: {fileID: 21300000, guid: 0573a7cf4c1edcc4d9e4702458f42b5f, type: 3}
+  - buffType: 12
     buffImage: {fileID: 21300000, guid: 1bd17a552da66ca41ad4012919e07845, type: 3}
+  - buffType: 13
+    buffImage: {fileID: 21300000, guid: 8e9a7fa56094cd34ab8038e7ff254215, type: 3}
   buffPrefab: {fileID: 58876584110005318, guid: 7e3d29eef0ce3cd49b93b2419c79b393, type: 3}
 --- !u!1 &683001704
 GameObject:
@@ -2532,7 +2538,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1400908855204755767, guid: 9586ba38c438cfa4198c26cebd3089cb, type: 3}
       propertyPath: levelEnemyPool.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1400908855204755767, guid: 9586ba38c438cfa4198c26cebd3089cb, type: 3}
       propertyPath: levelEnemyPool.Array.data[0]
@@ -2545,6 +2551,6 @@ PrefabInstance:
     - target: {fileID: 1400908855204755767, guid: 9586ba38c438cfa4198c26cebd3089cb, type: 3}
       propertyPath: levelEnemyPool.Array.data[2]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 11400000, guid: d2a2583e55ed90b49b3ab8f5d22aeed9, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9586ba38c438cfa4198c26cebd3089cb, type: 3}

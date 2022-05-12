@@ -16,21 +16,22 @@ using UnityEngine.UI;
 //Block 该轮不会受到伤害
 //Charge 下回合造成双倍伤害
 #endregion
-
+public enum BuffSource { Character,AI,Enemy}
 public enum BuffTimeType { Permanent,Temporary }
 public enum BuffValueType { NoValue, SetValue, AddValue}
-public enum EnemyBuff { Bored, Anxiety, InFlow, Vulnerable, Weak, Instability, WeakMind, Defence, Skill, Block, Charge, PartialInvincibility }
-public enum CharacterBuff { Defence, Vengeance, PowerUp, Weak,Challenge,Inflammable}
+public enum EnemyBuff { Null, Bored, Anxiety, InFlow, Vulnerable, Weak, Instability, WeakMind, Defence, Skill, Block, Charge, PartialInvincibility,Revive }
+public enum CharacterBuff { Null,Defence, Vengeance, PowerUp, Weak,Challenge,Inflammable}
 public class BuffInfo 
 {
-    public CharacterBuff characterBuffType;
-    public EnemyBuff enemyBuffType;
+    public CharacterBuff characterBuffType = CharacterBuff.Null;
+    public EnemyBuff enemyBuffType = EnemyBuff.Null;
     public GameObject uiObj;
     public BuffTimeType timeType;
     public int lastTime;
     public BuffValueType valueType;
     public int value;
     public bool isReadyToRemove = false;
+    public BuffSource source;
 }
 
 [System.Serializable]
@@ -170,7 +171,7 @@ public class BuffManager : MonoBehaviour
         }
     }
 
-    public void SetBuff(CharacterBuff buffType, BuffTimeType timeType, int lastTime, BuffValueType valueType, int value)
+    public void SetBuff(CharacterBuff buffType, BuffTimeType timeType, int lastTime, BuffValueType valueType, int value,BuffSource buffSource)
     {
         bool isBuffAlreadyExist = false;
         //判定当前是否存在该buff，已有的话对于数据内容进行改写
@@ -180,7 +181,8 @@ public class BuffManager : MonoBehaviour
             {
                 isBuffAlreadyExist = true;
                 activeCBuffs[i].lastTime = lastTime;
-                activeEBuffs[i].valueType = valueType;
+                activeCBuffs[i].valueType = valueType;
+                activeCBuffs[i].source = buffSource;
                 switch (valueType)
                 {
                     case BuffValueType.NoValue:
@@ -195,6 +197,7 @@ public class BuffManager : MonoBehaviour
                 }
                 activeCBuffs[i].isReadyToRemove = CheckBuffIsReadyForRemove(activeCBuffs[i]);
                 SyncBuffUI(activeCBuffs[i]);
+                CheckBuffAndRemove(activeCBuffs[i].characterBuffType);
             }
         }
         //当判定为新buff，创建buff和初始化buff
@@ -206,6 +209,7 @@ public class BuffManager : MonoBehaviour
             buffInfo.lastTime = lastTime;
             buffInfo.valueType = valueType;
             buffInfo.value = value;
+            buffInfo.source = buffSource;
             buffInfo.uiObj = Instantiate(buffPrefab, gM.characterM.mainCharacter.transform.Find("BuffArea"), false);
             buffInfo.isReadyToRemove = CheckBuffIsReadyForRemove(buffInfo);
             foreach (CharacterBuffImage buff in characterBuffs)
@@ -217,11 +221,11 @@ public class BuffManager : MonoBehaviour
             }
             SyncBuffUI(buffInfo);
             activeCBuffs.Add(buffInfo);
+            CheckBuffAndRemove(buffInfo.characterBuffType);
         }
-        CheckBuffAndRemove();
     }
 
-    public void SetBuff(EnemyBuff buffType, BuffTimeType timeType, int lastTime, BuffValueType valueType, int value)
+    public void SetBuff(EnemyBuff buffType, BuffTimeType timeType, int lastTime, BuffValueType valueType, int value, BuffSource buffSource)
     {
         bool isBuffAlreadyExist = false;
         //判定当前是否存在该buff，已有的话对于数据内容进行改写
@@ -232,6 +236,7 @@ public class BuffManager : MonoBehaviour
                 isBuffAlreadyExist = true;
                 activeEBuffs[i].lastTime = lastTime;
                 activeEBuffs[i].valueType = valueType;
+                activeEBuffs[i].source = buffSource;
                 switch (valueType)
                 {
                     case BuffValueType.NoValue:
@@ -246,6 +251,7 @@ public class BuffManager : MonoBehaviour
                 }
                 activeEBuffs[i].isReadyToRemove = CheckBuffIsReadyForRemove(activeEBuffs[i]);
                 SyncBuffUI(activeEBuffs[i]);
+                CheckBuffAndRemove(activeEBuffs[i].enemyBuffType);
             }
         }
         //当判定为新buff，创建buff和初始化buff
@@ -257,6 +263,7 @@ public class BuffManager : MonoBehaviour
             buffInfo.lastTime = lastTime;
             buffInfo.valueType = valueType;
             buffInfo.value = value;
+            buffInfo.source = buffSource;
             buffInfo.uiObj = Instantiate(buffPrefab, gM.enM.enemyTarget.transform.Find("BuffArea"), false);
             buffInfo.isReadyToRemove = CheckBuffIsReadyForRemove(buffInfo);
             foreach (EnemyBuffImage buff in enemyBuffs)
@@ -268,8 +275,8 @@ public class BuffManager : MonoBehaviour
             }
             SyncBuffUI(buffInfo);
             activeEBuffs.Add(buffInfo);
+            CheckBuffAndRemove(buffInfo.enemyBuffType);
         }
-        CheckBuffAndRemove();
     }
 
     public bool CheckBuffIsReadyForRemove(BuffInfo buff)
@@ -289,7 +296,7 @@ public class BuffManager : MonoBehaviour
                 }
                 break;
             case BuffValueType.AddValue:
-                if (buff.value <= 0)
+                if (buff.value == 0)
                 {
                     return true;
                 }
@@ -298,51 +305,102 @@ public class BuffManager : MonoBehaviour
         return false;
     }
 
-    public void CheckBuffAndRemove()
+    public void CheckBuffAndRemove(CharacterBuff buffType)
     {
-        for (int i = 0; i < activeCBuffs.Count; i++)
+        //Debug.Log(FindBuff(buffType).isReadyToRemove);
+        if (FindBuff(buffType).isReadyToRemove == true)
         {
-            if (activeCBuffs[i].isReadyToRemove == true)
-            {
-                Destroy(activeCBuffs[i].uiObj);
-                activeCBuffs.Remove(activeCBuffs[i]);
-            }
-        }
-        for (int i = 0; i < activeEBuffs.Count; i++)
-        {
-            if (activeEBuffs[i].isReadyToRemove == true)
-            {
-                Destroy(activeEBuffs[i].uiObj);
-                activeEBuffs.Remove(activeEBuffs[i]);
-            }
+            Destroy(FindBuff(buffType).uiObj);
+            activeCBuffs.Remove(FindBuff(buffType));
         }
     }
 
-    public void CBuffLastTimeDecrease()
+    public void CheckBuffAndRemove(EnemyBuff buffType)
     {
-        foreach (BuffInfo buff in activeCBuffs)
+        //Debug.Log(FindBuff(buffType).isReadyToRemove);
+        if (FindBuff(buffType).isReadyToRemove == true)
         {
-            if (buff.timeType == BuffTimeType.Temporary)
+            Destroy(FindBuff(buffType).uiObj);
+            activeEBuffs.Remove(FindBuff(buffType));
+        }
+    }
+
+    public void LastTimeDecrease(string whichBuffPool,string fromWho)
+    {
+        if (whichBuffPool == "Enemy")
+        {
+            for (int i = 0; i < activeEBuffs.Count; i++)
             {
-                buff.lastTime--;
-                if (buff.lastTime <= 0)
+                if (fromWho == "Enemy")
                 {
-                    buff.isReadyToRemove = true;
+                 
+                    if (activeEBuffs[i].timeType == BuffTimeType.Temporary && activeEBuffs[i].source == BuffSource.Enemy)
+                    {
+                        Debug.Log("EEentered");
+                        activeEBuffs[i].lastTime--;
+                        activeEBuffs[i].uiObj.transform.Find("Time").GetComponent<Text>().text = activeEBuffs[i].lastTime.ToString();
+                        if (activeEBuffs[i].lastTime <= 0)
+                        {
+                            activeEBuffs[i].isReadyToRemove = true;
+                        }
+                        CheckBuffAndRemove(activeEBuffs[i].enemyBuffType);
+                    }
+                }
+                if (fromWho == "Character")
+                {
+                    if (activeEBuffs[i].timeType == BuffTimeType.Temporary )
+                    {
+                        if (activeEBuffs[i].source == BuffSource.Character || activeEBuffs[i].source == BuffSource.AI)
+                        {
+                            Debug.Log("ECentered");
+                            activeEBuffs[i].lastTime--;
+                            activeEBuffs[i].uiObj.transform.Find("Time").GetComponent<Text>().text = activeEBuffs[i].lastTime.ToString();
+                            if (activeEBuffs[i].lastTime <= 0)
+                            {
+                                activeEBuffs[i].isReadyToRemove = true;
+                            }
+                            CheckBuffAndRemove(activeEBuffs[i].enemyBuffType);
+                        }
+                    }
                 }
             }
         }
-    }
 
-    public void EBuffLastTimeDecrease()
-    {
-        foreach (BuffInfo buff in activeEBuffs)
+        if (whichBuffPool == "Character")
         {
-            if (buff.timeType == BuffTimeType.Temporary)
+            for (int i = 0; i < activeCBuffs.Count; i++)
             {
-                buff.lastTime--;
-                if (buff.lastTime <= 0)
+                if (fromWho == "Enemy")
                 {
-                    buff.isReadyToRemove = true;
+                   
+                    if (activeCBuffs[i].timeType == BuffTimeType.Temporary && activeCBuffs[i].source == BuffSource.Enemy)
+                    {
+                        Debug.Log("CEentered");
+                        activeCBuffs[i].lastTime--;
+                        activeCBuffs[i].uiObj.transform.Find("Time").GetComponent<Text>().text = activeCBuffs[i].lastTime.ToString();
+                        if (activeCBuffs[i].lastTime <= 0)
+                        {
+                            activeCBuffs[i].isReadyToRemove = true;
+                        }
+                        CheckBuffAndRemove(activeCBuffs[i].characterBuffType);
+                    }
+                }
+                if (fromWho == "Character")
+                {
+                    if (activeCBuffs[i].timeType == BuffTimeType.Temporary)
+                    {
+                        if (activeCBuffs[i].source == BuffSource.Character || activeCBuffs[i].source == BuffSource.AI)
+                        {
+                            Debug.Log("CCentered");
+                            activeCBuffs[i].lastTime--;
+                            activeCBuffs[i].uiObj.transform.Find("Time").GetComponent<Text>().text = activeCBuffs[i].lastTime.ToString();
+                            if (activeCBuffs[i].lastTime <= 0)
+                            {
+                                activeCBuffs[i].isReadyToRemove = true;
+                            }
+                            CheckBuffAndRemove(activeCBuffs[i].characterBuffType);
+                        }
+                    }
                 }
             }
         }
@@ -409,14 +467,6 @@ public class BuffManager : MonoBehaviour
         {
             valueToCalculate += 3;
         }
-        //if (activeCharacterBuffs.ContainsKey(CharacterBuff.Weak))
-        //{
-        //    valueToCalculate -= 3;
-        //}
-        //if (activeCharacterBuffs.ContainsKey(CharacterBuff.PowerUp))
-        //{
-        //    valueToCalculate += 3;
-        //}
         return valueToCalculate;
     }
 
@@ -427,12 +477,12 @@ public class BuffManager : MonoBehaviour
             int defenceValueRecord = FindBuff(CharacterBuff.Defence).value;
             if (FindBuff(CharacterBuff.Defence).value > valueToCalculate)
             {
-                gM.buffM.SetBuff(CharacterBuff.Defence, BuffTimeType.Temporary, 1, BuffValueType.AddValue, -valueToCalculate);
+                gM.buffM.SetBuff(CharacterBuff.Defence, BuffTimeType.Temporary, 1, BuffValueType.AddValue, -valueToCalculate,BuffSource.Character);
                 valueToCalculate = 0;
             }
             else
             {
-                gM.buffM.SetBuff(CharacterBuff.Defence, BuffTimeType.Temporary, 1, BuffValueType.AddValue, -valueToCalculate);
+                gM.buffM.SetBuff(CharacterBuff.Defence, BuffTimeType.Temporary, 1, BuffValueType.AddValue, -valueToCalculate, BuffSource.Character);
                 valueToCalculate -= defenceValueRecord;
             }
         }
@@ -445,21 +495,17 @@ public class BuffManager : MonoBehaviour
         {
             valueToCalculate += 3;
         }
-        //if (activeEnemyBuffs.ContainsKey(EnemyBuff.Vulnerable))
-        //{
-        //    valueToCalculate += 3;
-        //}
         if (FindBuff(EnemyBuff.Defence) != null)
         {
             int defenceValueRecord = FindBuff(EnemyBuff.Defence).value;
             if (FindBuff(EnemyBuff.Defence).value > valueToCalculate)
             {
-                gM.buffM.SetBuff(EnemyBuff.Defence, BuffTimeType.Temporary, 1, BuffValueType.AddValue, -valueToCalculate);
+                gM.buffM.SetBuff(EnemyBuff.Defence, BuffTimeType.Temporary, 1, BuffValueType.AddValue, -valueToCalculate, BuffSource.Enemy);
                 valueToCalculate = 0;
             }
             else
             {
-                gM.buffM.SetBuff(EnemyBuff.Defence, BuffTimeType.Temporary, 1, BuffValueType.AddValue, -valueToCalculate);
+                gM.buffM.SetBuff(EnemyBuff.Defence, BuffTimeType.Temporary, 1, BuffValueType.AddValue, -valueToCalculate, BuffSource.Enemy);
                 valueToCalculate -= defenceValueRecord;
             }
         }
@@ -476,14 +522,6 @@ public class BuffManager : MonoBehaviour
         {
             gM.enM.enemyTarget.TakeDamage(4);
         }
-        //if (activeEnemyBuffs.ContainsKey(EnemyBuff.Weak))
-        //{
-        //    valueToCalculate -= 3;
-        //}
-        //if (activeCharacterBuffs.ContainsKey(CharacterBuff.Vengeance))
-        //{
-        //    gM.enM.enemyTarget.TakeDamage(4);
-        //}
         return valueToCalculate;
     }
     #endregion

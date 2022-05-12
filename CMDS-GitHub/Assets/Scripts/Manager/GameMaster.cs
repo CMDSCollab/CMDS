@@ -36,6 +36,8 @@ public class GameMaster : MonoBehaviour
         buffM.activeCBuffs.Clear();
         buffM.activeEBuffs.Clear();
         handM.handCardList.Clear();
+        cardRepoM.discardPile.Clear();
+        cardRepoM.drawPile.Clear();
         switch (characterM.mainCharacterType)
         {
             case CharacterType.Designer:
