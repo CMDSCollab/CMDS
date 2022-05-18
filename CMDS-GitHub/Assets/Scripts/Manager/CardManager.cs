@@ -90,6 +90,32 @@ public class CardManager : MonoBehaviour
                 transform.Find("Redundancy").GetComponent<Text>().text = transform.Find("Redundancy").GetComponent<Text>().text + "\n" + cardPro.debugType;
             }
         }
+
+        //异术家卡牌需要针对style做卡面特质化
+        if (cardInfo is CardInfoArt)
+        {
+            CardInfoArt cardArt = (CardInfoArt)cardInfo;
+            Image img = transform.Find("StyleIcon").GetComponent<Image>();
+
+            switch (cardArt.style.ToString())
+            {
+                case "Pixel":
+                    img.color = Color.red;
+                    break;
+                case "ACG":
+                    img.color = Color.yellow;
+                    break;
+                case "LowPoly":
+                    img.color = Color.blue;
+                    break;
+                case "LoveCraft":
+                    img.color = Color.green;
+                    break;
+                case "LaiZi":
+                    img.color = Color.black;
+                    break;
+            }
+        }
     }
 
     public void CardFuntion()
@@ -171,6 +197,19 @@ public class CardManager : MonoBehaviour
                 default:
                     break;
             }
+        }
+
+        //异术家 卡牌相关功能
+        if(cardInfo is CardInfoArt)
+        {
+            if (gM.characterM.mainCharacterType != CharacterType.Artist)
+            {
+                return;
+            }
+
+            CardInfoArt cardArt = (CardInfoArt)cardInfo;
+
+            gM.aiM.art.StyleCheck(cardArt);
         }
   
 

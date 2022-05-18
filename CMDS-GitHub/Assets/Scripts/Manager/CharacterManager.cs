@@ -60,7 +60,7 @@ public class CharacterManager : MonoBehaviour
                 AIGenerateAndInitialize(CharacterType.Designer, "Left");
                 AIGenerateAndInitialize(CharacterType.Programmmer, "Right");
 
-                //mainCharacter = gM.aiM.art;
+                mainCharacter = gM.aiM.art;
                 break;
             default:
                 break;
@@ -123,7 +123,12 @@ public class CharacterManager : MonoBehaviour
                 gM.aiM.pro = chaObj.GetComponent<Programmer>();
                 break;
             case CharacterType.Artist:
-                //aiObj.AddComponent<Artist>();
+                chaObj.AddComponent<Artist>();
+                chaObj.GetComponent<Artist>().characterInfo = characters[2];
+                chaObj.transform.Find("CharacterImage").GetComponent<Image>().sprite = characterImages[2];
+                gM.aiM.art = chaObj.GetComponent<Artist>();
+
+
                 break;
         }
     }

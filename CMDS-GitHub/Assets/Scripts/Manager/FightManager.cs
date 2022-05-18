@@ -22,6 +22,10 @@ public class FightManager : MonoBehaviour
         {
             gM.aiM.des.ChallengeDMG();
         }
+        else if(gM.characterM.mainCharacterType == CharacterType.Artist)
+        {
+            gM.aiM.art.StyleEffect();
+        }
 
         //ÊÖÅÆ¶ªÆú
 

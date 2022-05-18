@@ -1410,9 +1410,17 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 0069761ad3379da4e91a922d40764007, type: 2}
   - {fileID: 11400000, guid: f2f4789c36af8374fbb9dfd2fcb672bf, type: 2}
   - {fileID: 11400000, guid: 8be4ea44c71d3914ebd91996e3e3e8da, type: 2}
+  artistBaseCard:
+  - {fileID: 11400000, guid: 77b763b23795ec946a3e98d4982b3423, type: 2}
+  - {fileID: 11400000, guid: 77b763b23795ec946a3e98d4982b3423, type: 2}
+  - {fileID: 11400000, guid: c0f167e4355508f4e9b919477ef71a59, type: 2}
+  - {fileID: 11400000, guid: c0f167e4355508f4e9b919477ef71a59, type: 2}
+  - {fileID: 11400000, guid: b5313ee4517284a4b824a81fa03eb691, type: 2}
+  - {fileID: 11400000, guid: b5313ee4517284a4b824a81fa03eb691, type: 2}
   cardPrefabs:
   - {fileID: 1596943046692765748, guid: 701f33fa0496a9d41b84c2e7550f1814, type: 3}
   - {fileID: 2198812027880452365, guid: 182ccee00739a724baa330837b025f1b, type: 3}
+  - {fileID: 4332093080513756420, guid: 774d1abbd9004d04c9a5669cd0ff8eba, type: 3}
   gM: {fileID: 0}
   initialCardAmount: 4
   drawCardAmount: 3
@@ -2803,6 +2811,7 @@ MonoBehaviour:
   desAI: {fileID: 0}
   pro: {fileID: 0}
   des: {fileID: 0}
+  art: {fileID: 0}
   gM: {fileID: 0}
 --- !u!1 &1987099164
 GameObject:

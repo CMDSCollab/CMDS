@@ -10,6 +10,7 @@ public class AIManager : MonoBehaviour
 
     public Programmer pro;
     public Designer des;
+    public Artist art;
 
     public GameMaster gM;
 
