@@ -16,6 +16,6 @@ MonoBehaviour:
   intentions:
   - intention: 1
     image: {fileID: 21300000, guid: 25aaf2d8d388f0b4d8b25a81286dc2a3, type: 3}
-  - intention: 4
+  - intention: 5
     image: {fileID: 21300000, guid: 0fcc4f43ca4ec9847adbd576601aaa55, type: 3}
   maxHp: 50
