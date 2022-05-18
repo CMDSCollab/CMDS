@@ -289,7 +289,10 @@ public class CardManager : MonoBehaviour
                     gM.enM.enemyTarget.TakeDamage(gM.buffM.CharacterAttack(gM.aiM.pro.shieldPoint));
                     break;
                 case SpecialFunctionPro.DoubleShield:
-                    gM.buffM.SetBuff(CharacterBuff.Defence, BuffTimeType.Temporary, 1, BuffValueType.AddValue, gM.buffM.FindBuff(CharacterBuff.Defence).value, BuffSource.Character);
+                    if (gM.buffM.FindBuff(CharacterBuff.Defence) != null)
+                    {
+                        gM.buffM.SetBuff(CharacterBuff.Defence, BuffTimeType.Temporary, 1, BuffValueType.AddValue, gM.buffM.FindBuff(CharacterBuff.Defence).value, BuffSource.Character);
+                    }
                     //gM.aiM.pro.shieldPoint += gM.aiM.pro.shieldPoint;
                     //gM.buffM.SetCharacterBuff(CharacterBuff.Defence, true, gM.aiM.pro.shieldPoint);
                     break;
@@ -308,8 +311,8 @@ public class CardManager : MonoBehaviour
                                 //gM.aiM.pro.shieldPoint += 5;
                                 //gM.buffM.SetCharacterBuff(CharacterBuff.Defence, true, gM.aiM.pro.shieldPoint);
                             }
-                            handIndex = 1;
                         }
+                        gM.handM.OrganizeHand();
                     }
                     break;
                 case SpecialFunctionPro.Vengeance:
@@ -321,8 +324,11 @@ public class CardManager : MonoBehaviour
                     //gM.enM.enemyTarget.TakeDamage(gM.buffM.CharacterAttack(gM.aiM.pro.shieldPoint * 2));
                     //gM.aiM.pro.shieldPoint = 0;
                     //gM.buffM.SetCharacterBuff(CharacterBuff.Defence, true, gM.aiM.pro.shieldPoint);
-                    gM.enM.enemyTarget.TakeDamage(gM.buffM.CharacterAttack(gM.buffM.FindBuff(CharacterBuff.Defence).value * 2));
-                    gM.buffM.SetBuff(CharacterBuff.Defence, BuffTimeType.Temporary, 1, BuffValueType.AddValue, -gM.buffM.FindBuff(CharacterBuff.Defence).value, BuffSource.Character);
+                    if (gM.buffM.FindBuff(CharacterBuff.Defence) != null)
+                    {
+                        gM.enM.enemyTarget.TakeDamage(gM.buffM.CharacterAttack(gM.buffM.FindBuff(CharacterBuff.Defence).value * 2));
+                        gM.buffM.SetBuff(CharacterBuff.Defence, BuffTimeType.Temporary, 1, BuffValueType.AddValue, -gM.buffM.FindBuff(CharacterBuff.Defence).value, BuffSource.Character);
+                    }
                     break;
                 default:
                     break;
