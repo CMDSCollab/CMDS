@@ -12,10 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6b9de48feee2a04c924254a42a5330e, type: 3}
   m_Name: Mood Board
   m_EditorClassIdentifier: 
-  cardName: 
-  description: 
-  baseFunctions: []
+  cardName: Mood Board
+  description: "\u62BD1\u5F20\u724C  \u8BBE\u8BA1+1"
+  baseFunctions:
+  - functionType: 9
+    value: 1
+  - functionType: 4
+    value: 1
   specialFunctions: 
-  style: 0
+  style: 5
   artSpecialFunctions: []
   artPassiveEffects: []

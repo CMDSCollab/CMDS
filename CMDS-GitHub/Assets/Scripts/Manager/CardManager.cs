@@ -96,25 +96,8 @@ public class CardManager : MonoBehaviour
         {
             CardInfoArt cardArt = (CardInfoArt)cardInfo;
             Image img = transform.Find("StyleIcon").GetComponent<Image>();
-
-            switch (cardArt.style.ToString())
-            {
-                case "Pixel":
-                    img.color = Color.red;
-                    break;
-                case "ACG":
-                    img.color = Color.yellow;
-                    break;
-                case "LowPoly":
-                    img.color = Color.blue;
-                    break;
-                case "LoveCraft":
-                    img.color = Color.green;
-                    break;
-                case "LaiZi":
-                    img.color = Color.black;
-                    break;
-            }
+            Debug.Log("TestXXXXXX" + gM.aiM.art.hitP.styleImageDic["Pixel"]);
+            img.sprite = gM.aiM.art.hitP.styleImageDic[cardArt.style.ToString()];
         }
     }
 
@@ -210,6 +193,33 @@ public class CardManager : MonoBehaviour
             CardInfoArt cardArt = (CardInfoArt)cardInfo;
 
             gM.aiM.art.StyleCheck(cardArt);
+
+            for(int i = 0; i < cardArt.artSpecialFunctions.Count; i++)
+            {
+                switch (cardArt.artSpecialFunctions[i].artFunctionType)
+                {
+                    case SpecialArtFunctionType.None:
+                        break;
+                    case SpecialArtFunctionType.TrueDamage:
+                        gM.enM.enemyTarget.TakeTrueDamage(cardArt.artSpecialFunctions[i].value);
+                        break;
+                    case SpecialArtFunctionType.StyleEffect:
+                        gM.aiM.art.StyleEffect();
+                        break;
+                    case SpecialArtFunctionType.GetIncome:
+                        gM.aiM.art.income += cardArt.artSpecialFunctions[i].value;
+                        break;
+                }
+            }
+
+            for(int i = 0; i < cardArt.artDrawExpandCard.Count; i++)
+            {
+                for(int x = 0; x < cardArt.artDrawExpandCard[i].times; x++) 
+                {
+                    gM.deckM.DrawSpecificSingleArtistExpandCard(cardArt.artDrawExpandCard[i].expandCardName.ToString());
+
+                }
+            }
         }
   
 

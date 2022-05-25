@@ -10,14 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c6b9de48feee2a04c924254a42a5330e, type: 3}
-  m_Name: "\u98CE\u683C\u53C2\u8003"
+  m_Name: "LowPoly\u6279\u91CF\u5EFA\u6A21"
   m_EditorClassIdentifier: 
-  cardName: "\u98CE\u683C\u53C2\u8003"
-  description: "\u62BD\u4E24\u5F20\u724C\uFF0C\u6D88\u8017"
+  cardName: "LowPoly\u6279\u91CF\u5EFA\u6A21"
+  description: "\u62BD3\u5F20\u201CLowPloy\u5C0F\u6A21\u578B\u201D\u52A0\u5165\u624B\u724C"
   baseFunctions:
-  - functionType: 9
-    value: 2
-  specialFunctions: 05000000
-  style: 5
-  artSpecialFunctions: []
+  - functionType: 5
+    value: 1
+  specialFunctions: 
+  style: 2
+  artSpecialFunctions:
+  - artFunctionType: 0
+    value: 0
   artPassiveEffects: []
+  artDrawExpandCard:
+  - expandCardName: 2
+    times: 2

@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class Artist : CharacterMate
 {
+    public Canvas UICanvas;
+    public HitPanel hitP; //连击风格style和连击值consistency在玩家视角中的UI呈现
+
     public int consistency;//风格连击值
-    public string currentStyle; //当前连击风格、
+    public string currentStyle; //当前连击风格  现有风格：Pixel，LowPoly,LoveCraft,ACG,LaiZi
     public int income;//收入
 
     //像素机制相关
@@ -30,10 +33,28 @@ public class Artist : CharacterMate
     public int lpLv4 = 4;//9次以上
 
 
+    //克苏鲁机制相关
+    public int loveCraftPotential;//中断时，给予敌人的真实伤害 设定中缺失
+    public int lcLv1 = 1;
+    public int lcLv2 = 2;
+    public int lcLv3 = 3;
+    public int lcLv4 = 4;
+
 
     //public enum StyleType {Pixel};
 
+    public override void Start()
+    {
+        base.Start();
+        PrepareHitsUI();
+    }
 
+    public void PrepareHitsUI()
+    {
+        UICanvas = gM.uiCanvas;
+        GameObject hitPanel = Instantiate(gM.characterM.hitsPanel, UICanvas.transform, false);
+        hitP = hitPanel.GetComponent<HitPanel>();
+    }
 
 
     //异术家所有卡牌都有style，并需要在每次打出后，进行连击检测
@@ -43,8 +64,10 @@ public class Artist : CharacterMate
         {
             consistency = 1;
             currentStyle = card.style.ToString();
+            hitP.SycnConsistencyAndStyle(currentStyle, consistency);
             return;
         }
+
         if (card.style.ToString() == currentStyle || card.style.ToString() == "LaiZi")
         {
             consistency += 1;
@@ -54,6 +77,9 @@ public class Artist : CharacterMate
             consistency = 1;
             currentStyle = card.style.ToString();
         }
+
+        hitP.SycnConsistencyAndStyle(currentStyle, consistency);
+
     }
 
     //在己方回合结束后，进行style的连击效果结算
@@ -74,11 +100,14 @@ public class Artist : CharacterMate
                 income += ACGCheck();
                 break;
             case "LoveCraft":
-            //克苏鲁连击：在每回合结束时，每1点连击转换为对敌方的1点真实伤害
+                //克苏鲁连击：在每回合结束时，每1点连击转换为对敌方的1点真实伤害
+                gM.enM.enemyTarget.TakeTrueDamage(consistency * LoveCraftCheck());
                 break;
         }
 
     }
+
+    
 
 
     //像素自身的连击机制
@@ -151,6 +180,28 @@ public class Artist : CharacterMate
         {
             lowPolyPotential = 0;
             return lpLv1;
+        }
+    }
+
+    public int LoveCraftCheck()
+    {
+        if (consistency > 2)
+        {
+            //loveCraftPotential = 3;
+            return lcLv2;
+        }
+        else if (consistency > 5)
+        {
+            
+            return lcLv3;
+        }
+        else if (consistency > 8)
+        {
+            return lcLv4;
+        }
+        else
+        {
+            return lcLv1;
         }
     }
 

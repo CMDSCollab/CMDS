@@ -10,14 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c6b9de48feee2a04c924254a42a5330e, type: 3}
-  m_Name: "\u50CF\u7D20\u52A8\u753B\u5E27"
+  m_Name: "Zbrush\u52A8\u7269\u89E3\u5256"
   m_EditorClassIdentifier: 
-  cardName: "\u50CF\u7D20\u52A8\u753B\u5E27"
-  description: "\u5BF9\u654C\u65B9\u9020\u62102\u70B9\u4F24\u5BB3"
+  cardName: "Zbrush\u52A8\u7269\u89E3\u5256"
+  description: "\u5C063\u5F20\u201C\u514B\u82CF\u9C81\u7CBE\u6A21\u201D\u52A0\u5165\u624B\u724C"
   baseFunctions:
-  - functionType: 0
-    value: 2
+  - functionType: 4
+    value: 1
   specialFunctions: 
-  style: 1
-  artSpecialFunctions: []
+  style: 4
+  artSpecialFunctions:
+  - artFunctionType: 5
+    value: 2
   artPassiveEffects: []

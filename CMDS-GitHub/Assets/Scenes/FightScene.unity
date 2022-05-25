@@ -1411,12 +1411,19 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f2f4789c36af8374fbb9dfd2fcb672bf, type: 2}
   - {fileID: 11400000, guid: 8be4ea44c71d3914ebd91996e3e3e8da, type: 2}
   artistBaseCard:
-  - {fileID: 11400000, guid: 77b763b23795ec946a3e98d4982b3423, type: 2}
-  - {fileID: 11400000, guid: 77b763b23795ec946a3e98d4982b3423, type: 2}
-  - {fileID: 11400000, guid: c0f167e4355508f4e9b919477ef71a59, type: 2}
-  - {fileID: 11400000, guid: c0f167e4355508f4e9b919477ef71a59, type: 2}
-  - {fileID: 11400000, guid: b5313ee4517284a4b824a81fa03eb691, type: 2}
-  - {fileID: 11400000, guid: b5313ee4517284a4b824a81fa03eb691, type: 2}
+  - {fileID: 11400000, guid: c138e952a48119f4499687f2243da3d3, type: 2}
+  - {fileID: 11400000, guid: 3cf13fff0c3597b4bbcefc3c255406c8, type: 2}
+  - {fileID: 11400000, guid: 348ac079d7a11cb45a622d627786528a, type: 2}
+  - {fileID: 11400000, guid: 38b24c35cffd20e4fb5d05969bdec909, type: 2}
+  artistExpandCard:
+  - cardname: "\u514B\u82CF\u9C81\u7CBE\u6A21"
+    card: {fileID: 11400000, guid: 6054842cdb68e8747bdc1b584af86748, type: 2}
+  - cardname: "\u840C\u5A18\u7ACB\u7ED8"
+    card: {fileID: 11400000, guid: ca9d92aca2fd0b94d8992a9732a14342, type: 2}
+  - cardname: "\u50CF\u7D20\u52A8\u753B\u5E27"
+    card: {fileID: 11400000, guid: 7ce65889bc64f9643866c1331332a40c, type: 2}
+  - cardname: "LowPoly\u5C0F\u6A21\u578B"
+    card: {fileID: 11400000, guid: f5bf9bfd78447744a838401bef6dd17b, type: 2}
   cardPrefabs:
   - {fileID: 1596943046692765748, guid: 701f33fa0496a9d41b84c2e7550f1814, type: 3}
   - {fileID: 2198812027880452365, guid: 182ccee00739a724baa330837b025f1b, type: 3}
@@ -2461,6 +2468,7 @@ MonoBehaviour:
     debug: 4
   - errorName: Out of memory
     debug: 3
+  hitsPanel: {fileID: 2083925982735615351, guid: 1cd5911d081022442b4c3c955e463b43, type: 3}
 --- !u!1 &1703458573
 GameObject:
   m_ObjectHideFlags: 0

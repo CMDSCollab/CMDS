@@ -17,17 +17,36 @@ public enum ArtStyle
 public enum SpecialArtFunctionType
 {
     None,
-    AddCardToHand,
     TrueDamage,
     GetIncome,
     CostConsistency,
-    StyleEffect//连击结算
+    StyleEffect,//连击结算
+    drawExpandCard //抽取衍生卡，value即与DeckManager中ArtistExpandCard对应的List index
 }
+
+public enum DrawExpandCard 
+{
+    None,
+    克苏鲁精模,
+    LowPoly小模型,
+    萌娘立绘,
+    像素动画帧
+}
+
+
+
 
 public enum SpecialArtPassiveEffectType
 {
     None,
     ImmuneConsistency
+}
+
+[System.Serializable]
+public struct drawExpandCardFunction
+{
+    public DrawExpandCard expandCardName;
+    public int times; //抽几次
 }
 
 
@@ -58,4 +77,5 @@ public class CardInfoArt : CardInfo
     public ArtStyle style;
     public List<specialArtFunction> artSpecialFunctions;
     public List<specialArtPassiveEffect> artPassiveEffects;
+    public List<drawExpandCardFunction> artDrawExpandCard;
 }

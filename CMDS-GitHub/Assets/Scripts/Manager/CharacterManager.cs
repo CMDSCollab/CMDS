@@ -31,6 +31,13 @@ public class CharacterManager : MonoBehaviour
     public List<Error> potentialErrors;
     #endregion
 
+    #region 美术变量
+    [Header("美术")]
+    public GameObject hitsPanel;//连击UI面板
+
+    #endregion
+
+
     public void Start()
     {
         gM = FindObjectOfType<GameMaster>();

@@ -97,6 +97,13 @@ public class BasicEnemy : MonoBehaviour
         healthPoint -= gM.buffM.EnemyTakeDamage(dmgValue);
     }
 
+
+    //承受真实伤害：无视所有减益buff
+    public void TakeTrueDamage(int dmg)
+    {
+        healthPoint -= dmg;
+    }
+
     #region Intention
     public virtual void GenerateEnemyIntention()
     {

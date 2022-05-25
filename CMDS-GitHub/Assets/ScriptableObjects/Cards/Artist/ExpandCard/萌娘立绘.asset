@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c6b9de48feee2a04c924254a42a5330e, type: 3}
-  m_Name: "\u98CE\u683C\u53C2\u8003"
+  m_Name: "\u840C\u5A18\u7ACB\u7ED8"
   m_EditorClassIdentifier: 
-  cardName: "\u98CE\u683C\u53C2\u8003"
-  description: "\u62BD\u4E24\u5F20\u724C\uFF0C\u6D88\u8017"
-  baseFunctions:
-  - functionType: 9
-    value: 2
+  cardName: "\u840C\u5A18\u7ACB\u7ED8"
+  description: "+1\u6536\u5165"
+  baseFunctions: []
   specialFunctions: 05000000
-  style: 5
-  artSpecialFunctions: []
+  style: 3
+  artSpecialFunctions:
+  - artFunctionType: 3
+    value: 1
   artPassiveEffects: []

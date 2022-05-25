@@ -12,10 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6b9de48feee2a04c924254a42a5330e, type: 3}
   m_Name: "\u9636\u6BB5\u6027\u6210\u679C"
   m_EditorClassIdentifier: 
-  cardName: 
-  description: 
+  cardName: "\u9636\u6BB5\u6027\u6210\u679C"
+  description: "\u7ACB\u5373\u8FDB\u884C\u8FDE\u51FB\u7ED3\u7B97 \u4F46\u4E0D\u4E2D\u65AD\u8FDE\u51FB"
   baseFunctions: []
   specialFunctions: 
-  style: 0
-  artSpecialFunctions: []
+  style: 5
+  artSpecialFunctions:
+  - artFunctionType: 5
+    value: 0
   artPassiveEffects: []
