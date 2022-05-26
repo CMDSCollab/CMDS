@@ -21,7 +21,7 @@ public enum BuffTimeType { Permanent,Temporary }
 public enum BuffValueType { NoValue, SetValue, AddValue}
 public enum EnemyBuff { Bored, Anxiety, InFlow, Vulnerable, Weak, Instability, WeakMind, Defence, Block, Charge, PartialInvincibility,Revive }
 public enum CharacterBuff { Defence, Vengeance, PowerUp, Weak, Inflammable, IsTeamWork, IsSycn}
-public class BuffInfo 
+public class BuffInfo
 {
     public CharacterBuff characterBuffType;
     public EnemyBuff enemyBuffType;
@@ -454,11 +454,11 @@ public class BuffManager : MonoBehaviour
     public int CharacterAttack(int valueToCalculate)
     {
         //Debug.Log("CA before:" + valueToCalculate);
-        if (FindBuff(CharacterBuff.Weak)!=null)
+        if (FindBuff(CharacterBuff.Weak) != null)
         {
             valueToCalculate -= 3;
         }
-        if (FindBuff(CharacterBuff.PowerUp)!=null)
+        if (FindBuff(CharacterBuff.PowerUp) != null)
         {
             valueToCalculate += 3;
         }

@@ -11,7 +11,7 @@ public struct IntentionManager
     public Sprite image;
 }
 
-[CreateAssetMenu(fileName = "New Card", menuName = "Scriptable Object/New Character")]
+[CreateAssetMenu(fileName = "New Character", menuName = "Scriptable Object/New Character")]
 public class CharacterInfo : ScriptableObject
 {
     public CharacterType characterType;

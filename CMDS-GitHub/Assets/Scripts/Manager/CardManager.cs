@@ -100,7 +100,8 @@ public class CardManager : MonoBehaviour
             switch (cardInfo.baseFunctions[i].functionType)
             {
                 case BaseFunctionType.Damage:
-                    gM.enM.enemyTarget.TakeDamage(gM.buffM.CharacterAttack(cardInfo.baseFunctions[i].value));
+                    gM.cardSM.EnterCardState(gM.cardSM.attackState, cardInfo.baseFunctions[i].value);
+                    //gM.enM.enemyTarget.TakeDamage(gM.buffM.CharacterAttack(cardInfo.baseFunctions[i].value));
                     break;
                 case BaseFunctionType.Shield:
                     //gM.aiM.pro.shieldPoint += cardInfo.baseFunctions[i].value;
@@ -250,7 +251,10 @@ public class CardManager : MonoBehaviour
                     gM.enM.enemyTarget.TakeDamage(gM.buffM.CharacterAttack(gM.aiM.pro.shieldPoint));
                     break;
                 case SpecialFunctionPro.DoubleShield:
-                    gM.buffM.SetBuff(CharacterBuff.Defence, BuffTimeType.Temporary, 1, BuffValueType.AddValue, gM.buffM.FindBuff(CharacterBuff.Defence).value, BuffSource.Character);
+                    if (gM.buffM.FindBuff(CharacterBuff.Defence)!=null)
+                    {
+                        gM.buffM.SetBuff(CharacterBuff.Defence, BuffTimeType.Temporary, 1, BuffValueType.AddValue, gM.buffM.FindBuff(CharacterBuff.Defence).value, BuffSource.Character);
+                    }
                     //gM.aiM.pro.shieldPoint += gM.aiM.pro.shieldPoint;
                     //gM.buffM.SetCharacterBuff(CharacterBuff.Defence, true, gM.aiM.pro.shieldPoint);
                     break;
@@ -269,8 +273,8 @@ public class CardManager : MonoBehaviour
                                 //gM.aiM.pro.shieldPoint += 5;
                                 //gM.buffM.SetCharacterBuff(CharacterBuff.Defence, true, gM.aiM.pro.shieldPoint);
                             }
-                            handIndex = 1;
                         }
+                        gM.handM.OrganizeHand();
                     }
                     break;
                 case SpecialFunctionPro.Vengeance:

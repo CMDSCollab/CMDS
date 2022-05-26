@@ -16,8 +16,8 @@ public class CharacterMate : BasicCharacter
     public int maxHp;
     public int healthPoint;
     public int shieldPoint;
-    private Slider hpBar;
-    private Text hpRatio;
+    public Slider hpBar;
+    public Text hpRatio;
 
     public override void Start()
     {

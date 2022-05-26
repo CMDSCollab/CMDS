@@ -47,7 +47,7 @@ public class BasicEnemy : MonoBehaviour
 
     public void Update()
     {
-        UpdateUI();
+        //UpdateUI();
         if (healthPoint<=0)
         {
             EnemyDefeated();
@@ -76,11 +76,11 @@ public class BasicEnemy : MonoBehaviour
         MainChaMCChange();
     }
 
-    public void UpdateUI()
-    {
-        hpBar.value = healthPoint;
-        hpRatio.text = healthPoint.ToString() + "/" + maxHp.ToString();
-    }
+    //public void UpdateUI()
+    //{
+    //    hpBar.value = healthPoint;
+    //    hpRatio.text = healthPoint.ToString() + "/" + maxHp.ToString();
+    //}
 
     public virtual void EnemyDefeated()
     {

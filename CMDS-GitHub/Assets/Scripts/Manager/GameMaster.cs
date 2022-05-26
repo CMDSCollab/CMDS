@@ -15,6 +15,11 @@ public class GameMaster : MonoBehaviour
     public BuffManager buffM;
     public FightManager fightM;
     public MapManager mapM;
+    public CombatStateManager combatSM;
+    public ActionStateManager actionSM;
+    public BuffStateManager buffSM;
+    public CardStateManager cardSM;
+    public AnimCollection animC;
 
     public Canvas uiCanvas;
 
@@ -46,6 +51,10 @@ public class GameMaster : MonoBehaviour
                 Destroy(aiM.des.gameObject);
                 break;
             case CharacterType.Programmmer:
+                Destroy(aiM.desAI.gameObject);
+                Destroy(aiM.artAI.gameObject);
+                Destroy(aiM.pro.gameObject);
+                Destroy(aiM.pro.debugUI.gameObject);
                 break;
             case CharacterType.Artist:
                 break;

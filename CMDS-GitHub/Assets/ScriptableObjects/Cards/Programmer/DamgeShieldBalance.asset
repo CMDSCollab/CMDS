@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: DamgeShieldBalance
   m_EditorClassIdentifier: 
   cardName: Damage-Shield
-  description: "\u5BF9\u654C\u65B9\u9020\u621010\u70B9\u4F24\u5BB3\uFF0C\u5DF1\u65B9\u83B7\u5F975\u70B9\u683C\u6321"
+  description: "\u5BF9\u654C\u65B9\u9020\u62105\u70B9\u4F24\u5BB3\uFF0C\u5DF1\u65B9\u83B7\u5F975\u70B9\u683C\u6321"
   baseFunctions:
   - functionType: 0
     value: 5
@@ -21,7 +21,7 @@ MonoBehaviour:
     value: 5
   - functionType: 3
     value: 1
-  specialFunction: 0
+  specialFunctions: 
   cardType: 0
   debugType: 0
   codeRedundancy: 2

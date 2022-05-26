@@ -169,13 +169,16 @@ public class AIMate : BasicCharacter
         switch (currentIntention)
         {
             case Intentions.Attack:
-                gM.enM.enemyTarget.TakeDamage(gM.buffM.CharacterAttack(intentionValue));
+                //gM.enM.enemyTarget.TakeDamage(gM.buffM.CharacterAttack(intentionValue));
+                gM.actionSM.EnterActionState(gM.actionSM.attackState, intentionValue);
                 break;
             case Intentions.Heal:
-                gM.characterM.mainCharacter.HealSelf(intentionValue);
+                //gM.characterM.mainCharacter.HealSelf(intentionValue);
+                gM.actionSM.EnterActionState(gM.actionSM.healState, intentionValue);
                 break;
             case Intentions.Shield:
-                gM.buffM.SetBuff(CharacterBuff.Defence, BuffTimeType.Temporary, 1, BuffValueType.AddValue, intentionValue, BuffSource.AI);
+                gM.actionSM.EnterActionState(gM.actionSM.defenceState, intentionValue);
+                //gM.buffM.SetBuff(CharacterBuff.Defence, BuffTimeType.Temporary, 1, BuffValueType.AddValue, intentionValue, BuffSource.AI);
                 break;
             case Intentions.Buff:
                 break;
