@@ -17,7 +17,7 @@ public class AS_Attack : ActionBaseState
         }
         else
         {
-            Debug.Log("entered");
+            //Debug.Log("entered");
             gM.buffSM.SetBuffList(cBuffs);
         }
         gM.buffSM.BuffEffectsApply();

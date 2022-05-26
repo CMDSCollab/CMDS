@@ -18,8 +18,8 @@ public class CharacterMate : BasicCharacter
     public int shieldPoint;
     public int gold;
     public bool isDefeated;
-    private Slider hpBar;
-    private Text hpRatio;
+    public Slider hpBar;
+    public Text hpRatio;
 
     public override void Start()
     {
@@ -47,6 +47,8 @@ public class CharacterMate : BasicCharacter
     {
         hpBar.value = healthPoint;
         hpRatio.text = healthPoint.ToString() + "/" + maxHp.ToString();
+        CommonStatusBar statusBar = FindObjectOfType<CommonStatusBar>();
+        statusBar.goldIntText.text = gold.ToString();
     }
 
     private void InitializeCharacter()

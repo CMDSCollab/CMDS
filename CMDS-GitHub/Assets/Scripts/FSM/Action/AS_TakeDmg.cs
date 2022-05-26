@@ -13,12 +13,12 @@ public class AS_TakeDmg : ActionBaseState
         if (gM.combatSM.currentState == gM.combatSM.enemyState)
         {
             gM.buffSM.SetBuffList(cBuffs);
-            Debug.Log("CTakeDmgEntered");
+            //Debug.Log("CTakeDmgEntered");
         }
         else
         {
             gM.buffSM.SetBuffList(eBuffs);
-            Debug.Log("ETakeDmgEntered");
+            //Debug.Log("ETakeDmgEntered");
         }
         //Debug.Log("cCount:"+gM.buffSM.characterBuffs.Count);
         //Debug.Log("eCount:" + gM.buffSM.enemyBuffs.Count);

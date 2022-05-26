@@ -6,7 +6,7 @@ public class CS_AI2 : CombatBaseState
 {
     public override void EnterState(GameMaster gM)
     {
-        Debug.Log("AI2CSEntered");
+        //Debug.Log("AI2CSEntered");
         switch (gM.characterM.mainCharacterType)
         {
             case CharacterType.Designer:

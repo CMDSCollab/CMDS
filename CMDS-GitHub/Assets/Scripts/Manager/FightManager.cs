@@ -13,23 +13,23 @@ public class FightManager : MonoBehaviour
         gM = FindObjectOfType<GameMaster>();
     }
 
-    public void FightProcessManager()
-    {
-        // 对玩家角色进行回合末结算
-        if (gM.characterM.mainCharacterType == CharacterType.Programmmer)
-        {
-            gM.aiM.pro.OnPlayerTurnEnded();
-        }
-        else if(gM.characterM.mainCharacterType == CharacterType.Designer)
-        {
-            gM.aiM.des.ChallengeDMG();
-        }
-        else if(gM.characterM.mainCharacterType == CharacterType.Artist)
-        {
-            gM.aiM.art.StyleEffect();
-        }
+    //public void FightProcessManager()
+    //{
+    //    // 对玩家角色进行回合末结算
+    //    if (gM.characterM.mainCharacterType == CharacterType.Programmmer)
+    //    {
+    //        gM.aiM.pro.OnPlayerTurnEnded();
+    //    }
+    //    else if(gM.characterM.mainCharacterType == CharacterType.Designer)
+    //    {
+    //        gM.aiM.des.ChallengeDMG();
+    //    }
+    //    else if(gM.characterM.mainCharacterType == CharacterType.Artist)
+    //    {
+    //        gM.aiM.art.StyleEffect();
+    //    }
 
-    //    //手牌丢弃
+    ////    //手牌丢弃
 
     //    if (gM.handM.handCardList.Count > 0)
     //    {

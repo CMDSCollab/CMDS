@@ -15,6 +15,7 @@ public class CS_Start : CombatBaseState
                 gM.aiM.pro.OnPlayerTurnEnded();
                 break;
             case CharacterType.Artist:
+                gM.aiM.art.StyleEffect();
                 break;
         }
         //ÊÖÅÆ¶ªÆú

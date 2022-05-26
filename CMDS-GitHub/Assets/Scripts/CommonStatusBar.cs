@@ -21,6 +21,6 @@ public class CommonStatusBar : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        UpdateUI();
+        //UpdateUI();
     }
 }

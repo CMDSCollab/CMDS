@@ -6,7 +6,7 @@ public class CS_Enemy : CombatBaseState
 {
     public override void EnterState(GameMaster gM)
     {
-        Debug.Log("EnemyCSEntered");
+        //Debug.Log("EnemyCSEntered");
         gM.enM.enemyTarget.TakeAction();
     }
 
