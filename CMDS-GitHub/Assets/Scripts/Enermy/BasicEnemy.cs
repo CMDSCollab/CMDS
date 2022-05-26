@@ -27,6 +27,8 @@ public class BasicEnemy : MonoBehaviour
 
     public int maxHp;
     public int healthPoint;
+    public int enemyLv; //敌人的等级难度 会影响到战斗结束后的reward数量
+    public bool isDefeated;//避免每帧调用
     public EnemyInfo enemyInfo;
     public EnemyIntention currentIntention;
 
@@ -48,8 +50,9 @@ public class BasicEnemy : MonoBehaviour
     public void Update()
     {
         UpdateUI();
-        if (healthPoint<=0)
+        if (healthPoint<=0 && !isDefeated)
         {
+            isDefeated = true;
             EnemyDefeated();
         }
         //不建议让MC每帧做一次检测
@@ -84,7 +87,8 @@ public class BasicEnemy : MonoBehaviour
 
     public virtual void EnemyDefeated()
     {
-        gM.uiCanvas.transform.Find("Buttons").Find("FightEnd").gameObject.SetActive(true);
+        gM.uiCanvas.transform.Find("RewardPanel").GetComponent<RewardPanel>().SetRewardPanel(enemyLv);
+        gM.uiCanvas.transform.Find("RewardPanel").gameObject.SetActive(true);
     }
 
     public virtual void TakeAction()

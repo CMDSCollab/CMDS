@@ -10,19 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c6b9de48feee2a04c924254a42a5330e, type: 3}
-  m_Name: "LowPoly\u6279\u91CF\u5EFA\u6A21"
+  m_Name: New Artist Card
   m_EditorClassIdentifier: 
-  cardName: "LowPoly\u6279\u91CF\u5EFA\u6A21"
-  description: "\u62BD3\u5F20\u201CLowPloy\u5C0F\u6A21\u578B\u201D\u52A0\u5165\u624B\u724C"
+  cardName: Pixiu
+  description: 
   baseFunctions:
   - functionType: 5
     value: 1
-  specialFunctions: 
-  style: 2
+  specialFunctions: 00000000
+  style: 0
   artSpecialFunctions:
   - artFunctionType: 0
     value: 0
-  artPassiveEffects: []
+  artPassiveEffects:
+  - artPassiveEType: 0
   artDrawExpandCard:
-  - expandCardName: 2
+  - expandCardName: 3
     times: 3

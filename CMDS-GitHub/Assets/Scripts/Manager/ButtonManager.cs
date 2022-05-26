@@ -12,6 +12,8 @@ public class ButtonManager : MonoBehaviour
 
     public Button drawPileButton;
     public Button discardPileButton;
+    public GameObject startScene;
+    public GameObject chooseCharacterPanel;
   
 
     void Start()
@@ -60,7 +62,16 @@ public class ButtonManager : MonoBehaviour
         gM.fightM.FightProcessManager();
     }
 
+    public void onClickStartButton()
+    {
+        startScene.SetActive(false);
+        chooseCharacterPanel.SetActive(true);
+    }
 
+    public void onClickQuitButton()
+    {
+        QuitGame();
+    }
     public void OnClickDesigner()
     {
         globalM.characterType = CharacterType.Designer;
@@ -81,10 +92,16 @@ public class ButtonManager : MonoBehaviour
 
     public void EndFightBackToMap()
     {
-        gM.uiCanvas.transform.Find("Buttons").Find("FightEnd").gameObject.SetActive(false);
+        gM.uiCanvas.transform.Find("RewardPanel").gameObject.SetActive(false);
         gM.FightEndReset();
         gM.mapM.gameObject.SetActive(true);
         gM.uiCanvas.gameObject.SetActive(false);
+    }
+
+    public void OnClickBackToMainMenu()
+    {
+        //globalM.characterType = null;
+        SceneManager.LoadScene("SelectCharacter");
     }
 
     public void QuitGame()

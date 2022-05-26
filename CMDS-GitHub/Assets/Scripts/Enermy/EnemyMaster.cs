@@ -42,6 +42,7 @@ public class EnemyMaster : MonoBehaviour
 
         enemyTarget = enemyObj.GetComponent<BasicEnemy>();
         enemyTarget.enemyInfo = enemyInfo;
+        enemyTarget.enemyLv = (int)enemyInfo.enemyType;
         enemyTarget.InitializeEnemyUI();
     }
 

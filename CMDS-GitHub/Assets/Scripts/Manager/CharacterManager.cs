@@ -120,18 +120,22 @@ public class CharacterManager : MonoBehaviour
             case CharacterType.Designer:
                 chaObj.AddComponent<Designer>();
                 chaObj.GetComponent<Designer>().characterInfo = characters[0];
+                mainCharacter = chaObj.GetComponent<Designer>();
                 chaObj.transform.Find("CharacterImage").GetComponent<Image>().sprite = characterImages[0];
                 gM.aiM.des = chaObj.GetComponent<Designer>();
                 break;
             case CharacterType.Programmmer:
                 chaObj.AddComponent<Programmer>();
                 chaObj.GetComponent<Programmer>().characterInfo = characters[1];
+                mainCharacter = chaObj.GetComponent<Programmer>();
                 chaObj.transform.Find("CharacterImage").GetComponent<Image>().sprite = characterImages[1];
                 gM.aiM.pro = chaObj.GetComponent<Programmer>();
                 break;
             case CharacterType.Artist:
                 chaObj.AddComponent<Artist>();
                 chaObj.GetComponent<Artist>().characterInfo = characters[2];
+                
+                mainCharacter = chaObj.GetComponent<Artist>();
                 chaObj.transform.Find("CharacterImage").GetComponent<Image>().sprite = characterImages[2];
                 gM.aiM.art = chaObj.GetComponent<Artist>();
 

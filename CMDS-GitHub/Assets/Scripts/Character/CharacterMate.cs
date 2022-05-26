@@ -16,6 +16,8 @@ public class CharacterMate : BasicCharacter
     public int maxHp;
     public int healthPoint;
     public int shieldPoint;
+    public int gold;
+    public bool isDefeated;
     private Slider hpBar;
     private Text hpRatio;
 
@@ -25,9 +27,20 @@ public class CharacterMate : BasicCharacter
         InitializeCharacter();
     }
 
+    public void CharacterDefeated()
+    {
+        gM.uiCanvas.transform.Find("StatisticPanel").gameObject.SetActive(true);
+    }
+
     public void Update()
     {
         SyncCharacterUI();
+
+        if (healthPoint <= 0 && !isDefeated)
+        {
+            isDefeated = true;
+            CharacterDefeated();
+        }
     }
 
     public virtual void SyncCharacterUI()
