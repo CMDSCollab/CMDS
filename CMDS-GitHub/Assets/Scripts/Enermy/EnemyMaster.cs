@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public enum EnemyIntention { Attack, Defence, Heal, Taunt, Skill, MultiAttack, Charge, Block, ToComment, Comment, Revive, FireShoot, HoneyShoot}
+public enum EnemyIntention { Attack, Defence, Heal, Taunt, Skill, MultiAttack, Charge, Block, ToComment, Comment, Revive, FireShoot, HoneyShoot, Sleep}
 [System.Serializable]
 public struct EnemyIntentionImages
 {
@@ -59,9 +59,11 @@ public class EnemyMaster : MonoBehaviour
                     case MinionType.ESPlayerMature:
                         objToAdd.AddComponent<EM_ESPlayerMature>();
                         break;
-                    case MinionType.Ma:
+                    case MinionType.Hatchling:
+                        objToAdd.AddComponent<EM_Hatchling>();
                         break;
-                    case MinionType.Mb:
+                    case MinionType.TheHoarder:
+                        objToAdd.AddComponent<EM_Hoarder>();
                         break;
                     case MinionType.Mc:
                         break;

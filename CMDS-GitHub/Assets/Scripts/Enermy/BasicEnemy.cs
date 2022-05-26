@@ -206,7 +206,7 @@ public class BasicEnemy : MonoBehaviour
     //程序猿MC逻辑：当currentErrors.Count >= 2时，开始掉出MC的判定
     //当 Count = 2时，MC判定每回合10%掉出 
     //在此之上，Count每多1，MC掉出概率高10%（最高6个BUG，掉出概率50%），并记录最高值（highestDropWeight）
-    //只有消减Count到0时，掉出概率才会重置，否则取最高值（例：将6个BUG消至1个BUG，掉出概率依然为50%）
+    //只有消减Count到0时，掉出概率才会重置（同时Recapture），否则取最高值（例：将6个BUG消至1个BUG，掉出概率依然为50%）
     private int highestDropWeight = 0;
 
     public void MainChaMCChange()
@@ -274,11 +274,12 @@ public class BasicEnemy : MonoBehaviour
                 }
                 else
                 {
-                    // 首先判断Count是否已经等于0，如果是则进行重置
+                    // 首先判断Count是否已经等于0，如果是则进行重置，并重新挂上MC
                     if (programmer.currentErrors.Count == 0)
                     {
                         dropWeight = 0;
                         highestDropWeight = 0;
+                        MagicCirleRecapture();
                     }
                     // 如果Count>0，则比较一下当前值和最高值，记录最高值或将最高值赋给dropWeight
                     else
@@ -297,7 +298,7 @@ public class BasicEnemy : MonoBehaviour
                 }
                 // 进行MC掉出判定
                 MagicCircleDropOut(dropWeight);
-                Debug.Log("当前MC掉出概率：" + dropWeight);
+                //Debug.Log("当前MC掉出概率：" + dropWeight);
                 break;
             case CharacterType.Artist:
                 break;
