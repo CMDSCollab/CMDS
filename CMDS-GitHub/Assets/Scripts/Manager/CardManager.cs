@@ -90,6 +90,15 @@ public class CardManager : MonoBehaviour
                 transform.Find("Redundancy").GetComponent<Text>().text = transform.Find("Redundancy").GetComponent<Text>().text + "\n" + cardPro.debugType;
             }
         }
+
+        //异术家卡牌需要针对style做卡面特质化
+        if (cardInfo is CardInfoArt)
+        {
+            CardInfoArt cardArt = (CardInfoArt)cardInfo;
+            Image img = transform.Find("StyleIcon").GetComponent<Image>();
+            Debug.Log("TestXXXXXX" + gM.aiM.art.hitP.styleImageDic["Pixel"]);
+            img.sprite = gM.aiM.art.hitP.styleImageDic[cardArt.style.ToString()];
+    }
     }
 
     public void CardFuntion()
@@ -174,6 +183,46 @@ public class CardManager : MonoBehaviour
             }
         }
   
+        //异术家 卡牌相关功能
+        if(cardInfo is CardInfoArt)
+        {
+            if (gM.characterM.mainCharacterType != CharacterType.Artist)
+            {
+                return;
+            }
+
+            CardInfoArt cardArt = (CardInfoArt)cardInfo;
+
+            gM.aiM.art.StyleCheck(cardArt);
+
+            for(int i = 0; i < cardArt.artSpecialFunctions.Count; i++)
+            {
+                switch (cardArt.artSpecialFunctions[i].artFunctionType)
+                {
+                    case SpecialArtFunctionType.None:
+                        break;
+                    case SpecialArtFunctionType.TrueDamage:
+                        gM.enM.enemyTarget.TakeTrueDamage(cardArt.artSpecialFunctions[i].value);
+                        break;
+                    case SpecialArtFunctionType.StyleEffect:
+                        gM.aiM.art.StyleEffect();
+                        break;
+                    case SpecialArtFunctionType.GetIncome:
+                        gM.aiM.art.income += cardArt.artSpecialFunctions[i].value;
+                        break;
+                }
+            }
+
+            for(int i = 0; i < cardArt.artDrawExpandCard.Count; i++)
+            {
+                for(int x = 0; x < cardArt.artDrawExpandCard[i].times; x++) 
+                {
+                    gM.deckM.DrawSpecificSingleArtistExpandCard(cardArt.artDrawExpandCard[i].expandCardName.ToString());
+
+                }
+            }
+        }
+  
 
         // 射击师 卡牌相关功能
         if (cardInfo is CardInfoDsgn)
@@ -251,9 +300,9 @@ public class CardManager : MonoBehaviour
                     gM.enM.enemyTarget.TakeDamage(gM.buffM.CharacterAttack(gM.aiM.pro.shieldPoint));
                     break;
                 case SpecialFunctionPro.DoubleShield:
-                    if (gM.buffM.FindBuff(CharacterBuff.Defence)!=null)
+                    if (gM.buffM.FindBuff(CharacterBuff.Defence) != null)
                     {
-                        gM.buffM.SetBuff(CharacterBuff.Defence, BuffTimeType.Temporary, 1, BuffValueType.AddValue, gM.buffM.FindBuff(CharacterBuff.Defence).value, BuffSource.Character);
+                    gM.buffM.SetBuff(CharacterBuff.Defence, BuffTimeType.Temporary, 1, BuffValueType.AddValue, gM.buffM.FindBuff(CharacterBuff.Defence).value, BuffSource.Character);
                     }
                     //gM.aiM.pro.shieldPoint += gM.aiM.pro.shieldPoint;
                     //gM.buffM.SetCharacterBuff(CharacterBuff.Defence, true, gM.aiM.pro.shieldPoint);
@@ -286,8 +335,11 @@ public class CardManager : MonoBehaviour
                     //gM.enM.enemyTarget.TakeDamage(gM.buffM.CharacterAttack(gM.aiM.pro.shieldPoint * 2));
                     //gM.aiM.pro.shieldPoint = 0;
                     //gM.buffM.SetCharacterBuff(CharacterBuff.Defence, true, gM.aiM.pro.shieldPoint);
+                    if (gM.buffM.FindBuff(CharacterBuff.Defence) != null)
+                    {
                     gM.enM.enemyTarget.TakeDamage(gM.buffM.CharacterAttack(gM.buffM.FindBuff(CharacterBuff.Defence).value * 2));
                     gM.buffM.SetBuff(CharacterBuff.Defence, BuffTimeType.Temporary, 1, BuffValueType.AddValue, -gM.buffM.FindBuff(CharacterBuff.Defence).value, BuffSource.Character);
+                    }
                     break;
                 default:
                     break;

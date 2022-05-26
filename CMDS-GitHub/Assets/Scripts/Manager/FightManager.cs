@@ -13,19 +13,21 @@ public class FightManager : MonoBehaviour
         gM = FindObjectOfType<GameMaster>();
     }
 
-    //public void FightProcessManager()
-    //{
-    //    switch (gM.characterM.mainCharacterType)
-    //    {
-    //        case CharacterType.Designer:
-    //            gM.aiM.des.ChallengeDMG();
-    //            break;
-    //        case CharacterType.Programmmer:
-    //            gM.aiM.pro.OnPlayerTurnEnded();
-    //            break;
-    //        case CharacterType.Artist:
-    //            break;
-    //    }
+    public void FightProcessManager()
+    {
+        // 对玩家角色进行回合末结算
+        if (gM.characterM.mainCharacterType == CharacterType.Programmmer)
+        {
+            gM.aiM.pro.OnPlayerTurnEnded();
+        }
+        else if(gM.characterM.mainCharacterType == CharacterType.Designer)
+        {
+            gM.aiM.des.ChallengeDMG();
+        }
+        else if(gM.characterM.mainCharacterType == CharacterType.Artist)
+        {
+            gM.aiM.art.StyleEffect();
+        }
 
     //    //手牌丢弃
 
@@ -73,4 +75,4 @@ public class FightManager : MonoBehaviour
     //    gM.buttonM.SynchronizeCardsCountInPileButton("Discard"); //同步弃牌堆卡牌数量展示Text
     //    gM.buttonM.SynchronizeCardsCountInPileButton("Draw");
     //}
-}
+        }

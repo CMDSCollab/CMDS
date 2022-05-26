@@ -20,8 +20,8 @@ public enum BuffSource { Character,AI,Enemy}
 public enum BuffTimeType { Permanent,Temporary }
 public enum BuffValueType { NoValue, SetValue, AddValue}
 public enum EnemyBuff { Bored, Anxiety, InFlow, Vulnerable, Weak, Instability, WeakMind, Defence, Block, Charge, PartialInvincibility,Revive }
-public enum CharacterBuff { Defence, Vengeance, PowerUp, Weak, Inflammable, IsTeamWork, IsSycn}
-public class BuffInfo
+public enum CharacterBuff { Defence, Vengeance, PowerUp, Vulnerable, Weak, Inflammable, IsTeamWork, IsSycn}
+public class BuffInfo 
 {
     public CharacterBuff characterBuffType;
     public EnemyBuff enemyBuffType;

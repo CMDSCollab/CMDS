@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6b9de48feee2a04c924254a42a5330e, type: 3}
+  m_Name: "Zbrush\u52A8\u7269\u89E3\u5256"
+  m_EditorClassIdentifier: 
+  cardName: "Zbrush\u52A8\u7269\u89E3\u5256"
+  description: "\u5C063\u5F20\u201C\u514B\u82CF\u9C81\u7CBE\u6A21\u201D\u52A0\u5165\u624B\u724C"
+  baseFunctions:
+  - functionType: 4
+    value: 1
+  specialFunctions: 
+  style: 4
+  artSpecialFunctions:
+  - artFunctionType: 5
+    value: 2
+  artPassiveEffects: []

@@ -62,7 +62,6 @@ public class EE_Streamer : BasicEnemy
 
     public override void TakeAction()
     {
-        //Debug.Log("action entered");
         if (!charToScoreDic.ContainsValue(0))
         {
             TakeDamage(999);

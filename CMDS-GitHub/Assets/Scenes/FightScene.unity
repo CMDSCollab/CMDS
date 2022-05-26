@@ -298,6 +298,8 @@ MonoBehaviour:
     image: {fileID: 21300000, guid: 541639221f8841b4fbd1628a8ce4a68e, type: 3}
   - enemyIntention: 9
     image: {fileID: 21300000, guid: 851c20ef271f4e7418ebfdbf7d526cc1, type: 3}
+  - enemyIntention: 13
+    image: {fileID: 21300000, guid: e32f1559c03218742b84b6f7e6948642, type: 3}
   testEnemy: {fileID: 11400000, guid: b8958ab463ae23c4d9c037c8d3e832cc, type: 2}
 --- !u!1 &469202290
 GameObject:
@@ -800,14 +802,16 @@ MonoBehaviour:
     buffImage: {fileID: 21300000, guid: c5539b24ebc3e274ebdc3b2a1f93064b, type: 3}
   - buffType: 2
     buffImage: {fileID: 21300000, guid: ed006f7e39a702a42b9331ddeb0bd794, type: 3}
-  - buffType: 3
-    buffImage: {fileID: 21300000, guid: 0061a89775b437048ac45edbf35b073c, type: 3}
   - buffType: 4
-    buffImage: {fileID: 21300000, guid: d1f584fdc4884594c805ec3b7f078882, type: 3}
+    buffImage: {fileID: 21300000, guid: 0061a89775b437048ac45edbf35b073c, type: 3}
   - buffType: 5
-    buffImage: {fileID: 21300000, guid: 0a40028250266c44e8cff08e242a1d9d, type: 3}
+    buffImage: {fileID: 21300000, guid: d1f584fdc4884594c805ec3b7f078882, type: 3}
   - buffType: 6
+    buffImage: {fileID: 21300000, guid: 0a40028250266c44e8cff08e242a1d9d, type: 3}
+  - buffType: 7
     buffImage: {fileID: 21300000, guid: 9f7b6a4577c01794b94f7966cc079a89, type: 3}
+  - buffType: 3
+    buffImage: {fileID: 21300000, guid: b97b6dcfc4b4b444c85d9435b077248a, type: 3}
   enemyBuffs:
   - buffType: 0
     buffImage: {fileID: 21300000, guid: 727ad5620d4a0284986bbe9e36096c6a, type: 3}
@@ -1410,9 +1414,24 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 0069761ad3379da4e91a922d40764007, type: 2}
   - {fileID: 11400000, guid: f2f4789c36af8374fbb9dfd2fcb672bf, type: 2}
   - {fileID: 11400000, guid: 8be4ea44c71d3914ebd91996e3e3e8da, type: 2}
+  artistBaseCard:
+  - {fileID: 11400000, guid: c138e952a48119f4499687f2243da3d3, type: 2}
+  - {fileID: 11400000, guid: 3cf13fff0c3597b4bbcefc3c255406c8, type: 2}
+  - {fileID: 11400000, guid: 348ac079d7a11cb45a622d627786528a, type: 2}
+  - {fileID: 11400000, guid: 38b24c35cffd20e4fb5d05969bdec909, type: 2}
+  artistExpandCard:
+  - cardname: "\u514B\u82CF\u9C81\u7CBE\u6A21"
+    card: {fileID: 11400000, guid: 6054842cdb68e8747bdc1b584af86748, type: 2}
+  - cardname: "\u840C\u5A18\u7ACB\u7ED8"
+    card: {fileID: 11400000, guid: ca9d92aca2fd0b94d8992a9732a14342, type: 2}
+  - cardname: "\u50CF\u7D20\u52A8\u753B\u5E27"
+    card: {fileID: 11400000, guid: 7ce65889bc64f9643866c1331332a40c, type: 2}
+  - cardname: "LowPoly\u5C0F\u6A21\u578B"
+    card: {fileID: 11400000, guid: f5bf9bfd78447744a838401bef6dd17b, type: 2}
   cardPrefabs:
   - {fileID: 1596943046692765748, guid: 701f33fa0496a9d41b84c2e7550f1814, type: 3}
   - {fileID: 2198812027880452365, guid: 182ccee00739a724baa330837b025f1b, type: 3}
+  - {fileID: 4332093080513756420, guid: 774d1abbd9004d04c9a5669cd0ff8eba, type: 3}
   gM: {fileID: 0}
   initialCardAmount: 4
   drawCardAmount: 3
@@ -2454,6 +2473,7 @@ MonoBehaviour:
     debug: 4
   - errorName: Out of memory
     debug: 3
+  hitsPanel: {fileID: 2083925982735615351, guid: 1cd5911d081022442b4c3c955e463b43, type: 3}
 --- !u!1 &1703458573
 GameObject:
   m_ObjectHideFlags: 0
@@ -2920,6 +2940,7 @@ MonoBehaviour:
   desAI: {fileID: 0}
   pro: {fileID: 0}
   des: {fileID: 0}
+  art: {fileID: 0}
   gM: {fileID: 0}
 --- !u!1 &1987099164
 GameObject:

@@ -97,6 +97,13 @@ public class BasicEnemy : MonoBehaviour
         healthPoint -= gM.buffM.EnemyTakeDamage(dmgValue);
     }
 
+
+    //承受真实伤害：无视所有减益buff
+    public void TakeTrueDamage(int dmg)
+    {
+        healthPoint -= dmg;
+    }
+
     #region Intention
     public virtual void GenerateEnemyIntention()
     {
@@ -191,6 +198,13 @@ public class BasicEnemy : MonoBehaviour
     //当10 > diff > 0时，敌人获得MC 并于每回合承受来自设计师的cha伤害
     //当diff < 0 时，敌人获得bored 并进行MC判定 60%掉出
     //当敌人处于MC时（inflow），获得虚弱和易伤。
+
+    //程序猿MC逻辑：当currentErrors.Count >= 2时，开始掉出MC的判定
+    //当 Count = 2时，MC判定每回合10%掉出 
+    //在此之上，Count每多1，MC掉出概率高10%（最高6个BUG，掉出概率50%），并记录最高值（highestDropWeight）
+    //只有消减Count到0时，掉出概率才会重置（同时Recapture），否则取最高值（例：将6个BUG消至1个BUG，掉出概率依然为50%）
+    private int highestDropWeight = 0;
+
     public void MainChaMCChange()
     {
         switch (gM.characterM.mainCharacterType)
@@ -243,6 +257,44 @@ public class BasicEnemy : MonoBehaviour
                 }
                 break;
             case CharacterType.Programmmer:
+                Programmer programmer = gM.aiM.pro;
+                int dropWeight = 0;
+                // 当highestDropWeight == 0，说明刚刚重置，此时只要看是否Count>=2，并记录最高值
+                if (highestDropWeight == 0)
+                {
+                    if (programmer.currentErrors.Count >= 2)
+                    {
+                        dropWeight = 10 * programmer.currentErrors.Count;
+                        highestDropWeight = dropWeight;
+                    }
+                }
+                else
+                {
+                    // 首先判断Count是否已经等于0，如果是则进行重置，并重新挂上MC
+                    if (programmer.currentErrors.Count == 0)
+                    {
+                        dropWeight = 0;
+                        highestDropWeight = 0;
+                        MagicCirleRecapture();
+                    }
+                    // 如果Count>0，则比较一下当前值和最高值，记录最高值或将最高值赋给dropWeight
+                    else
+                    {
+                        dropWeight = 10 * programmer.currentErrors.Count;
+                        if (dropWeight >= highestDropWeight)
+                        {
+                            highestDropWeight = dropWeight;
+                        }
+                        else
+                        {
+                            dropWeight = highestDropWeight;
+                        }
+                    }
+                    
+                }
+                // 进行MC掉出判定
+                MagicCircleDropOut(dropWeight);
+                //Debug.Log("当前MC掉出概率：" + dropWeight);
                 break;
             case CharacterType.Artist:
                 break;

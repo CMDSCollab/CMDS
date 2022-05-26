@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6b9de48feee2a04c924254a42a5330e, type: 3}
+  m_Name: "Pixiu\u4E34\u6479"
+  m_EditorClassIdentifier: 
+  cardName: "Pixiu\u4E34\u6479"
+  description: "\u52A0\u51653\u5F20\u201C\u840C\u5A18\u7ACB\u7ED8\u201D\u8FDB\u5165\u624B\u724C"
+  baseFunctions:
+  - functionType: 5
+    value: 1
+  specialFunctions: 
+  style: 3
+  artSpecialFunctions: []
+  artPassiveEffects: []
+  artDrawExpandCard:
+  - expandCardName: 3
+    times: 3

@@ -31,6 +31,13 @@ public class CharacterManager : MonoBehaviour
     public List<Error> potentialErrors;
     #endregion
 
+    #region 美术变量
+    [Header("美术")]
+    public GameObject hitsPanel;//连击UI面板
+
+    #endregion
+
+
     public void Start()
     {
         gM = FindObjectOfType<GameMaster>();
@@ -60,7 +67,7 @@ public class CharacterManager : MonoBehaviour
                 AIGenerateAndInitialize(CharacterType.Designer, "Left");
                 AIGenerateAndInitialize(CharacterType.Programmmer, "Right");
 
-                //mainCharacter = gM.aiM.art;
+                mainCharacter = gM.aiM.art;
                 break;
             default:
                 break;
@@ -123,7 +130,12 @@ public class CharacterManager : MonoBehaviour
                 gM.aiM.pro = chaObj.GetComponent<Programmer>();
                 break;
             case CharacterType.Artist:
-                //aiObj.AddComponent<Artist>();
+                chaObj.AddComponent<Artist>();
+                chaObj.GetComponent<Artist>().characterInfo = characters[2];
+                chaObj.transform.Find("CharacterImage").GetComponent<Image>().sprite = characterImages[2];
+                gM.aiM.art = chaObj.GetComponent<Artist>();
+
+
                 break;
         }
     }
