@@ -4,7 +4,7 @@ using UnityEngine;
 
 public enum EnemyType { Minion, Elite,  Boss}
 
-public enum MinionType { TechNerd, ESPlayerMature, Ma, Mb, Mc}
+public enum MinionType { TechNerd, ESPlayerMature, Hatchling, TheHoarder, Mc}
 
 public enum EliteType { Streamer, Ea, Eb, Ec}
 
