@@ -20,6 +20,7 @@ MonoBehaviour:
   specialFunctions: 
   style: 3
   artSpecialFunctions:
-  - artFunctionType: 3
+  - artFunctionType: 2
     value: 5
   artPassiveEffects: []
+  artDrawExpandCard: []

@@ -16,10 +16,15 @@ public class CharacterMate : BasicCharacter
     public int maxHp;
     public int healthPoint;
     public int shieldPoint;
+<<<<<<< HEAD
+    public Slider hpBar;
+    public Text hpRatio;
+=======
     public int gold;
     public bool isDefeated;
     private Slider hpBar;
     private Text hpRatio;
+>>>>>>> b86eb94cbc5a835013a8cd4b2f14928d1fd7afc5
 
     public override void Start()
     {
@@ -40,7 +45,7 @@ public class CharacterMate : BasicCharacter
         {
             isDefeated = true;
             CharacterDefeated();
-    }
+        }
     }
 
     public virtual void SyncCharacterUI()

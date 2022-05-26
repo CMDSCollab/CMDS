@@ -25,4 +25,4 @@ MonoBehaviour:
   artPassiveEffects: []
   artDrawExpandCard:
   - expandCardName: 4
-    times: 1
+    times: 3

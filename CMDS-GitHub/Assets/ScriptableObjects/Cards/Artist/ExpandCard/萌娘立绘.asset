@@ -18,6 +18,7 @@ MonoBehaviour:
   specialFunctions: 05000000
   style: 3
   artSpecialFunctions:
-  - artFunctionType: 3
+  - artFunctionType: 2
     value: 1
   artPassiveEffects: []
+  artDrawExpandCard: []

@@ -49,8 +49,13 @@ public class BasicEnemy : MonoBehaviour
 
     public void Update()
     {
+<<<<<<< HEAD
         //UpdateUI();
+        if (healthPoint<=0)
+=======
+        UpdateUI();
         if (healthPoint<=0 && !isDefeated)
+>>>>>>> b86eb94cbc5a835013a8cd4b2f14928d1fd7afc5
         {
             isDefeated = true;
             EnemyDefeated();

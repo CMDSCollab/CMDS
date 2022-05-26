@@ -208,7 +208,7 @@ public class CardManager : MonoBehaviour
                         gM.aiM.art.StyleEffect();
                         break;
                     case SpecialArtFunctionType.GetIncome:
-                        gM.aiM.art.income += cardArt.artSpecialFunctions[i].value;
+                        gM.aiM.art.gold += cardArt.artSpecialFunctions[i].value;
                         break;
                 }
             }

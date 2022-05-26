@@ -9,7 +9,6 @@ public class Artist : CharacterMate
 
     public int consistency;//风格连击值
     public string currentStyle; //当前连击风格  现有风格：Pixel，LowPoly,LoveCraft,ACG,LaiZi
-    public int income;//收入
 
     //像素机制相关
     public int pixelPotential; //中断时，会给予敌人的伤害
@@ -74,8 +73,9 @@ public class Artist : CharacterMate
         }
         else
         {
-            consistency = 1;
+            BreakChainEffects();
             currentStyle = card.style.ToString();
+            consistency = 1;
         }
 
         hitP.SycnConsistencyAndStyle(currentStyle, consistency);
@@ -97,7 +97,7 @@ public class Artist : CharacterMate
                 break;
             //ACG连击：在每回合结束时，每1点将给予玩家1点收入
             case "ACG":
-                income += ACGCheck();
+                gold += ACGCheck();
                 break;
             case "LoveCraft":
                 //克苏鲁连击：在每回合结束时，每1点连击转换为对敌方的1点真实伤害
@@ -107,7 +107,32 @@ public class Artist : CharacterMate
 
     }
 
-    
+    public void BreakChainEffects()
+    {
+        switch (currentStyle) 
+        {
+            case "Pixel":
+                int x = PixelCheck();// x本身并没有作用 只是为了跑一边pixel Check进行 potential的更新 否则同一回合内（不按回合结束的按键）无法对potential进行数据同步 下面的check同理
+                gM.enM.enemyTarget.TakeDamage(pixelPotential);
+                break;
+            case "ACG":
+                int y = ACGCheck();
+                Debug.Log("acg" + acgPotential);
+                gold += acgPotential;
+                break;
+            case "LoveCraft":
+                int z = LoveCraftCheck();
+                gM.enM.enemyTarget.TakeTrueDamage(loveCraftPotential);
+                break;
+            case "LowPoly":
+                int s = LowPolyCheck();
+                HealSelf(lowPolyPotential);
+                break;
+
+        }
+
+    }
+
 
 
     //像素自身的连击机制
@@ -187,7 +212,7 @@ public class Artist : CharacterMate
     {
         if (consistency > 2)
         {
-            //loveCraftPotential = 3;
+            loveCraftPotential = 3;
             return lcLv2;
         }
         else if (consistency > 5)

@@ -2509,7 +2509,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gM: {fileID: 0}
+<<<<<<< HEAD
   actionTime: 0
+=======
 --- !u!1 &1515303768
 GameObject:
   m_ObjectHideFlags: 0
@@ -2585,6 +2587,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1515303768}
   m_CullTransparentMesh: 1
+>>>>>>> b86eb94cbc5a835013a8cd4b2f14928d1fd7afc5
 --- !u!1 &1529177797
 GameObject:
   m_ObjectHideFlags: 0
@@ -4207,22 +4210,35 @@ PrefabInstance:
         type: 3}
       propertyPath: levelEnemyPool.Array.data[0]
       value: 
-      objectReference: {fileID: 11400000, guid: b26c6f40cf701b644a42d29dc3b15a9c,
+<<<<<<< HEAD
+      objectReference: {fileID: 11400000, guid: b26c6f40cf701b644a42d29dc3b15a9c, type: 2}
+    - target: {fileID: 1400908855204755767, guid: 9586ba38c438cfa4198c26cebd3089cb, type: 3}
+      propertyPath: levelEnemyPool.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: d2a2583e55ed90b49b3ab8f5d22aeed9, type: 2}
+    - target: {fileID: 1400908855204755767, guid: 9586ba38c438cfa4198c26cebd3089cb, type: 3}
+      propertyPath: levelEnemyPool.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: a591e909ece9b4b49b8c5f6170a43c51, type: 2}
+    - target: {fileID: 1400908855204755767, guid: 9586ba38c438cfa4198c26cebd3089cb, type: 3}
+=======
+      objectReference: {fileID: 11400000, guid: b8958ab463ae23c4d9c037c8d3e832cc,
         type: 2}
     - target: {fileID: 1400908855204755767, guid: 9586ba38c438cfa4198c26cebd3089cb,
         type: 3}
       propertyPath: levelEnemyPool.Array.data[1]
       value: 
-      objectReference: {fileID: 11400000, guid: d2a2583e55ed90b49b3ab8f5d22aeed9,
+      objectReference: {fileID: 11400000, guid: b26c6f40cf701b644a42d29dc3b15a9c,
         type: 2}
     - target: {fileID: 1400908855204755767, guid: 9586ba38c438cfa4198c26cebd3089cb,
         type: 3}
       propertyPath: levelEnemyPool.Array.data[2]
       value: 
-      objectReference: {fileID: 11400000, guid: a591e909ece9b4b49b8c5f6170a43c51,
+      objectReference: {fileID: 11400000, guid: d2a2583e55ed90b49b3ab8f5d22aeed9,
         type: 2}
     - target: {fileID: 1400908855204755767, guid: 9586ba38c438cfa4198c26cebd3089cb,
         type: 3}
+>>>>>>> b86eb94cbc5a835013a8cd4b2f14928d1fd7afc5
       propertyPath: levelEnemyPool.Array.data[3]
       value: 
       objectReference: {fileID: 11400000, guid: a591e909ece9b4b49b8c5f6170a43c51,
