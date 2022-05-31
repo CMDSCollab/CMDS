@@ -101,6 +101,15 @@ public class BasicEnemy : MonoBehaviour
         healthPoint -= gM.buffM.EnemyTakeDamage(dmgValue);
     }
 
+    public virtual void Heal(int amount)
+    {
+        healthPoint += amount;
+        if (healthPoint > maxHp)
+        {
+            healthPoint = maxHp;
+        }
+    }
+
 
     //承受真实伤害：无视所有减益buff
     public void TakeTrueDamage(int dmg)
