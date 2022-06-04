@@ -23,9 +23,11 @@ MonoBehaviour:
   defaultSkill: 8
   basicIntentions:
   - intention: 0
-    tendency: 50
+    tendency: 40
   - intention: 1
-    tendency: 30
+    tendency: 20
   - intention: 3
+    tendency: 20
+  - intention: 4
     tendency: 20
   specialFunctions: 

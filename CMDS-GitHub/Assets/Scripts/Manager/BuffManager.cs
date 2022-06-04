@@ -454,11 +454,11 @@ public class BuffManager : MonoBehaviour
     public int CharacterAttack(int valueToCalculate)
     {
         //Debug.Log("CA before:" + valueToCalculate);
-        if (FindBuff(CharacterBuff.Weak) != null)
+        if (FindBuff(CharacterBuff.Weak)!=null)
         {
             valueToCalculate -= 3;
         }
-        if (FindBuff(CharacterBuff.PowerUp) != null)
+        if (FindBuff(CharacterBuff.PowerUp)!=null)
         {
             valueToCalculate += 3;
         }

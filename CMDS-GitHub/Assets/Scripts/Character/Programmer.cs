@@ -18,7 +18,7 @@ public class Programmer : CharacterMate
     public const int MAX_ERROR_COUNT = 6;
     public List<Error> currentErrors { get; private set; }
     [HideInInspector] public int codeRedundancy = 0;
-    public ProDebugUI debugUI;
+    private ProDebugUI debugUI;
 
     public override void OnNewGameStarted()
     {
