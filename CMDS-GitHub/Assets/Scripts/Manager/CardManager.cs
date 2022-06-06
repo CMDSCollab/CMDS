@@ -13,6 +13,7 @@ public class CardManager : MonoBehaviour
     public int handIndex;
     public int deckIndexRecord;
     public bool ifTouched = false;
+    public bool isOnSell; //是否在商店中出售；
 
     private void Start()
     {
@@ -34,6 +35,21 @@ public class CardManager : MonoBehaviour
 
     public void OnMouseClick()
     {
+        if (isOnSell)
+        {
+            Debug.Log("aaaa" + cardInfo.realValue);
+            Debug.Log("bbbb" + gM.comStatusBar.gold);
+            if(cardInfo.realValue <= gM.comStatusBar.gold)
+            {
+                gM.cardFunctionM.GetCardFromMerchant(this.gameObject);
+                gM.comStatusBar.gold -= cardInfo.realValue;
+            }
+            else
+            {
+                Debug.Log("No Gold");
+            }
+        }
+
         if (gameObject.transform.parent.name != "CardLayout") //确认不是弃抽牌堆的卡再使用
         {
             CardFuntion();
@@ -43,6 +59,7 @@ public class CardManager : MonoBehaviour
             }
             gM.handM.OrganizeHand();
         }
+
         if (gameObject.transform.parent.name == "CardLayout" && gM.cardFunctionM.cardCanbeGetFromDrawPile == true)
         {
             gM.cardFunctionM.GetCardFromDrawPile(deckIndexRecord);
@@ -208,7 +225,7 @@ public class CardManager : MonoBehaviour
                         gM.aiM.art.StyleEffect();
                         break;
                     case SpecialArtFunctionType.GetIncome:
-                        gM.aiM.art.gold += cardArt.artSpecialFunctions[i].value;
+                        gM.comStatusBar.gold += cardArt.artSpecialFunctions[i].value;
                         break;
                 }
             }

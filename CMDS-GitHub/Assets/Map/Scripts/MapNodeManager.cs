@@ -46,10 +46,16 @@ public class MapNodeManager : MonoBehaviour
             case NodeType.Rest:
                 break;
             case NodeType.Merchant:
+                EnterMerchant();
                 break;
             case NodeType.Uncertainty:
                 break;
         }
+    }
+
+    public void EnterMerchant()
+    {
+
     }
 
     public void EnterBattleScene(EnemyType enemyType)

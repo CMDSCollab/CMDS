@@ -20,6 +20,11 @@ public class CardFuntionManager : MonoBehaviour
         cardCanbeGetFromDrawPile = true;
     }
 
+    public void GetCardFromMerchant(GameObject newCard)
+    {
+        gM.deckM.cardInDeck.Add(gM.deckM.cardInDeck.Count, newCard.GetComponent<CardManager>().cardInfo);
+    }
+
     public void GetCardFromDrawPile(int deckIndexRecord)
     {
         gM.deckM.DrawSpecificSingleCard(deckIndexRecord, gM.deckM.cardInDeckCopy);

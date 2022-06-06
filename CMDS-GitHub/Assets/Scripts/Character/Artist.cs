@@ -97,7 +97,7 @@ public class Artist : CharacterMate
                 break;
             //ACG连击：在每回合结束时，每1点将给予玩家1点收入
             case "ACG":
-                gold += ACGCheck();
+                gM.comStatusBar.gold += ACGCheck();
                 break;
             case "LoveCraft":
                 //克苏鲁连击：在每回合结束时，每1点连击转换为对敌方的1点真实伤害
@@ -118,7 +118,7 @@ public class Artist : CharacterMate
             case "ACG":
                 int y = ACGCheck();
                 Debug.Log("acg" + acgPotential);
-                gold += acgPotential;
+                gM.comStatusBar.gold += acgPotential;
                 break;
             case "LoveCraft":
                 int z = LoveCraftCheck();

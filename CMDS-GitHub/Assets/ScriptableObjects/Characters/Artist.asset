@@ -19,3 +19,4 @@ MonoBehaviour:
   - intention: 2
     image: {fileID: 21300000, guid: 8d3eb64547ea45d4c88aa86dc45a9e46, type: 3}
   maxHp: 5
+  initialGold: 200

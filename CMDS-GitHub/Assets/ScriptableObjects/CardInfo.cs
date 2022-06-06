@@ -28,6 +28,9 @@ public abstract class CardInfo : ScriptableObject
     public string cardName;
     [TextArea]
     public string description;
+    public int merchantBaseValue;
+    public int realValue;
+
     public List<BaseFunction> baseFunctions;
     public List<SpecialFunctionType> specialFunctions;
     #endregion

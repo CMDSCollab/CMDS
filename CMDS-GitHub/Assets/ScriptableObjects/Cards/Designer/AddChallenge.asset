@@ -14,6 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: "\u589E\u52A0\u6311\u6218"
   description: "\u589E\u52A03\u70B9\u6311\u6218"
+  merchantBaseValue: 120
+  realValue: 0
   baseFunctions: []
   specialFunctions: 
   desSpecialFunctions:

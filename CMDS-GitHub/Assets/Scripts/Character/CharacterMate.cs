@@ -16,7 +16,7 @@ public class CharacterMate : BasicCharacter
     public int maxHp;
     public int healthPoint;
     public int shieldPoint;
-    public int gold;
+    //public int gold;
     public bool isDefeated;
     public Slider hpBar;
     public Text hpRatio;
@@ -47,13 +47,14 @@ public class CharacterMate : BasicCharacter
     {
         hpBar.value = healthPoint;
         hpRatio.text = healthPoint.ToString() + "/" + maxHp.ToString();
-        CommonStatusBar statusBar = FindObjectOfType<CommonStatusBar>();
-        statusBar.goldIntText.text = gold.ToString();
+/*        CommonStatusBar statusBar = FindObjectOfType<CommonStatusBar>();
+        statusBar.goldIntText.text = gold.ToString();*/
     }
 
     private void InitializeCharacter()
     {
         maxHp = characterInfo.maxHp;
+        //gold = characterInfo.initialGold;
         healthPoint = maxHp;
         hpBar = transform.Find("HpBar").GetComponent<Slider>();
         hpRatio = hpBar.transform.Find("HpRatio").GetComponent<Text>();

@@ -20,6 +20,7 @@ public class GameMaster : MonoBehaviour
     public BuffStateManager buffSM;
     public CardStateManager cardSM;
     public AnimCollection animC;
+    public CommonStatusBar comStatusBar;
 
     public Canvas uiCanvas;
 

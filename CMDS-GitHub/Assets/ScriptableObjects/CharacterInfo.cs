@@ -17,4 +17,5 @@ public class CharacterInfo : ScriptableObject
     public CharacterType characterType;
     public List<IntentionManager> intentions;
     public int maxHp;
+    public int initialGold;
 }

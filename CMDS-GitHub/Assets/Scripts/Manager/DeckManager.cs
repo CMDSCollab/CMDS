@@ -16,7 +16,7 @@ public class DeckManager : MonoBehaviour
     public Dictionary<int,CardInfo> cardInDeck = new Dictionary<int, CardInfo>(); //因为后面可能会出现卡牌可以强化的情况，同样一张卡可能出现名字一样，但是效果不一样的情况，所以需要做出区分
     public Dictionary<int,CardInfo> cardInDeckCopy = new Dictionary<int, CardInfo>(); //且因为scriptable obj是项目文件，所以只能有一个实例，所以需要在程序内进一步对于每个实例进行区分
     private GameObject cardPrefab;
-    public List<GameObject> cardPrefabs;
+    public List<GameObject> cardPrefabs; //在MerchantMaster中引用 不能private
 
     public GameMaster gM;
     public int initialCardAmount;
