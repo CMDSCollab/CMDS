@@ -115,7 +115,7 @@ public class CardManager : MonoBehaviour
             Image img = transform.Find("StyleIcon").GetComponent<Image>();
             Debug.Log("TestXXXXXX" + gM.aiM.art.hitP.styleImageDic["Pixel"]);
             img.sprite = gM.aiM.art.hitP.styleImageDic[cardArt.style.ToString()];
-    }
+        }
     }
 
     public void CardFuntion()
@@ -126,8 +126,7 @@ public class CardManager : MonoBehaviour
             switch (cardInfo.baseFunctions[i].functionType)
             {
                 case BaseFunctionType.Damage:
-                    gM.cardSM.EnterCardState(gM.cardSM.attackState, cardInfo.baseFunctions[i].value);
-                    //gM.enM.enemyTarget.TakeDamage(gM.buffM.CharacterAttack(cardInfo.baseFunctions[i].value));
+                    gM.enM.enemyTarget.TakeDamage(gM.buffM.CharacterAttack(cardInfo.baseFunctions[i].value));
                     break;
                 case BaseFunctionType.Shield:
                     //gM.aiM.pro.shieldPoint += cardInfo.baseFunctions[i].value;
@@ -199,7 +198,7 @@ public class CardManager : MonoBehaviour
                     break;
             }
         }
-  
+
         //异术家 卡牌相关功能
         if(cardInfo is CardInfoArt)
         {
@@ -319,7 +318,7 @@ public class CardManager : MonoBehaviour
                 case SpecialFunctionPro.DoubleShield:
                     if (gM.buffM.FindBuff(CharacterBuff.Defence) != null)
                     {
-                    gM.buffM.SetBuff(CharacterBuff.Defence, BuffTimeType.Temporary, 1, BuffValueType.AddValue, gM.buffM.FindBuff(CharacterBuff.Defence).value, BuffSource.Character);
+                        gM.buffM.SetBuff(CharacterBuff.Defence, BuffTimeType.Temporary, 1, BuffValueType.AddValue, gM.buffM.FindBuff(CharacterBuff.Defence).value, BuffSource.Character);
                     }
                     //gM.aiM.pro.shieldPoint += gM.aiM.pro.shieldPoint;
                     //gM.buffM.SetCharacterBuff(CharacterBuff.Defence, true, gM.aiM.pro.shieldPoint);
@@ -354,8 +353,8 @@ public class CardManager : MonoBehaviour
                     //gM.buffM.SetCharacterBuff(CharacterBuff.Defence, true, gM.aiM.pro.shieldPoint);
                     if (gM.buffM.FindBuff(CharacterBuff.Defence) != null)
                     {
-                    gM.enM.enemyTarget.TakeDamage(gM.buffM.CharacterAttack(gM.buffM.FindBuff(CharacterBuff.Defence).value * 2));
-                    gM.buffM.SetBuff(CharacterBuff.Defence, BuffTimeType.Temporary, 1, BuffValueType.AddValue, -gM.buffM.FindBuff(CharacterBuff.Defence).value, BuffSource.Character);
+                        gM.enM.enemyTarget.TakeDamage(gM.buffM.CharacterAttack(gM.buffM.FindBuff(CharacterBuff.Defence).value * 2));
+                        gM.buffM.SetBuff(CharacterBuff.Defence, BuffTimeType.Temporary, 1, BuffValueType.AddValue, -gM.buffM.FindBuff(CharacterBuff.Defence).value, BuffSource.Character);
                     }
                     break;
                 default:

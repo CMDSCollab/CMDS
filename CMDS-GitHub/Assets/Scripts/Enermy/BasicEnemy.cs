@@ -49,7 +49,7 @@ public class BasicEnemy : MonoBehaviour
 
     public void Update()
     {
-        //UpdateUI();
+        UpdateUI();
         if (healthPoint<=0 && !isDefeated)
         {
             isDefeated = true;
@@ -79,11 +79,11 @@ public class BasicEnemy : MonoBehaviour
         MainChaMCChange();
     }
 
-    //public void UpdateUI()
-    //{
-    //    hpBar.value = healthPoint;
-    //    hpRatio.text = healthPoint.ToString() + "/" + maxHp.ToString();
-    //}
+    public void UpdateUI()
+    {
+        hpBar.value = healthPoint;
+        hpRatio.text = healthPoint.ToString() + "/" + maxHp.ToString();
+    }
 
     public virtual void EnemyDefeated()
     {
@@ -99,6 +99,15 @@ public class BasicEnemy : MonoBehaviour
     public virtual void TakeDamage(int dmgValue)
     {
         healthPoint -= gM.buffM.EnemyTakeDamage(dmgValue);
+    }
+
+    public virtual void Heal(int amount)
+    {
+        healthPoint += amount;
+        if (healthPoint > maxHp)
+        {
+            healthPoint = maxHp;
+        }
     }
 
 

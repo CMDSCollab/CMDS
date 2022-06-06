@@ -32,6 +32,7 @@ public class EM_TechNerd : BasicEnemy
         switch (currentIntention)
         {
             case EnemyIntention.Attack:
+                Debug.Log("ATKentered");
                 if (isCharged)
                 {
                     gM.characterM.mainCharacter.TakeDamage(gM.buffM.EnemyAttack(defaultDmg * 2));

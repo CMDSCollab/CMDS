@@ -59,8 +59,7 @@ public class ButtonManager : MonoBehaviour
 
     public void OnClickNextTurn()
     {
-        //gM.fightM.FightProcessManager();
-        gM.combatSM.CombatStateProcess();
+        gM.fightM.FightProcessManager();
     }
 
     public void onClickStartButton()
